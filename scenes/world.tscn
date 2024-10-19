@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://gt3c6cq5nj55"]
+
+[ext_resource type="Texture2D" uid="uid://yjoijwh8uilt" path="res://assets/ph_background.png" id="1_m7udl"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_m7udl")
+centered = false
