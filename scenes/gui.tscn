@@ -2,15 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/gui.gd" id="1_lva4t"]
 
-[node name="GUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
+[node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_lva4t")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -20,7 +15,6 @@ grow_vertical = 0
 text = "Current day: xD"
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
