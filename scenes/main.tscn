@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb7v5q6cph0br"]
+[gd_scene load_steps=4 format=3 uid="uid://bb7v5q6cph0br"]
 
 [ext_resource type="PackedScene" uid="uid://gt3c6cq5nj55" path="res://scenes/world.tscn" id="1_kv433"]
 [ext_resource type="PackedScene" uid="uid://ch6ncmv23kajx" path="res://scenes/gui.tscn" id="2_0l6wj"]
+[ext_resource type="Script" path="res://scenes/turn_system.gd" id="4_76eem"]
 
 [node name="Main" type="Node"]
+
+[node name="TurnSystem" type="Node" parent="."]
+script = ExtResource("4_76eem")
 
 [node name="World" parent="." instance=ExtResource("1_kv433")]
 
 [node name="GUI" parent="." instance=ExtResource("2_0l6wj")]
+
+[connection signal="update_turn" from="TurnSystem" to="GUI" method="_on_turn_system_update_turn"]
