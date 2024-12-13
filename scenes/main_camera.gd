@@ -18,4 +18,3 @@ func _process(delta: float) -> void:
 		position.x += scroll_speed * delta
 	position.x = clamp(position.x, limit_left+get_viewport().size.x/2, limit_right-get_viewport().size.x/2)
 	position.y = clamp(position.y, limit_top+get_viewport().size.y/2, limit_bottom-get_viewport().size.y/2)
-	print(position)
