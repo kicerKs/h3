@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=4 uid="uid://gt3c6cq5nj55"]
 
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_5cfbr"]
-[ext_resource type="Script" path="res://scenes/main_camera.gd" id="1_d0lij"]
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
+[ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
 [ext_resource type="Texture2D" uid="uid://yjoijwh8uilt" path="res://assets/ph_background.png" id="1_m7udl"]
 [ext_resource type="Texture2D" uid="uid://bokp260yxjtwk" path="res://assets/ph_tilesheet.png" id="2_dcgv1"]
-[ext_resource type="Script" path="res://scenes/world_pathfinding.gd" id="2_q68no"]
-[ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero.tscn" id="5_xmunp"]
+[ext_resource type="Script" path="res://scenes/world/world_pathfinding.gd" id="2_q68no"]
+[ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero/hero.tscn" id="5_xmunp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w356e"]
 texture = ExtResource("2_dcgv1")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://car8ednr3ojmt"]
+
+[ext_resource type="Script" path="res://scenes/hero/hero.gd" id="1_ulsyx"]
+[ext_resource type="Texture2D" uid="uid://c40rrhwuog8tn" path="res://assets/ph_player.png" id="2_itmlt"]
+[ext_resource type="Script" path="res://common/state_machine.gd" id="3_f08jo"]
+[ext_resource type="Script" path="res://scenes/hero/idle_hero_state.gd" id="4_wnoae"]
+[ext_resource type="Script" path="res://scenes/hero/selected_hero_state.gd" id="5_boi5r"]
+[ext_resource type="Script" path="res://scenes/hero/moving_hero_state.gd" id="6_7116h"]
+
+[node name="Hero" type="Node2D"]
+script = ExtResource("1_ulsyx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_itmlt")
+centered = false
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_f08jo")
+initial_state = NodePath("Selected")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_wnoae")
+
+[node name="Selected" type="Node" parent="StateMachine"]
+script = ExtResource("5_boi5r")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("6_7116h")
