@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhgsvojmqdkla"]
+
+[ext_resource type="Script" path="res://scenes/units/Sniper.gd" id="1_brib0"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_vkix7"]
+[ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_48j0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05wx5"]
+atlas = ExtResource("2_vkix7")
+region = Rect2(0, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vqd4"]
+atlas = ExtResource("2_vkix7")
+region = Rect2(64, 128, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6xk2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05wx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vqd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_brib0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 26)
+sprite_frames = SubResource("SpriteFrames_6xk2i")
+
+[node name="AreaLU" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, 0, -64)
+
+[node name="AreaRU" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, -64, 64, -32)
+
+[node name="AreaLM" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, -64, 32)
+
+[node name="AreaRM" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 64, -32, 64, 32)
+
+[node name="AreaLD" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, 32, 0, 64)
+
+[node name="AreaRD" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, 64, 64, 32)
+
+[node name="Stack" type="LineEdit" parent="."]
+offset_left = 34.0
+offset_top = -35.0
+offset_right = 118.0
+offset_bottom = 3.0
+theme = ExtResource("3_48j0k")
+text = "65"
+alignment = 1
+editable = false
+selecting_enabled = false
+
+[connection signal="input_event" from="AnimatedSprite2D/AreaLU" to="." method="_area_event_LU"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRU" to="." method="_area_event_RU"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaLM" to="." method="_area_event_LM"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRM" to="." method="_area_event_RM"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaLD" to="." method="_area_event_LD"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRD" to="." method="_area_event_RD"]

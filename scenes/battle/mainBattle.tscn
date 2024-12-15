@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbcskqwjfsg6v"]
+
+[ext_resource type="Script" path="res://scenes/battle/main_battle.gd" id="1_6fxwr"]
+[ext_resource type="PackedScene" uid="uid://c1t12jdru667l" path="res://scenes/battle/battleground.tscn" id="1_84stv"]
+[ext_resource type="PackedScene" uid="uid://bq0siqu8hf4j7" path="res://scenes/battle/controls.tscn" id="3_68jbu"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_6fxwr")
+
+[node name="Battleground" parent="." instance=ExtResource("1_84stv")]
+
+[node name="Controls" parent="." instance=ExtResource("3_68jbu")]
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = -79.0
+offset_top = 362.0
+offset_right = -111.0
+offset_bottom = 444.0
+grow_vertical = 0
+scale = Vector2(1.7, 1.7)
+
+[node name="Mobs" type="Node" parent="."]
