@@ -70,16 +70,19 @@ func next_mob():
 
 func meleAttackMob(mob: Mob, side: Mob.Part):
 	if(!$Battleground.has_range(actual_plaing_mob, mob) or 
-		(playerArmy.find(actual_plaing_mob)>=0 and playerArmy.find(mob)>=0) ):
+		(playerArmy.find(actual_plaing_mob)>=0 and playerArmy.find(mob)>=0)):
 		return 
 	
 	$Battleground.walk_to_mob(mob, side)
-	var defence_attacked = mob.defence + (0 if !mob.player else hero.defense)
-	var defence_attacker = actual_plaing_mob.defence + (0 if !actual_plaing_mob.player else hero.defense)
-	mob.hp_stack -= (_calculate_attack_value(actual_plaing_mob, mob) - defence_attacked)
-	if(mob.counterattack):
-		actual_plaing_mob.hp_stack -= (_calculate_attack_value(mob, actual_plaing_mob) - defence_attacker)
-		mob.counterattack = false
+	fight(actual_plaing_mob, mob)
+
+func fight(attacker:Mob, mobAttacked: Mob):
+	var defence_attacked = mobAttacked.defence + (0 if !mobAttacked.player else hero.defense)
+	var defence_attacker = attacker.defence + (0 if !attacker.player else hero.defense)
+	mobAttacked.hp_stack -= (_calculate_attack_value(attacker, mobAttacked) - defence_attacked)
+	if(mobAttacked.counterattack):
+		attacker.hp_stack -= (_calculate_attack_value(mobAttacked, attacker) - defence_attacker)
+		mobAttacked.counterattack = false
 
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
 	var A = attacker.attack + (0 if !attacker.player else hero.attack)
@@ -103,9 +106,15 @@ func _calculate_ai_attack_possibility():
 		possibilities[i] *= (0.33*attack_value)
 	
 	var attackedMob = playerArmy[possibilities.find(possibilities.max)]
-	var calculated_path = $Battleground.trace_between($Battleground.local_to_map(actual_plaing_mob.position),$Battleground.local_to_map(attackedMob.position), true).slice(0,actual_plaing_mob.speed+2,1).slice(0,-1,1)
-	$Battleground.move_taken_spot($Battleground.local_to_map(actual_plaing_mob.position), calculated_path[-1])
+	var calculated_path = $Battleground.trace_between($Battleground.local_to_map(actual_plaing_mob.position),$Battleground.local_to_map(attackedMob.position), true)
+
+	for cell in calculated_path.duplicate():
+		if($Battleground/SelectLayer.get_used_cells().find(cell) == -1):
+			calculated_path.erase(cell)
+	if calculated_path.size() > 0:
+		$Battleground.move_taken_spot($Battleground.local_to_map(actual_plaing_mob.position), calculated_path[-1])
 	actual_plaing_mob.walking_path = calculated_path
+	fight(actual_plaing_mob, attackedMob)
 
 
 func _conut_base_attack() -> float:
@@ -131,9 +140,12 @@ func autoplay(mob: Mob):
 
 func set_battle(hero: Hero, oponent: Dictionary):
 	var positions: Array
+	var positions2: Array
 	var iterator = 0
 	if(!hero.army.keys().size() % 2):
-		positions = [0,10,4,6,2,8,5]
+		#positions = [0,10,4,6,2,8,5]
+		positions = [ Vector2i(0,2),Vector2i(7,6),Vector2i(6,7),Vector2i(7,8)]
+		positions2 = [ Vector2i(6,8),Vector2i(5,7),Vector2i(6,6),Vector2i(7,7)]
 	else:
 		positions = [0,10,5,2,8,4,6]
 		
@@ -141,10 +153,10 @@ func set_battle(hero: Hero, oponent: Dictionary):
 		var mob_node = mob.scene.instantiate()
 		mob_node.stack = hero.army[mob]
 		mobs_node.add_child(mob_node)
-		$Battleground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
+		$Battleground.initialPlaceMob(mob_node, positions[iterator])# Vector2i(0,positions[iterator]-1))#
 		mob_node.mob_play.connect($Battleground.mobTurnListener)
 		mob_node.mob_ended.connect(next_mob)
-		mob_node.mob_clicked.connect(meleAttackMob)
+		#mob_node.mob_clicked.connect(meleAttackMob)
 		playerArmy.append(mob_node)
 		iterator+=1
 	
@@ -156,7 +168,7 @@ func set_battle(hero: Hero, oponent: Dictionary):
 		mob_node.player = false
 		mob_node.get_child(0).flip_h = true
 		mob_node.get_child(-1).position.x = -mob_node.get_child(-1).position.x - mob_node.get_child(-1).size.x
-		$Battleground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
+		$Battleground.initialPlaceMob(mob_node, positions2[iterator])# Vector2i(14,positions[iterator]-1))#
 		mob_node.mob_play.connect($Battleground.mobTurnListener)
 		mob_node.mob_play.connect(autoplay)
 		mob_node.mob_ended.connect(next_mob)

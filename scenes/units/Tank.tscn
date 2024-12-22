@@ -30,6 +30,7 @@ animations = [{
 script = ExtResource("1_hl74i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_wron1")
 
 [node name="AreaLU" type="Area2D" parent="AnimatedSprite2D"]
@@ -78,3 +79,10 @@ text = "65"
 alignment = 1
 editable = false
 selecting_enabled = false
+
+[connection signal="input_event" from="AnimatedSprite2D/AreaLU" to="." method="_area_event_LU"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRU" to="." method="_area_event_RU"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaLM" to="." method="_area_event_LM"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRM" to="." method="_area_event_RM"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaLD" to="." method="_area_event_LD"]
+[connection signal="input_event" from="AnimatedSprite2D/AreaRD" to="." method="_area_event_RD"]

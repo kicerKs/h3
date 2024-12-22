@@ -10,7 +10,12 @@ enum Part {LU,RU,LM,RM,LD,RD}
 
 var scene: PackedScene
 
-var walking_path: Array[Vector2i]
+var walking_path: Array[Vector2i]:
+	set(value):
+		print(value)
+		walking_path = value
+		if(walking_path.size() == 0):
+			status = MobStatus.Wait
 var player = true
 var flying = false
 var distant = false

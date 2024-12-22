@@ -80,7 +80,6 @@ func trace_between(from: Vector2i, to: Vector2i, ignore_target_solid: bool = fal
 	astar.cell_size = mapLayer.tile_set.tile_size
 	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 	
 	for cell in takenSpots:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/units/Firebat.gd" id="1_87l0v"]
 [ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_bgkew"]
-[ext_resource type="Theme" path="res://scenes/units/lifeNodeTheme.tres" id="3_1wg2u"]
+[ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_1wg2u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7hpa"]
 atlas = ExtResource("2_bgkew")
