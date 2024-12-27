@@ -25,15 +25,26 @@ func local_to_map(local: Vector2i):
 func map_to_local(map: Vector2i):
 	return mapLayer.map_to_local(map)
 
+func local_to_map_array(local: Array) -> Array[Vector2i]:
+	for x in range(local.size()):
+		local[x] = Vector2i(mapLayer.local_to_map(local[x]))
+	return local
+
+func map_to_local_array(map: Array) -> Array[Vector2i]:
+	for x in range(map.size()):
+		map[x] = Vector2i(mapLayer.map_to_local(map[x]))
+	return map
+
 func mobTurnListener(emitter: Node2D)->void:
 	selectedMob = emitter as Mob
 	drawRange()
 
-func has_range(attacked_mob: Mob, attacker: Mob) -> bool:
-	return trace_between(selectLayer.local_to_map(attacker.position), selectLayer.local_to_map(attacked_mob.position), true).size() > 0
+func has_range_to(attacked_mob: Mob, side: Mob.Part) -> bool:
+	var cell = cell_on_side(attacked_mob, side)
+	return cell != Vector2i(-10,-10) and selectLayer.get_used_cells().find(cell) >= 0
 
-func walk_to_mob(attacked_mob: Mob, side: Mob.Part):
-	var position_next_to = Vector2i(0,0)
+func cell_on_side(attacked_mob: Mob, side: Mob.Part) -> Vector2i:
+	var position_next_to = Vector2i(-10,-10)
 	var offset = 1 - abs(selectLayer.local_to_map(attacked_mob.position).y % 2)
 	match side:
 		Mob.Part.LU:
@@ -49,8 +60,7 @@ func walk_to_mob(attacked_mob: Mob, side: Mob.Part):
 		Mob.Part.RD:
 			position_next_to = Vector2i(selectLayer.local_to_map(attacked_mob.position).x+1-offset, selectLayer.local_to_map(attacked_mob.position).y+1)
 	
-	if(selectLayer.get_used_cells().find(position_next_to)>=0):
-		placeMobAt(selectedMob, position_next_to)
+	return position_next_to
 
 func moveMobTo(newPlace: Vector2i):
 	placeMobAt(selectedMob, newPlace)
@@ -67,7 +77,9 @@ func placeMobAt(mob: Mob, place: Vector2i):
 		if(cell != mapLayer.local_to_map(mob.position)):
 			astar.set_point_solid(cell)
 	
-	mob.walking_path = trace_between(mapLayer.local_to_map(mob.global_position), place)
+	var path = map_to_local_array(trace_between(mapLayer.local_to_map(mob.global_position), place))
+	
+	mob.walking_path = path
 	move_taken_spot(mapLayer.local_to_map(mob.position), place)
 
 func move_taken_spot(from: Vector2i, to: Vector2i):
