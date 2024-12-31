@@ -22,51 +22,52 @@ animations = [{
 "texture": SubResource("AtlasTexture_kx5x0")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
 }]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_41ixc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_wron1")
+animation = &"Idle"
 
-[node name="AreaLU" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaLU" type="Area2D" parent="Sprite"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLU"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLU"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 0, -64, -32, 0, -64)
 
-[node name="AreaRU" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaRU" type="Area2D" parent="Sprite"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRU"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRU"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 0, 0, -64, 64, -32)
 
-[node name="AreaLM" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaLM" type="Area2D" parent="Sprite"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLM"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 0, -64, -32, -64, 32)
 
-[node name="AreaRM" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaRM" type="Area2D" parent="Sprite"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRM"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 0, 64, -32, 64, 32)
 
-[node name="AreaLD" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaLD" type="Area2D" parent="Sprite"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaLD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLD"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 0, -64, 32, 0, 64)
 
-[node name="AreaRD" type="Area2D" parent="AnimatedSprite2D"]
+[node name="AreaRD" type="Area2D" parent="Sprite"]
 z_index = 1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/AreaRD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRD"]
 position = Vector2(0, 31)
 polygon = PackedVector2Array(0, 64, 0, 0, 64, 32)
 
@@ -83,9 +84,9 @@ alignment = 1
 editable = false
 selecting_enabled = false
 
-[connection signal="input_event" from="AnimatedSprite2D/AreaLU" to="." method="_area_event_LU"]
-[connection signal="input_event" from="AnimatedSprite2D/AreaRU" to="." method="_area_event_RU"]
-[connection signal="input_event" from="AnimatedSprite2D/AreaLM" to="." method="_area_event_LM"]
-[connection signal="input_event" from="AnimatedSprite2D/AreaRM" to="." method="_area_event_RM"]
-[connection signal="input_event" from="AnimatedSprite2D/AreaLD" to="." method="_area_event_LD"]
-[connection signal="input_event" from="AnimatedSprite2D/AreaRD" to="." method="_area_event_RD"]
+[connection signal="input_event" from="Sprite/AreaLU" to="." method="_area_event_LU"]
+[connection signal="input_event" from="Sprite/AreaRU" to="." method="_area_event_RU"]
+[connection signal="input_event" from="Sprite/AreaLM" to="." method="_area_event_LM"]
+[connection signal="input_event" from="Sprite/AreaRM" to="." method="_area_event_RM"]
+[connection signal="input_event" from="Sprite/AreaLD" to="." method="_area_event_LD"]
+[connection signal="input_event" from="Sprite/AreaRD" to="." method="_area_event_RD"]

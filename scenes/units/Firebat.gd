@@ -12,3 +12,4 @@ func _init():
 	cost = 200
 	scene = load("res://scenes/units/Firebat.tscn")
 	flying = true
+	name = "Firebat"

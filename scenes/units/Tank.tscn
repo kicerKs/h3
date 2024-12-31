@@ -1,13 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6nouxahdjovu"]
+[gd_scene load_steps=7 format=3 uid="uid://b6nouxahdjovu"]
 
 [ext_resource type="Script" path="res://scenes/units/Tank.gd" id="1_hl74i"]
 [ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_f5pis"]
 [ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_wfy2v"]
-[ext_resource type="Script" path="res://common/state_machine.gd" id="4_0pexf"]
-[ext_resource type="Script" path="res://scenes/battle/states/moving_mob_state.gd" id="5_dqi3y"]
-[ext_resource type="Script" path="res://scenes/battle/states/selected_mob_state.gd" id="5_oo02n"]
-[ext_resource type="Script" path="res://scenes/units/idle_mob_state.gd" id="5_vbwax"]
-[ext_resource type="Script" path="res://scenes/battle/states/attack_mob_state.gd" id="8_el13u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0n8ga"]
 atlas = ExtResource("2_f5pis")
@@ -85,22 +80,6 @@ text = "65"
 alignment = 1
 editable = false
 selecting_enabled = false
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_0pexf")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("5_vbwax")
-
-[node name="Selected" type="Node" parent="StateMachine"]
-script = ExtResource("5_oo02n")
-
-[node name="Moving" type="Node" parent="StateMachine"]
-script = ExtResource("5_dqi3y")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("8_el13u")
 
 [connection signal="input_event" from="Sprite/AreaLU" to="." method="_area_event_LU"]
 [connection signal="input_event" from="Sprite/AreaRU" to="." method="_area_event_RU"]

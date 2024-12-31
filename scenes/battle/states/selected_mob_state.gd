@@ -1,18 +1,15 @@
-extends MobState
-
-signal mob_selected(Mob)
+extends BattleTurnState
 
 func on_enter() -> void:
-	mob.find_child("Sprite").animation = "Idle"
-	mob.find_child("Sprite").frame = 1
-	mob_selected.emit(owner)
-	
+	battle.next_mob()
+	battle.actual_plaing_mob.find_child("Sprite").animation = "Idle"
+	battle.actual_plaing_mob.find_child("Sprite").frame = 1
 
 func on_exit() -> void:
-	mob.find_child("Sprite").frame = 0
+	battle.actual_plaing_mob.find_child("Sprite").frame = 0
 
 func update(_delta: float) -> void:
-	if mob.walking_path.size() > 0:
+	if battle.actual_plaing_mob.walking_path.size() > 0:
 		change_state.emit(MOVING)
 	pass
 

@@ -1,18 +1,18 @@
 class_name Mob extends Node2D
 
-signal mob_play(Mob)
+signal mob_play()
 signal mob_ended()
 signal mob_clicked(Mob, Part)
 
 @onready var map_reference = $"../../Battleground" 
-enum Part {LU,RU,LM,RM,LD,RD}
+enum Part {LU,RU,LM,RM,LD,RD,NONE}
 
 var scene: PackedScene
 
-var walking_path: Array[Vector2i]:
-	set(value):
-		print(value)
-		walking_path = value
+var walking_path: Array[Vector2i]#:
+	#set(value):
+		#print(value)
+		#walking_path = value
 var player = true
 var flying = false
 var distant = false
@@ -26,8 +26,6 @@ var stack = 0:
 
 var attack = 1
 var defence = 1
-	#get():
-		#return defence + defence_boost*0.20*defence
 var damage_min = 1
 var damage_max = 1
 var hp_base = 1
@@ -41,8 +39,10 @@ var speed = 1
 var growth = 1
 var ai_val = 1
 var cost = 1
-var defence_boost = 0
-var target: Mob = null
+var defence_boost = false
+
+func _process(delta: float) -> void:
+	pass
 
 func _area_event_LU(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():

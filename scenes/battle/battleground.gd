@@ -2,7 +2,6 @@ class_name Battleground extends Node2D
 
 var mapLayer : TileMapLayer
 var selectLayer : TileMapLayer
-var selectedMob : Mob
 var takenSpots : Array[Vector2i] = []
 var map_rect = Rect2i(0,-1, 15, 11)
 var tile_size = 128
@@ -35,13 +34,29 @@ func map_to_local_array(map: Array) -> Array[Vector2i]:
 		map[x] = Vector2i(mapLayer.map_to_local(map[x]))
 	return map
 
-func mobTurnListener(emitter: Node2D)->void:
-	selectedMob = emitter as Mob
-	drawRange()
+func set_enable(cell: Vector2i):
+	takenSpots.erase(cell)
 
-func has_range_to(attacked_mob: Mob, side: Mob.Part) -> bool:
+func put_obstacle(cell: Vector2i, type: int):
+	takenSpots.append(cell)
+	var obstacle = Sprite2D.new()
+	obstacle.texture = load("res://assets/rock.png")
+	obstacle.position = map_to_local(cell)
+	obstacle.position.y = obstacle.position.y + 64
+	find_child("Obstacles").add_child(obstacle)
+
+func are_next_to(source:Vector2i, target: Vector2i) -> bool:
+	return selectLayer.get_surrounding_cells(source).find(target) >= 0
+
+func has_range_to(attacked_mob: Mob) -> bool:
+	for cell in selectLayer.get_surrounding_cells(local_to_map(attacked_mob.position)):
+		if(selectLayer.get_used_cells().find(cell) >= 0):
+			return true
+	return false
+
+func has_range_on_side(attacked_mob: Mob, side: Mob.Part = Mob.Part.NONE) -> bool:
 	var cell = cell_on_side(attacked_mob, side)
-	return cell != Vector2i(-10,-10) and selectLayer.get_used_cells().find(cell) >= 0
+	return cell != Vector2i(-10,-10) and (selectLayer.get_used_cells().find(cell) >= 0 or cell == local_to_map(get_parent().actual_plaing_mob.position))
 
 func cell_on_side(attacked_mob: Mob, side: Mob.Part) -> Vector2i:
 	var position_next_to = Vector2i(-10,-10)
@@ -62,8 +77,9 @@ func cell_on_side(attacked_mob: Mob, side: Mob.Part) -> Vector2i:
 	
 	return position_next_to
 
-func moveMobTo(newPlace: Vector2i):
-	placeMobAt(selectedMob, newPlace)
+func moveActualTo(newPlace: Vector2i):
+	if(get_parent().actual_plaing_mob.player and !get_parent().block_actions):
+		placeMobAt(get_parent().actual_plaing_mob, newPlace)
 
 func placeMobAt(mob: Mob, place: Vector2i):
 	var astar = AStarGrid2D.new()
@@ -86,7 +102,7 @@ func move_taken_spot(from: Vector2i, to: Vector2i):
 	takenSpots.erase(from)
 	takenSpots.append(to)
 
-func trace_between(from: Vector2i, to: Vector2i, ignore_target_solid: bool = false) -> Array:
+func trace_between(from: Vector2i, to: Vector2i, ignore_target_solid: bool = true) -> Array:
 	var astar = AStarGrid2D.new()
 	astar.region = map_rect
 	astar.cell_size = mapLayer.tile_set.tile_size
@@ -95,7 +111,7 @@ func trace_between(from: Vector2i, to: Vector2i, ignore_target_solid: bool = fal
 	astar.update()
 	
 	for cell in takenSpots:
-		if !(cell == from or (cell == to and ignore_target_solid)):
+		if !(cell == from or (cell == to and !ignore_target_solid)):
 			astar.set_point_solid(cell)
 	
 	return astar.get_id_path(from,to)
@@ -104,37 +120,31 @@ func initialPlaceMob(mob: Mob, place: Vector2i):
 	mob.position = Vector2i(mapLayer.map_to_local(place).x, mapLayer.map_to_local(place).y + 40)
 	takenSpots.append(mapLayer.local_to_map(mob.position))
 
+func mobTurnListener()->void:
+	drawRange()
+
 func drawRange()->void:
 	selectLayer.clear()
-	if(selectedMob != null):
-		for n in range(-selectedMob.speed,selectedMob.speed+1):
-			if(int(selectedMob.position.y/96) % 2 == 0):
-				for m in range(-selectedMob.speed + abs(n/2+(n%2)),selectedMob.speed - abs(n/2) + 1):
-					if(mapLayer.get_cell_source_id(Vector2i(mapLayer.local_to_map(selectedMob.position).x+m, mapLayer.local_to_map(selectedMob.position).y+n))>=0):
-						selectLayer.set_cell(Vector2i(mapLayer.local_to_map(selectedMob.position).x+m, mapLayer.local_to_map(selectedMob.position).y+n), 0, Vector2i(1,0))
+	if(get_parent().actual_plaing_mob != null):
+		for n in range(-get_parent().actual_plaing_mob.speed,get_parent().actual_plaing_mob.speed+1):
+			if(int(get_parent().actual_plaing_mob.position.y/96) % 2 == 0):
+				for m in range(-get_parent().actual_plaing_mob.speed + abs(n/2+(n%2)),get_parent().actual_plaing_mob.speed - abs(n/2) + 1):
+					if(mapLayer.get_cell_source_id(Vector2i(mapLayer.local_to_map(get_parent().actual_plaing_mob.position).x+m, mapLayer.local_to_map(get_parent().actual_plaing_mob.position).y+n))>=0):
+						selectLayer.set_cell(Vector2i(mapLayer.local_to_map(get_parent().actual_plaing_mob.position).x+m, mapLayer.local_to_map(get_parent().actual_plaing_mob.position).y+n), 0, Vector2i(1,0))
 			else:
-				for m in range(-selectedMob.speed + abs(n/2),selectedMob.speed - abs(n/2+(n%2)) + 1):
-					if(mapLayer.get_cell_source_id(Vector2i(mapLayer.local_to_map(selectedMob.position).x+m, mapLayer.local_to_map(selectedMob.position).y+n))>=0):
-						selectLayer.set_cell(Vector2i(mapLayer.local_to_map(selectedMob.position).x+m, mapLayer.local_to_map(selectedMob.position).y+n), 0, Vector2i(1,0))
+				for m in range(-get_parent().actual_plaing_mob.speed + abs(n/2),get_parent().actual_plaing_mob.speed - abs(n/2+(n%2)) + 1):
+					if(mapLayer.get_cell_source_id(Vector2i(mapLayer.local_to_map(get_parent().actual_plaing_mob.position).x+m, mapLayer.local_to_map(get_parent().actual_plaing_mob.position).y+n))>=0):
+						selectLayer.set_cell(Vector2i(mapLayer.local_to_map(get_parent().actual_plaing_mob.position).x+m, mapLayer.local_to_map(get_parent().actual_plaing_mob.position).y+n), 0, Vector2i(1,0))
 		excludeTakenSpots()
-		if(!selectedMob.flying):
-			cutSpotsWithoutConnectionWith(mapLayer.local_to_map(selectedMob.position))
+		if(!get_parent().actual_plaing_mob.flying):
+			cutSpotsWithoutConnectionWith(mapLayer.local_to_map(get_parent().actual_plaing_mob.position))
 
 func excludeTakenSpots():
 	for spot in takenSpots:
 		selectLayer.erase_cell(spot)
 
 func cutSpotsWithoutConnectionWith(vector: Vector2i):
-	var visited: Array[Vector2i] = []
-	var queue: Array[Vector2i] = [vector]
-	
-	while queue.size() > 0:
-		for cell in selectLayer.get_surrounding_cells(queue[0]):
-			if(visited.find(cell,0) < 0 and selectLayer.get_cell_source_id(cell)>=0):
-				queue.append(cell)
-		visited.append(queue[0])
-		queue.remove_at(0)
-	
 	for cell in selectLayer.get_used_cells():
-		if(visited.find(cell,0)<0):
+		var path_size = trace_between(vector, cell).size()
+		if(path_size == 0 or path_size - 1 > get_parent().actual_plaing_mob.speed):
 			selectLayer.erase_cell(cell)

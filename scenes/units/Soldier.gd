@@ -11,3 +11,4 @@ func _init():
 	ai_val = 80
 	cost = 60
 	scene = load("res://scenes/units/Soldier.tscn")
+	name = "Soldier"

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbcskqwjfsg6v"]
+[gd_scene load_steps=9 format=3 uid="uid://dbcskqwjfsg6v"]
 
 [ext_resource type="Script" path="res://scenes/battle/main_battle.gd" id="1_6fxwr"]
 [ext_resource type="PackedScene" uid="uid://c1t12jdru667l" path="res://scenes/battle/battleground.tscn" id="1_84stv"]
 [ext_resource type="PackedScene" uid="uid://bq0siqu8hf4j7" path="res://scenes/battle/controls.tscn" id="3_68jbu"]
+[ext_resource type="Script" path="res://common/state_machine.gd" id="4_mr1rh"]
+[ext_resource type="Script" path="res://scenes/battle/states/selected_mob_state.gd" id="5_lh3p4"]
+[ext_resource type="Script" path="res://scenes/battle/states/moving_mob_state.gd" id="6_mrmt1"]
+[ext_resource type="Script" path="res://scenes/battle/states/attack_mob_state.gd" id="7_yv7bt"]
+[ext_resource type="PackedScene" uid="uid://d8q7e3rhkt20" path="res://ui/popup.tscn" id="8_hvqur"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_6fxwr")
@@ -10,13 +15,45 @@ script = ExtResource("1_6fxwr")
 [node name="Battleground" parent="." instance=ExtResource("1_84stv")]
 
 [node name="Controls" parent="." instance=ExtResource("3_68jbu")]
-anchors_preset = 12
-anchor_top = 1.0
-offset_left = -79.0
-offset_top = 362.0
-offset_right = -111.0
-offset_bottom = 444.0
+anchors_preset = -1
+anchor_left = -0.062
+anchor_top = 1.503
+anchor_right = 1.596
+anchor_bottom = 1.696
+offset_left = 0.360001
+offset_top = -0.160034
+offset_right = -873.88
+offset_bottom = -57.1201
 grow_vertical = 0
 scale = Vector2(1.7, 1.7)
 
 [node name="Mobs" type="Node" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_mr1rh")
+
+[node name="Selected" type="Node" parent="StateMachine"]
+script = ExtResource("5_lh3p4")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("6_mrmt1")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_yv7bt")
+
+[node name="RetreatPopup" parent="." instance=ExtResource("8_hvqur")]
+anchors_preset = -1
+anchor_left = -0.064
+anchor_right = -0.064
+anchor_bottom = 0.0
+offset_left = -4.07999
+offset_right = -4.07999
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SurrenderPopup" parent="." instance=ExtResource("8_hvqur")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq0siqu8hf4j7"]
+[gd_scene load_steps=8 format=3 uid="uid://bq0siqu8hf4j7"]
 
 [ext_resource type="Texture2D" uid="uid://vsfbqykyiyo1" path="res://scenes/battle/icons/Menu.png" id="1_4c7g0"]
 [ext_resource type="Script" path="res://scenes/battle/controls.gd" id="1_wkjum"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkax03ftvp3oq" path="res://scenes/battle/icons/retire.png" id="3_hhax2"]
 [ext_resource type="Texture2D" uid="uid://cueb1eabnweic" path="res://scenes/battle/icons/wait.png" id="4_sd0jc"]
 [ext_resource type="Texture2D" uid="uid://ifm5vk3te7vo" path="res://scenes/battle/icons/defend.png" id="5_0dl5n"]
+[ext_resource type="Texture2D" uid="uid://bbo8tshw8ohjo" path="res://assets/head.png" id="7_ak8t0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -99,5 +100,13 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.9, 0.9)
 
+[node name="TextureRect" type="TextureRect" parent="ItemList"]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 80.0
+texture = ExtResource("7_ak8t0")
+
+[connection signal="pressed" from="SurrenderButton" to="." method="surrender_button_clicked"]
+[connection signal="pressed" from="RetreatButton" to="." method="retreat_button_clicked"]
 [connection signal="pressed" from="WaitButton" to="." method="wait_button_clicked"]
 [connection signal="pressed" from="DefendButton" to="." method="defend_button_clicked"]

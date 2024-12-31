@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://d8q7e3rhkt20"]
+
+[ext_resource type="Script" path="res://ui/popup.gd" id="1_uylwm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uylwm")
+
+[node name="Window" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(200, 150)
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Window/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Aby wycofać się z bitwy musisz zapłacić X złota"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Tak"
+
+[node name="NoButton" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Nie"
+
+[connection signal="close_requested" from="Window" to="." method="popup_close_internal"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/YesButton" to="." method="approve_button_down_internal"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/NoButton" to="." method="discard_button_down_internal"]
