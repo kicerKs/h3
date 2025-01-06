@@ -6,6 +6,8 @@ var takenSpots : Array[Vector2i] = []
 var map_rect = Rect2i(0,-1, 15, 11)
 var tile_size = 128
 
+var hermesBoots = load("res://assets/cursors/bootsCursor.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	selectLayer = get_node("SelectLayer")
@@ -16,7 +18,13 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	pass
+	if(selectLayer.get_used_cells().find(local_to_map(Vector2i(get_global_mouse_position().x, get_global_mouse_position().y - 96)))>=0):
+		change_cursor(hermesBoots)
+	else:
+		change_cursor(null)
+
+func change_cursor(cursor: Texture2D):
+	Input.set_custom_mouse_cursor(cursor,Input.CURSOR_ARROW,Vector2(16,16))
 
 func local_to_map(local: Vector2i):
 	return mapLayer.local_to_map(local)
@@ -29,7 +37,8 @@ func local_to_map_array(local: Array) -> Array[Vector2i]:
 		local[x] = Vector2i(mapLayer.local_to_map(local[x]))
 	return local
 
-func map_to_local_array(map: Array) -> Array[Vector2i]:
+func map_to_local_array(array: Array) -> Array[Vector2i]:
+	var map = array.duplicate(true)
 	for x in range(map.size()):
 		map[x] = Vector2i(mapLayer.map_to_local(map[x]))
 	return map
@@ -54,7 +63,7 @@ func has_range_to(attacked_mob: Mob) -> bool:
 			return true
 	return false
 
-func has_range_on_side(attacked_mob: Mob, side: Mob.Part = Mob.Part.NONE) -> bool:
+func has_range_on_side(attacked_mob: Mob, side: Mob.Part) -> bool:
 	var cell = cell_on_side(attacked_mob, side)
 	return cell != Vector2i(-10,-10) and (selectLayer.get_used_cells().find(cell) >= 0 or cell == local_to_map(get_parent().actual_plaing_mob.position))
 
@@ -94,7 +103,6 @@ func placeMobAt(mob: Mob, place: Vector2i):
 			astar.set_point_solid(cell)
 	
 	var path = map_to_local_array(trace_between(mapLayer.local_to_map(mob.global_position), place))
-	
 	mob.walking_path = path
 	move_taken_spot(mapLayer.local_to_map(mob.position), place)
 
@@ -115,6 +123,12 @@ func trace_between(from: Vector2i, to: Vector2i, ignore_target_solid: bool = tru
 			astar.set_point_solid(cell)
 	
 	return astar.get_id_path(from,to)
+
+func straight_distance(from: Vector2i, to: Vector2i) -> int:
+	return round(from.distance_to(to))
+
+func straight_distance_mobs(fromMob: Mob, toMob: Mob) -> int:
+	return straight_distance(local_to_map(fromMob.position), local_to_map(toMob.position))
 
 func initialPlaceMob(mob: Mob, place: Vector2i):
 	mob.position = Vector2i(mapLayer.map_to_local(place).x, mapLayer.map_to_local(place).y + 40)

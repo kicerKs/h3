@@ -2,7 +2,7 @@ class_name Marine extends Mob
 
 func _init():
 	attack = 10
-	defence = 12
+	defense = 12
 	damage_min = 6
 	damage_max = 9
 	hp_base = 35
@@ -12,3 +12,4 @@ func _init():
 	cost = 300
 	scene = load("res://scenes/units/Marine.tscn")
 	name = "Marine"
+	mob_number = 3

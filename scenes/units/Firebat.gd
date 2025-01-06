@@ -2,7 +2,7 @@ class_name Firebat extends Mob
 
 func _init():
 	attack = 8
-	defence = 8
+	defense = 8
 	damage_min = 3
 	damage_max = 6
 	hp_base = 25
@@ -13,3 +13,4 @@ func _init():
 	scene = load("res://scenes/units/Firebat.tscn")
 	flying = true
 	name = "Firebat"
+	mob_number = 2
