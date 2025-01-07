@@ -32,12 +32,12 @@ func _ready() -> void:
 	surrender_popup = $SurrenderPopup
 	projectile = $Projectile
 	battle_ground = $Battleground
-	projectile.position = $Battleground.map_to_local(Vector2i(-10,-10))
+	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
 	
 	hero = Hero.new()
 	hero.army = {
+		Angel.new(): 1,
 		Soldier.new(): 12,
-		Sniper.new(): 5,
 		Firebat.new(): 3,
 		Tank.new(): 8,
 	}
@@ -71,7 +71,7 @@ func add_obstacles():
 		Vector2i(6,7): 1,
 		}
 	for cell in obstacles.keys():
-		$Battleground.put_obstacle(cell, obstacles[cell])
+		battle_ground.put_obstacle(cell, obstacles[cell])
 
 func mob_sort(mob1: Mob, mob2: Mob):
 	if(mob1.get_speed() > mob2.get_speed()):
@@ -101,7 +101,7 @@ func erase_dead_mobs():
 			wait_queue.erase(mob)#tutaj może być problem, że martwy mob chce się ruszyć??? albo coś nie tak ze zwalnianiem pozycji po śmierci
 			if(mob.visible):
 				mob.visible = false
-				$Battleground.set_enable($Battleground.local_to_map(mob.position))
+				battle_ground.set_enable(battle_ground.local_to_map(mob.position))
 		else:
 			new_sequence.append(mob)
 	fight_sequence = new_sequence
@@ -158,7 +158,7 @@ func button_lock():
 func attackMob(mob: Mob, side: Mob.Part):
 	if(block_actions): return
 	
-	if(actual_plaing_mob.distant and $Battleground.straight_distance_mobs(actual_plaing_mob, mob) > 1):
+	if(actual_plaing_mob.distant and battle_ground.straight_distance_mobs(actual_plaing_mob, mob) > 1):
 		distant_attack(mob)
 	else:
 		melee_attack(mob, side)
@@ -166,15 +166,22 @@ func attackMob(mob: Mob, side: Mob.Part):
 func distant_attack(mob: Mob):
 	projectile.position = actual_plaing_mob.position
 	projectile.texture = load("res://assets/projectiles.png") #w przyszłości zrobić funkcję wyboru różnych projectili
+	projectile.rotation = 0
+	var a = actual_plaing_mob.position.x - mob.position.x
+	var b = actual_plaing_mob.position.y - mob.position.y
+	var c = sqrt(a**2+b**2)
+	var angle = asin(abs(b)/c)
+	projectile.rotate((angle) if(a*b>=0) else (PI-angle))
+	projectile.visible = false
 	target = mob
 	find_child("StateMachine").transition_to_state(BattleTurnState.PROJECTILE_FLY)
 
 func melee_attack(mob: Mob, side: Mob.Part):
-	if(!$Battleground.has_range_on_side(mob, side) or 
+	if(!battle_ground.has_range_on_side(mob, side) or 
 		(playerArmy.find(actual_plaing_mob)>=0 and playerArmy.find(mob)>=0)):
 		return 
 	
-	$Battleground.placeMobAt(actual_plaing_mob,$Battleground.cell_on_side(mob,side))
+	battle_ground.placeMobAt(actual_plaing_mob,battle_ground.cell_on_side(mob,side))
 	target = mob
 	find_child("StateMachine").transition_to_state(BattleTurnState.ATTACK)
 
@@ -214,7 +221,7 @@ func _calculate_ai_attack_possibility():
 	possibilities.resize(playerArmy.size())
 	ranges.resize(playerArmy.size())
 	for i in range(playerArmy.size()):
-		ranges[i] = true if($Battleground.has_range_to(playerArmy[i])) else false
+		ranges[i] = true if(battle_ground.has_range_to(playerArmy[i])) else false
 		possibilities[i] = 1 if(ranges[i]) else 0.5
 		var attack_value = _calculate_attack_value(playerArmy[i], actual_plaing_mob) - playerArmy[i].defense #uwzglęcnić bonus do defendu
 		var counteratack_value = 0 if(!playerArmy[i].counterattack) else _calculate_attack_value(actual_plaing_mob, playerArmy[i]) - actual_plaing_mob.defense
@@ -229,24 +236,24 @@ func _calculate_ai_attack_possibility():
 	var calculated_path = Array([], TYPE_VECTOR2I, "", null)
 	
 	if(!actual_plaing_mob.distant):
-		calculated_path = $Battleground.trace_between($Battleground.local_to_map(actual_plaing_mob.position),$Battleground.local_to_map(attackedMob.position), false)
+		calculated_path = battle_ground.trace_between(battle_ground.local_to_map(actual_plaing_mob.position),battle_ground.local_to_map(attackedMob.position), false)
 		for cell in calculated_path.duplicate():
 			if($Battleground/SelectLayer.get_used_cells().find(cell) == -1):
 				calculated_path.erase(cell)
-	elif(!$Battleground.are_next_to($Battleground.local_to_map(actual_plaing_mob.position), $Battleground.local_to_map(attackedMob.position))):
+	elif(!battle_ground.are_next_to(battle_ground.local_to_map(actual_plaing_mob.position), battle_ground.local_to_map(attackedMob.position))):
 		distant_attack(attackedMob)
 		return
 	
 	if calculated_path.size() > 0:
-		$Battleground.placeMobAt(actual_plaing_mob,calculated_path[-1])
+		battle_ground.placeMobAt(actual_plaing_mob,calculated_path[-1])
 	
-	if(calculated_path.size() == 0 or $Battleground.are_next_to(calculated_path[-1], $Battleground.local_to_map(attackedMob.position))):
+	if(calculated_path.size() == 0 or battle_ground.are_next_to(calculated_path[-1], battle_ground.local_to_map(attackedMob.position))):
 		target = attackedMob
 	
 	if(calculated_path.size() == 0):
 		find_child("StateMachine").transition_to_state(BattleTurnState.ATTACK)
 	else:
-		calculated_path = $Battleground.map_to_local_array(calculated_path)
+		calculated_path = battle_ground.map_to_local_array(calculated_path)
 		actual_plaing_mob.walking_path = calculated_path
 
 func has_no_chances(attack_possibilities: Array[float], ranges: Array[bool]) -> bool:
@@ -316,13 +323,13 @@ func set_battle(hero: Hero, oponent: Dictionary):
 			var mob_node = mob.scene.instantiate()
 			mob_node.stack = army[mob]
 			mobs_node.add_child(mob_node)
-			mob_node.mob_play.connect($Battleground.mobTurnListener)
+			mob_node.mob_play.connect(battle_ground.mobTurnListener)
 			mob_node.mob_ended.connect(next_mob)
 			if(army == hero.army):
-				$Battleground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
+				battle_ground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
 				playerArmy.append(mob_node)
 			else:
-				$Battleground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
+				battle_ground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
 				mob_node.player = false
 				mob_node.mob_play.connect(_calculate_ai_attack_possibility)
 				mob_node.get_child(0).flip_h = true
@@ -335,14 +342,14 @@ func set_battle(hero: Hero, oponent: Dictionary):
 	
 func set_cursor_to_sword(mob: Mob, part: Mob.Part):
 	if(actual_plaing_mob.distant):
-		var straight_distance = $Battleground.straight_distance_mobs(actual_plaing_mob, mob)
+		var straight_distance = battle_ground.straight_distance_mobs(actual_plaing_mob, mob)
 		if(straight_distance > 1 and straight_distance <= 10):
-			$Battleground.change_cursor(load("res://assets/cursors/arrowWhol.png"))
+			battle_ground.change_cursor(load("res://assets/cursors/arrowWhol.png"))
 			return
 		elif(straight_distance > 10):
-			$Battleground.change_cursor(load("res://assets/cursors/arrowBroke.png"))
+			battle_ground.change_cursor(load("res://assets/cursors/arrowBroke.png"))
 			return
-	if($Battleground.has_range_on_side(mob, part)):
+	if(battle_ground.has_range_on_side(mob, part)):
 		var texture = AtlasTexture.new()
 		texture.atlas = load("res://assets/cursors/swordCursor.png")
 		match(part):
@@ -352,4 +359,4 @@ func set_cursor_to_sword(mob: Mob, part: Mob.Part):
 			Mob.Part.RM: texture.region = Rect2(96,0,32,32)
 			Mob.Part.LD: texture.region = Rect2(128,0,32,32)
 			Mob.Part.RD: texture.region = Rect2(160,0,32,32)
-		$Battleground.change_cursor(texture)
+		battle_ground.change_cursor(texture)

@@ -1,0 +1,176 @@
+[gd_scene load_steps=18 format=3 uid="uid://cwmkjsn2uww04"]
+
+[ext_resource type="Script" path="res://scenes/units/Angel.gd" id="1_5w3nx"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_55h7x"]
+[ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_uyjux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_putcg"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaf46"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(128, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey32h"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(768, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqq3"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(896, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a75s"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(1024, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnjuj"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(1152, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk0qw"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(1280, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo70q"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(1408, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1bs6"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(1536, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcp2g"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(256, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtmm6"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(384, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vrvs"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(512, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylsoa"]
+atlas = ExtResource("2_55h7x")
+region = Rect2(640, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wron1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_putcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaf46")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey32h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vqq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a75s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnjuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk0qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo70q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1bs6")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcp2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtmm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vrvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylsoa")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5w3nx")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_wron1")
+animation = &"move"
+
+[node name="AreaLU" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, 0, -64)
+
+[node name="AreaRU" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, -64, 64, -32)
+
+[node name="AreaLM" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, -64, 32)
+
+[node name="AreaRM" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 64, -32, 64, 32)
+
+[node name="AreaLD" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, 32, 0, 64)
+
+[node name="AreaRD" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, 64, 64, 32)
+
+[node name="Stack" type="LineEdit" parent="."]
+offset_left = 26.0
+offset_top = 15.0
+offset_right = 93.0625
+offset_bottom = 46.0
+theme = ExtResource("3_uyjux")
+text = "65"
+alignment = 1
+editable = false
+selecting_enabled = false
+
+[connection signal="input_event" from="Sprite/AreaLU" to="." method="_area_event_LU"]
+[connection signal="input_event" from="Sprite/AreaRU" to="." method="_area_event_RU"]
+[connection signal="input_event" from="Sprite/AreaLM" to="." method="_area_event_LM"]
+[connection signal="input_event" from="Sprite/AreaRM" to="." method="_area_event_RM"]
+[connection signal="input_event" from="Sprite/AreaLD" to="." method="_area_event_LD"]
+[connection signal="input_event" from="Sprite/AreaRD" to="." method="_area_event_RD"]

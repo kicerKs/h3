@@ -7,13 +7,17 @@ func on_exit() -> void:
 	pass
 
 func update(_delta: float) -> void:
+	battle.actual_plaing_mob.find_child("Sprite").play("move")
 	var target_position = battle.actual_plaing_mob.walking_path.front()
 	if target_position == null: #hotfix
 		return
 	target_position.y = target_position.y + 40
-	battle.actual_plaing_mob.global_position = battle.actual_plaing_mob.global_position.move_toward(target_position, 20)
+	battle.actual_plaing_mob.global_position = battle.actual_plaing_mob.global_position.move_toward(target_position, 10)
 	
 	if Vector2i(battle.actual_plaing_mob.global_position) == target_position:
+		battle.actual_plaing_mob.find_child("Sprite").stop()
+		battle.actual_plaing_mob.find_child("Sprite").animation = "Idle"
+		battle.actual_plaing_mob.find_child("Sprite").frame = 0
 		battle.actual_plaing_mob.walking_path.pop_front()
 		if battle.actual_plaing_mob.walking_path.is_empty():
 			if(battle.target == null):
