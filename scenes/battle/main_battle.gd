@@ -313,6 +313,7 @@ func army_value() -> int:
 func set_battle(hero: Hero, oponent: Dictionary):
 	var positions: Array
 	var iterator = 0
+	var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
 	if(!hero.army.keys().size() % 2):
 		positions = [0,10,4,6,2,8,5]
 	else:

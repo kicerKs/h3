@@ -7,6 +7,7 @@ var map_rect = Rect2i(0,-1, 15, 11)
 var tile_size = 128
 
 var hermesBoots = load("res://assets/cursors/bootsCursor.png")
+var forbidden = load("res://assets/cursors/forbidden.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +21,8 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if(selectLayer.get_used_cells().find(local_to_map(Vector2i(get_global_mouse_position().x, get_global_mouse_position().y - 96)))>=0):
 		change_cursor(hermesBoots)
+	elif(mapLayer.get_used_cells().find(local_to_map(Vector2i(get_global_mouse_position().x, get_global_mouse_position().y - 96)))>=0):
+		change_cursor(forbidden)
 	else:
 		change_cursor(null)
 
@@ -90,18 +93,7 @@ func moveActualTo(newPlace: Vector2i):
 	if(get_parent().actual_plaing_mob.player and !get_parent().block_actions):
 		placeMobAt(get_parent().actual_plaing_mob, newPlace)
 
-func placeMobAt(mob: Mob, place: Vector2i):
-	var astar = AStarGrid2D.new()
-	astar.region = map_rect
-	astar.cell_size = mapLayer.tile_set.tile_size
-	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.update()
-	
-	for cell in takenSpots:
-		if(cell != mapLayer.local_to_map(mob.position)):
-			astar.set_point_solid(cell)
-	
+func placeMobAt(mob: Mob, place: Vector2i):	
 	var path = map_to_local_array(trace_between(mapLayer.local_to_map(mob.global_position), place))
 	mob.walking_path = path
 	move_taken_spot(mapLayer.local_to_map(mob.position), place)
