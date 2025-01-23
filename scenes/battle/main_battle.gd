@@ -17,8 +17,12 @@ var controls: Controls
 var mobs_node: Node
 var retreat_popup: PopupWindow
 var surrender_popup: PopupWindow
-var block_actions: bool
 var battle_ground: Battleground
+var stats_window: StatsWindow
+var block_actions: bool
+var morale_round = false
+
+static var round_count = 1
 
 signal return_hero_to_castle(hero: Hero)
 signal player_won
@@ -32,7 +36,9 @@ func _ready() -> void:
 	surrender_popup = $SurrenderPopup
 	projectile = $Projectile
 	battle_ground = $Battleground
+	stats_window = $StatsWindow
 	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
+	round_count = 1
 	
 	hero = Hero.new()
 	hero.army = {
@@ -80,6 +86,9 @@ func mob_sort(mob1: Mob, mob2: Mob):
 
 func next_mob():
 	erase_dead_mobs()
+	if(morale_round and actual_plaing_mob.hp_stack > 0):
+		initial_queue.push_front(actual_plaing_mob)
+		#jakaś animacja morali
 	if initial_queue.size() == 0 and morale_wait_queue.size() == 0 and wait_queue.size() == 0:
 		initial_queue = fight_sequence.duplicate(true)
 		for mob: Mob in initial_queue:
@@ -88,6 +97,7 @@ func next_mob():
 	
 	check_win()
 	redraw_heads()
+	redraw_labels()
 	actual_plaing_mob = get_mob_from_queues()
 	button_lock()
 	actual_plaing_mob.mob_play.emit()
@@ -142,10 +152,18 @@ func redraw_heads():
 				size+=1
 	while size < 14:
 		controls.add_bar_to_icons()
+		size+=1
 		for mob: Mob in fight_sequence:
 			if(size < 14 and mob.stack > 0):
 				controls.add_mob_icon(mob)
 				size+=1
+
+func redraw_labels():
+	for mob in fight_sequence:
+		mob.side_label()
+		if(battle_ground.is_taken(Vector2i(battle_ground.local_to_map(mob.position).x+1,battle_ground.local_to_map(mob.position).y))):
+			mob.center_label()
+	
 
 func button_lock():
 	if actual_plaing_mob.player :
@@ -196,12 +214,12 @@ func fight(distant: bool = false):
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
 	var A = attacker.attack + (0 if !attacker.player else hero.attack)
 	var D = defender.defense + (0 if !defender.player else hero.defense)
-	var luck = 0 if(!attacker.player) else hero.luck
+	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
 	var i1 = 0.0 if(A>=D) else 0.05*(A-D)
 	var R1 = 0.0 if(D>=A) else 0.025*(D-A)
 	var R5 = 0.0
-	var R6 = 0.0 #TODO dla dystansowych 
+	var R6 = 0.0 #TODO dla ścian
 	if(distance_attack and battle_ground.straight_distance_mobs(actual_plaing_mob,target) > 10 or !distance_attack and actual_plaing_mob.distant):
 		R5 = 0.5
 	return roundi(_conut_base_attack() * (1.0+i1+luck) * (1.0-R1) * (1.0-R5) * (1.0-R6))
@@ -267,9 +285,11 @@ func has_no_chances(attack_possibilities: Array[float], ranges: Array[bool]) -> 
 	return noChance
 
 func mob_wait():
-	#TODO: uwzględnić tutaj morale
 	if(block_actions): return
-	wait_queue.append(actual_plaing_mob)
+	if(morale_round):
+		morale_wait_queue.append(actual_plaing_mob)
+	else:
+		wait_queue.append(actual_plaing_mob)
 	find_child("StateMachine").transition_to_state(BattleTurnState.SELECTED)
 
 func mob_defense():
@@ -326,6 +346,8 @@ func set_battle(hero: Hero, oponent: Dictionary):
 			mobs_node.add_child(mob_node)
 			mob_node.mob_play.connect(battle_ground.mobTurnListener)
 			mob_node.mob_ended.connect(next_mob)
+			mob_node.mob_info_show.connect(show_info_box)
+			mob_node.mob_info_hide.connect(hide_info_box)
 			if(army == hero.army):
 				battle_ground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
 				playerArmy.append(mob_node)
@@ -340,7 +362,21 @@ func set_battle(hero: Hero, oponent: Dictionary):
 				enemyArmy.append(mob_node)
 			iterator+=1
 		iterator = 0
+
+func show_info_box(mob: Mob):
+	var x_offset = 80 if(mob.player) else -100
+	var y = mob.position.y/2 + 64
+	var x = mob.position.x/2 + x_offset
+	y = 0 if(y<0) else (470 if y > 470 else y)
+	x = 0 if(x <0) else (950 if x > 950 else x)
 	
+	stats_window.set_window_position(Vector2(x, y))
+	stats_window.pass_mob(mob)
+	stats_window.set_visibility(true)
+
+func hide_info_box():
+	stats_window.set_visibility(false)
+
 func set_cursor_to_sword(mob: Mob, part: Mob.Part):
 	if(actual_plaing_mob.distant):
 		var straight_distance = battle_ground.straight_distance_mobs(actual_plaing_mob, mob)

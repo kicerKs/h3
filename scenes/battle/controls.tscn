@@ -99,6 +99,7 @@ offset_right = 553.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = 0
 
 [connection signal="pressed" from="SurrenderButton" to="." method="surrender_button_clicked"]
 [connection signal="pressed" from="RetreatButton" to="." method="retreat_button_clicked"]

@@ -160,8 +160,8 @@ polygon = PackedVector2Array(0, 0, 0, 64, 64, 32)
 [node name="Stack" type="LineEdit" parent="."]
 offset_left = 26.0
 offset_top = 15.0
-offset_right = 93.0625
-offset_bottom = 46.0
+offset_right = 110.0
+offset_bottom = 53.0
 theme = ExtResource("3_uyjux")
 text = "65"
 alignment = 1

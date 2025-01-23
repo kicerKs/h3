@@ -1,0 +1,138 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1fhnxwohcy3d"]
+
+[ext_resource type="Script" path="res://scenes/battle/stats_window.gd" id="1_8fk0k"]
+[ext_resource type="Texture2D" uid="uid://6mofgosjnhbo" path="res://assets/backgrounds/mob_backrdound_1.png" id="1_ryf3q"]
+
+[node name="StatsWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8fk0k")
+
+[node name="Window" type="Window" parent="."]
+size = Vector2i(330, 250)
+visible = false
+unresizable = true
+borderless = true
+unfocusable = true
+
+[node name="BorderColor" type="ColorRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Window/BorderColor"]
+custom_minimum_size = Vector2(310, 230)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+color = Color(0.389287, 0.389287, 0.389287, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 309.0
+offset_bottom = 229.0
+
+[node name="MobNameLabel" type="Label" parent="Window/VBoxContainer"]
+layout_mode = 2
+text = "Mob name"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Window/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="Window/VBoxContainer/HBoxContainer/CenterContainer"]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("1_ryf3q")
+
+[node name="StackValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/CenterContainer/Background"]
+z_index = 10
+layout_mode = 0
+offset_left = 110.0
+offset_top = 170.0
+offset_right = 120.0
+offset_bottom = 193.0
+text = "3"
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 5
+
+[node name="GridContainer" type="GridContainer" parent="Window/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="AttackLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Atak "
+
+[node name="AttackValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3(4)"
+horizontal_alignment = 2
+
+[node name="DefenseLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Obrona "
+
+[node name="DefenseValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="DamageLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Obrażenia "
+
+[node name="DamageValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3-5"
+horizontal_alignment = 2
+
+[node name="HealthLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Życie "
+
+[node name="HealthValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="HealthLeftLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Pozostałe życie "
+
+[node name="HealthLeftValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="SpeedLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Prędkość "
+
+[node name="SpeedValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="DistantLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Dystansowy "
+
+[node name="DistantValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Tak"
+horizontal_alignment = 2

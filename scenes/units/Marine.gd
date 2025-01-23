@@ -11,6 +11,6 @@ func _init():
 	ai_val = 445
 	cost = 300
 	scene = load("res://scenes/units/Marine.tscn")
-	name = "Marine"
+	mob_name = "Marine"
 	flying = true
 	mob_number = 3
