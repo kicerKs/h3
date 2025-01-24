@@ -15,6 +15,11 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TurnSystem="*res://global/turn_system.gd"
+Game="*res://global/game.tscn"
+
 [display]
 
 window/size/viewport_width=1280
@@ -31,6 +36,10 @@ project/assembly_name="heroes3"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+Mines=""
 
 [input]
 

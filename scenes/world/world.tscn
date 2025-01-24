@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=31 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dljfnvor8rd7x" path="res://assets/grass_map_items/grassWithStones.png" id="10_pfk7x"]
 [ext_resource type="Texture2D" uid="uid://c6lfaq7t3y6b5" path="res://assets/grass_map_items/czerwony.png" id="11_pb1if"]
 [ext_resource type="Texture2D" uid="uid://ctfup70tll2oa" path="res://assets/grass_map_items/path.png" id="12_323hb"]
+[ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="16_dtjol"]
+[ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w356e"]
 texture = ExtResource("2_dcgv1")
@@ -773,3 +775,21 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAA
 tile_set = SubResource("TileSet_r64yk")
 
 [node name="Player" parent="." instance=ExtResource("5_xmunp")]
+
+[node name="Mines" type="Node" parent="."]
+
+[node name="Stone" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+position = Vector2(960, 320)
+script = ExtResource("17_luk71")
+resource_type = "Stone"
+production_rate = 1
+appearance = Color(0.306959, 0.245455, 0.142752, 0)
+active_mine = true
+
+[node name="Gold" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+position = Vector2(1280, 384)
+script = ExtResource("17_luk71")
+resource_type = "Gold"
+production_rate = 1000
+appearance = Color(0.509155, 0.462902, 0.185056, 0)
+active_mine = true

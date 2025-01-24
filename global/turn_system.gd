@@ -30,7 +30,6 @@ func setup_turn_system(day, week, month):
 # Called after clicking new turn in GUI
 func new_turn():
 	current_day += 1
-	new_day.emit()
 	if current_day > 7:
 		current_day = 1
 		current_week += 1
@@ -40,3 +39,4 @@ func new_turn():
 			current_month += 1
 	update_turn.emit(current_day, current_week, current_month)
 	new_day.emit()
+	print(Game.resources["Gold"], Game.resources["Stone"])

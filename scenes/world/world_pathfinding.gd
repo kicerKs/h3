@@ -15,6 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("mouse_click_left"):
-		player.start_moving(astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position())))
-		print(astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position())))
+	pass
+	#if Input.is_action_just_pressed("mouse_click_left"):
+		#player.start_moving(astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position())))
+		#print(astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position())))
