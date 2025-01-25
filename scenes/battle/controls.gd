@@ -5,6 +5,8 @@ signal defend_button_signal()
 signal surrender_button_signal()
 signal retreat_button_signal()
 
+@onready var queueContainer: HBoxContainer = $HBoxContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -41,10 +43,20 @@ func unlock_all_buttons():
 	(find_child("RetreatButton") as Button).disabled = false
 
 func add_bar_to_icons():
-	var bar = ColorRect.new()
-	bar.color = Color(0.95,0.95,0.95,1.0)
-	bar.custom_minimum_size = Vector2(7,80)
-	$HBoxContainer.add_child(bar)
+	var bar = CenterContainer.new()
+	bar.custom_minimum_size = Vector2(64,80)
+	
+	var color_rect = ColorRect.new()
+	color_rect.color = Color(0.2,0.2,0.2,0.7)
+	color_rect.custom_minimum_size = Vector2(60,80)
+	bar.add_child(color_rect)
+	
+	var label = Label.new()
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.text = str(Battle.round_count)+"\nRunda"
+	bar.add_child(label)
+	
+	queueContainer.add_child(bar)
 
 func add_mob_icon(mob: Mob):
 	var head_rect = TextureRect.new()
@@ -52,14 +64,14 @@ func add_mob_icon(mob: Mob):
 	head_rect.custom_minimum_size = Vector2(50,75)
 	
 	var panel = CenterContainer.new()
-	panel.custom_minimum_size = Vector2(60,80)
+	panel.custom_minimum_size = Vector2(64,80)
 	var color_rect = ColorRect.new()
 	color_rect.color = Color(0.2,0.2,0.93,1.0) if mob.player else Color(0.93,0.2,0.2,1.0)
 	color_rect.custom_minimum_size = Vector2(60,80)
 
 	panel.add_child(color_rect)
 	panel.add_child(head_rect)
-	$HBoxContainer.add_child(panel)
+	queueContainer.add_child(panel)
 
 func get_head(number: int, heads: CompressedTexture2D) -> AtlasTexture:
 	var texture = AtlasTexture.new()
@@ -68,11 +80,11 @@ func get_head(number: int, heads: CompressedTexture2D) -> AtlasTexture:
 	return texture
 
 func heads_not_empty() -> bool:
-	return $HBoxContainer.get_children().size() > 0
+	return queueContainer.get_children().size() > 0
 
 func remove_first_head():
-	$HBoxContainer.remove_child($HBoxContainer.get_children()[0])
+	queueContainer.remove_child(queueContainer.get_children()[0])
 
 func clear_heads():
-	for child in $HBoxContainer.get_children():
-		$HBoxContainer.remove_child(child)
+	for child in queueContainer.get_children():
+		queueContainer.remove_child(child)

@@ -1,5 +1,7 @@
 class_name Battle extends Node
 
+const scene: PackedScene = preload("res://scenes/battle/mainBattle.tscn")
+
 var playerArmy: Array[Mob] = []
 var enemyArmy: Array[Mob] = []
 
@@ -11,18 +13,30 @@ var actual_plaing_mob: Mob
 var projectile: Sprite2D
 var random = RandomNumberGenerator.new()
 var hero: Hero
+var obstacles: Dictionary
+var oponent: Array[ArmyUnit]
 var target: Mob
 
 var controls: Controls
 var mobs_node: Node
 var retreat_popup: PopupWindow
 var surrender_popup: PopupWindow
-var block_actions: bool
 var battle_ground: Battleground
+var stats_window: StatsWindow
+var block_actions: bool
+var morale_round = false
 
-signal return_hero_to_castle(hero: Hero)
-signal player_won
-signal enemy_won
+static var round_count = 1
+
+signal return_hero_to_castle(Hero)
+signal battle_end(Hero, bool)
+
+static func new_battle(hero:Hero, oponent:Array[ArmyUnit], obstacles: Dictionary):
+	var battle: Battle = scene.instantiate()
+	battle.hero = hero
+	battle.oponent = oponent
+	battle.obstacles = obstacles
+	return battle
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,23 +46,25 @@ func _ready() -> void:
 	surrender_popup = $SurrenderPopup
 	projectile = $Projectile
 	battle_ground = $Battleground
+	stats_window = $StatsWindow
 	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
+	round_count = 1
 	
-	hero = Hero.new()
-	hero.army = {
-		Angel.new(): 1,
-		Soldier.new(): 12,
-		Firebat.new(): 3,
-		Tank.new(): 8,
-	}
-	var oponent = {
-		Cyborg.new(): 1,
-		Sniper.new(): 1,
-		Firebat.new(): 1,
-		Marine.new(): 1,
-	}
-	
-	add_obstacles()
+	#hero = Hero.new()
+	#hero.army = [
+		#ArmyUnit.new(Angel.new(), 1),
+		#ArmyUnit.new(Angel.new(), 12),
+		#ArmyUnit.new(Firebat.new(), 3),
+		#ArmyUnit.new(Tank.new(), 8)
+	#]
+	#oponent = [
+		#ArmyUnit.new(Cyborg.new(), 1),
+		#ArmyUnit.new(Sniper.new(), 1),
+		#ArmyUnit.new(Soldier.new(), 1),
+		#ArmyUnit.new(Marine.new(), 1)
+	#]
+	battle_ground.clear_fields()
+	add_obstacles(obstacles)
 	bound_control_buttons()
 	set_battle(hero, oponent)
 	fight_sequence.append_array(mobs_node.get_children())
@@ -61,15 +77,15 @@ func bound_control_buttons():
 	controls.surrender_button_signal.connect(try_to_surrender)
 	retreat_popup.approve_button_down.connect(retreat)
 
-func add_obstacles():
-	var obstacles = {
-		Vector2i(6,6): 1,
-		Vector2i(5,6): 1,
-		Vector2i(4,6): 1,
-		Vector2i(7,6): 1,
-		Vector2i(6,5): 1,
-		Vector2i(6,7): 1,
-		}
+func add_obstacles(obstacles: Dictionary):
+	#obstacles = {
+		#Vector2i(6,6): 1,
+		#Vector2i(5,6): 1,
+		#Vector2i(4,6): 1,
+		#Vector2i(7,6): 1,
+		#Vector2i(6,5): 1,
+		#Vector2i(6,7): 1,
+		#}
 	for cell in obstacles.keys():
 		battle_ground.put_obstacle(cell, obstacles[cell])
 
@@ -80,6 +96,9 @@ func mob_sort(mob1: Mob, mob2: Mob):
 
 func next_mob():
 	erase_dead_mobs()
+	if(morale_round and actual_plaing_mob.hp_stack > 0):
+		initial_queue.push_front(actual_plaing_mob)
+		#jakaś animacja morali
 	if initial_queue.size() == 0 and morale_wait_queue.size() == 0 and wait_queue.size() == 0:
 		initial_queue = fight_sequence.duplicate(true)
 		for mob: Mob in initial_queue:
@@ -88,6 +107,7 @@ func next_mob():
 	
 	check_win()
 	redraw_heads()
+	redraw_labels()
 	actual_plaing_mob = get_mob_from_queues()
 	button_lock()
 	actual_plaing_mob.mob_play.emit()
@@ -112,7 +132,8 @@ func check_win():
 		if(mob.stack > 0):
 			player_win = false
 	if(player_win):
-		player_won.emit()
+		rebuild_hero_army()
+		battle_end.emit(hero, true)
 		return
 		
 	var enemy_win = true
@@ -120,7 +141,7 @@ func check_win():
 		if(mob.stack > 0):
 			enemy_win = false
 	if(enemy_win):
-		enemy_won.emit()
+		battle_end.emit(hero, false)
 
 func get_mob_from_queues() -> Mob:
 	if initial_queue.size() != 0:
@@ -142,10 +163,18 @@ func redraw_heads():
 				size+=1
 	while size < 14:
 		controls.add_bar_to_icons()
+		size+=1
 		for mob: Mob in fight_sequence:
 			if(size < 14 and mob.stack > 0):
 				controls.add_mob_icon(mob)
 				size+=1
+
+func redraw_labels():
+	for mob in fight_sequence:
+		mob.side_label()
+		if(battle_ground.is_taken(Vector2i(battle_ground.local_to_map(mob.position).x+1,battle_ground.local_to_map(mob.position).y))):
+			mob.center_label()
+	
 
 func button_lock():
 	if actual_plaing_mob.player :
@@ -196,12 +225,12 @@ func fight(distant: bool = false):
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
 	var A = attacker.attack + (0 if !attacker.player else hero.attack)
 	var D = defender.defense + (0 if !defender.player else hero.defense)
-	var luck = 0 if(!attacker.player) else hero.luck
+	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
 	var i1 = 0.0 if(A>=D) else 0.05*(A-D)
 	var R1 = 0.0 if(D>=A) else 0.025*(D-A)
 	var R5 = 0.0
-	var R6 = 0.0 #TODO dla dystansowych 
+	var R6 = 0.0 #TODO dla ścian
 	if(distance_attack and battle_ground.straight_distance_mobs(actual_plaing_mob,target) > 10 or !distance_attack and actual_plaing_mob.distant):
 		R5 = 0.5
 	return roundi(_conut_base_attack() * (1.0+i1+luck) * (1.0-R1) * (1.0-R5) * (1.0-R6))
@@ -216,6 +245,8 @@ func _conut_base_attack() -> float:
 		return damage
 
 func _calculate_ai_attack_possibility():
+	battle_end.emit(hero, true)
+	return
 	var possibilities: Array[float] = []
 	var ranges: Array[bool] = []
 	possibilities.resize(playerArmy.size())
@@ -267,9 +298,11 @@ func has_no_chances(attack_possibilities: Array[float], ranges: Array[bool]) -> 
 	return noChance
 
 func mob_wait():
-	#TODO: uwzględnić tutaj morale
 	if(block_actions): return
-	wait_queue.append(actual_plaing_mob)
+	if(morale_round):
+		morale_wait_queue.append(actual_plaing_mob)
+	else:
+		wait_queue.append(actual_plaing_mob)
 	find_child("StateMachine").transition_to_state(BattleTurnState.SELECTED)
 
 func mob_defense():
@@ -292,40 +325,41 @@ func try_to_surrender():
 	block_actions = false
 
 func retreat():
-	hero.army = {}
+	hero.army = []
 	return_hero_to_castle.emit(hero)
 
 func surrender():
-	var new_army = {}
+	rebuild_hero_army()
+	return_hero_to_castle.emit(hero)
+
+func rebuild_hero_army():
+	var new_army: Array[ArmyUnit] = []
 	for i in range(playerArmy.size()):
 		if(playerArmy[i].stack > 0):
-			new_army[hero.army.keys()[i]] = playerArmy[i].stack
+			new_army.append(ArmyUnit.new(playerArmy[i].new(), playerArmy[i].stack))
 	hero.army = new_army.duplicate()
-	
-	return_hero_to_castle.emit(hero)
 
 func army_value() -> int:
 	var sum = 0
-	for mob:Mob in hero.army.keys():
-		sum += mob.cost * hero.army[mob]
+	for unit:ArmyUnit in hero.army:
+		sum += unit.mob.cost * unit.stack
 	return int(sum/2)
 
-func set_battle(hero: Hero, oponent: Dictionary):
+func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 	var positions: Array
 	var iterator = 0
-	var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
-	if(!hero.army.keys().size() % 2):
-		positions = [0,10,4,6,2,8,5]
-	else:
-		positions = [0,10,5,2,8,4,6]
+	#var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
+	positions = army_placing(hero.army)
 	
 	for army in [hero.army, oponent]:
-		for mob: Mob in army.keys():
-			var mob_node = mob.scene.instantiate()
-			mob_node.stack = army[mob]
+		for unit: ArmyUnit in army:
+			var mob_node = unit.mob.scene.instantiate()
+			mob_node.stack = unit.stack
 			mobs_node.add_child(mob_node)
 			mob_node.mob_play.connect(battle_ground.mobTurnListener)
 			mob_node.mob_ended.connect(next_mob)
+			mob_node.mob_info_show.connect(show_info_box)
+			mob_node.mob_info_hide.connect(hide_info_box)
 			if(army == hero.army):
 				battle_ground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
 				playerArmy.append(mob_node)
@@ -339,8 +373,29 @@ func set_battle(hero: Hero, oponent: Dictionary):
 				mob_node.hit_box_input.connect(set_cursor_to_sword)
 				enemyArmy.append(mob_node)
 			iterator+=1
+		positions = army_placing(oponent)
 		iterator = 0
+
+func army_placing(army: Array[ArmyUnit]) -> Array[int]:
+	if(!army.size() % 2):
+		return [0,10,4,6,2,8,5]
+	else:
+		return [0,10,5,2,8,4,6]
+
+func show_info_box(mob: Mob):
+	var x_offset = 80 if(mob.player) else -100
+	var y = mob.position.y/2 + 64
+	var x = mob.position.x/2 + x_offset
+	y = 0 if(y<0) else (470 if y > 470 else y)
+	x = 0 if(x <0) else (950 if x > 950 else x)
 	
+	stats_window.set_window_position(Vector2(x, y))
+	stats_window.pass_mob(mob)
+	stats_window.set_visibility(true)
+
+func hide_info_box():
+	stats_window.set_visibility(false)
+
 func set_cursor_to_sword(mob: Mob, part: Mob.Part):
 	if(actual_plaing_mob.distant):
 		var straight_distance = battle_ground.straight_distance_mobs(actual_plaing_mob, mob)

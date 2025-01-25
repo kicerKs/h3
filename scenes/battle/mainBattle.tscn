@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbcskqwjfsg6v"]
+[gd_scene load_steps=12 format=3 uid="uid://dbcskqwjfsg6v"]
 
 [ext_resource type="Script" path="res://scenes/battle/main_battle.gd" id="1_6fxwr"]
 [ext_resource type="PackedScene" uid="uid://c1t12jdru667l" path="res://scenes/battle/battleground.tscn" id="1_84stv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/battle/states/attack_mob_state.gd" id="7_yv7bt"]
 [ext_resource type="Script" path="res://scenes/battle/states/projectile_fly_state.gd" id="8_4ynnq"]
 [ext_resource type="PackedScene" uid="uid://d8q7e3rhkt20" path="res://ui/popup.tscn" id="8_hvqur"]
+[ext_resource type="PackedScene" uid="uid://b1fhnxwohcy3d" path="res://scenes/battle/stats_window.tscn" id="11_4prn7"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_6fxwr")
@@ -23,9 +24,9 @@ anchor_top = 1.503
 anchor_right = 1.596
 anchor_bottom = 1.696
 offset_left = 0.360001
-offset_top = -0.160034
+offset_top = -1.16003
 offset_right = -873.88
-offset_bottom = -57.1201
+offset_bottom = -58.12
 grow_vertical = 0
 scale = Vector2(1.7, 1.7)
 
@@ -66,3 +67,5 @@ grow_vertical = 1
 [node name="Projectile" type="Sprite2D" parent="."]
 texture = ExtResource("4_4fepp")
 metadata/default_position = Vector2(-256, -256)
+
+[node name="StatsWindow" parent="." instance=ExtResource("11_4prn7")]

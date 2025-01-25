@@ -160,13 +160,18 @@ polygon = PackedVector2Array(0, 0, 0, 64, 64, 32)
 [node name="Stack" type="LineEdit" parent="."]
 offset_left = 26.0
 offset_top = 15.0
-offset_right = 93.0625
-offset_bottom = 46.0
+offset_right = 110.0
+offset_bottom = 53.0
 theme = ExtResource("3_uyjux")
 text = "65"
 alignment = 1
 editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 selecting_enabled = false
+drag_and_drop_selection_enabled = false
 
 [connection signal="input_event" from="Sprite/AreaLU" to="." method="_area_event_LU"]
 [connection signal="input_event" from="Sprite/AreaRU" to="." method="_area_event_RU"]

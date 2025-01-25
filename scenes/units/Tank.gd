@@ -12,6 +12,6 @@ func _init():
 	ai_val = 582
 	cost = 400
 	scene = load("res://scenes/units/Tank.tscn")
-	name = "Tank"
+	mob_name = "Tank"
 	mob_number = 4
 	distant = true

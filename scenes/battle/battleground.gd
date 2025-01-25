@@ -46,10 +46,17 @@ func map_to_local_array(array: Array) -> Array[Vector2i]:
 		map[x] = Vector2i(mapLayer.map_to_local(map[x]))
 	return map
 
+func is_taken(cell: Vector2i):
+	return true if(takenSpots.find(cell) >= 0) else false
+
 func set_enable(cell: Vector2i):
 	takenSpots.erase(cell)
 
+func clear_fields():
+	takenSpots = []
+
 func put_obstacle(cell: Vector2i, type: int):
+	if type > 1: type = 1
 	takenSpots.append(cell)
 	var obstacle = Sprite2D.new()
 	obstacle.texture = load("res://assets/rock.png")

@@ -11,5 +11,5 @@ func _init():
 	ai_val = 351
 	cost = 200
 	scene = load("res://scenes/units/Firebat.tscn")
-	name = "Firebat"
+	mob_name = "Firebat"
 	mob_number = 2

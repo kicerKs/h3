@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ch6ncmv23kajx" path="res://ui/gui.tscn" id="2_0l6wj"]
 [ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="4_1xkek"]
 [ext_resource type="Script" path="res://global/turn_system.gd" id="4_76eem"]
+[ext_resource type="Script" path="res://scenes/battle_test.gd" id="4_vsp3o"]
+[ext_resource type="Script" path="res://scenes/battle_manager.gd" id="5_ir1db"]
 
 [sub_resource type="GDScript" id="GDScript_re5tf"]
 script/source = "extends Node
@@ -75,4 +77,14 @@ script = ExtResource("4_76eem")
 [node name="MinePattern" parent="." instance=ExtResource("4_1xkek")]
 
 [connection signal="new_day" from="TurnSystem" to="MinePattern" method="_on_turn_system_new_day"]
+[node name="BattleTest" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Battle Test"
+script = ExtResource("4_vsp3o")
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("5_ir1db")
+
 [connection signal="update_turn" from="TurnSystem" to="GUI" method="_on_turn_system_update_turn"]
+[connection signal="pressed" from="BattleTest" to="BattleTest" method="_on_pressed"]
