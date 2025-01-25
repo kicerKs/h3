@@ -55,8 +55,8 @@ func center_label():
 	$Stack.position.y = 50
 
 func side_label():
-	$Stack.position.x = 26
-	$Stack.position.y = 15
+	$Stack.position.x = 35
+	$Stack.position.y = 35
 
 func _area_event_LU(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	_area_event(event, Part.LU)

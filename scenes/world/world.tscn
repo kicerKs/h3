@@ -774,4 +774,3 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAA
 tile_set = SubResource("TileSet_r64yk")
 
 [node name="Player" parent="." instance=ExtResource("5_xmunp")]
-visible = false

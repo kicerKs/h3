@@ -52,7 +52,11 @@ func is_taken(cell: Vector2i):
 func set_enable(cell: Vector2i):
 	takenSpots.erase(cell)
 
+func clear_fields():
+	takenSpots = []
+
 func put_obstacle(cell: Vector2i, type: int):
+	if type > 1: type = 1
 	takenSpots.append(cell)
 	var obstacle = Sprite2D.new()
 	obstacle.texture = load("res://assets/rock.png")

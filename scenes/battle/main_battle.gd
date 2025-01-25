@@ -1,5 +1,7 @@
 class_name Battle extends Node
 
+const scene: PackedScene = preload("res://scenes/battle/mainBattle.tscn")
+
 var playerArmy: Array[Mob] = []
 var enemyArmy: Array[Mob] = []
 
@@ -11,6 +13,8 @@ var actual_plaing_mob: Mob
 var projectile: Sprite2D
 var random = RandomNumberGenerator.new()
 var hero: Hero
+var obstacles: Dictionary
+var oponent: Dictionary
 var target: Mob
 
 var controls: Controls
@@ -24,9 +28,15 @@ var morale_round = false
 
 static var round_count = 1
 
-signal return_hero_to_castle(hero: Hero)
-signal player_won
-signal enemy_won
+signal return_hero_to_castle(Hero)
+signal battle_end(Hero, bool)
+
+static func new_battle(hero:Hero, oponent:Dictionary, obstacles: Dictionary):
+	var battle: Battle = scene.instantiate()
+	battle.hero = hero
+	battle.oponent = oponent
+	battle.obstacles = obstacles
+	return battle
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,21 +50,21 @@ func _ready() -> void:
 	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
 	round_count = 1
 	
-	hero = Hero.new()
-	hero.army = {
-		Angel.new(): 1,
-		Soldier.new(): 12,
-		Firebat.new(): 3,
-		Tank.new(): 8,
-	}
-	var oponent = {
-		Cyborg.new(): 1,
-		Sniper.new(): 1,
-		Firebat.new(): 1,
-		Marine.new(): 1,
-	}
-	
-	add_obstacles()
+	#hero = Hero.new()
+	#hero.army = {
+		#Cyborg.new(): 1,
+		#Soldier.new(): 12,
+		#Firebat.new(): 3,
+		#Tank.new(): 8,
+	#}
+	#var oponent = {
+		#Cyborg.new(): 1,
+		#Sniper.new(): 1,
+		#Firebat.new(): 1,
+		#Marine.new(): 1,
+	#}
+	battle_ground.clear_fields()
+	add_obstacles(obstacles)
 	bound_control_buttons()
 	set_battle(hero, oponent)
 	fight_sequence.append_array(mobs_node.get_children())
@@ -67,15 +77,15 @@ func bound_control_buttons():
 	controls.surrender_button_signal.connect(try_to_surrender)
 	retreat_popup.approve_button_down.connect(retreat)
 
-func add_obstacles():
-	var obstacles = {
-		Vector2i(6,6): 1,
-		Vector2i(5,6): 1,
-		Vector2i(4,6): 1,
-		Vector2i(7,6): 1,
-		Vector2i(6,5): 1,
-		Vector2i(6,7): 1,
-		}
+func add_obstacles(obstacles: Dictionary):
+	#obstacles = {
+		#Vector2i(6,6): 1,
+		#Vector2i(5,6): 1,
+		#Vector2i(4,6): 1,
+		#Vector2i(7,6): 1,
+		#Vector2i(6,5): 1,
+		#Vector2i(6,7): 1,
+		#}
 	for cell in obstacles.keys():
 		battle_ground.put_obstacle(cell, obstacles[cell])
 
@@ -122,7 +132,8 @@ func check_win():
 		if(mob.stack > 0):
 			player_win = false
 	if(player_win):
-		player_won.emit()
+		rebuild_her_army()
+		battle_end.emit(hero, true)
 		return
 		
 	var enemy_win = true
@@ -130,7 +141,7 @@ func check_win():
 		if(mob.stack > 0):
 			enemy_win = false
 	if(enemy_win):
-		enemy_won.emit()
+		battle_end.emit(hero, false)
 
 func get_mob_from_queues() -> Mob:
 	if initial_queue.size() != 0:
@@ -234,6 +245,8 @@ func _conut_base_attack() -> float:
 		return damage
 
 func _calculate_ai_attack_possibility():
+	battle_end.emit(hero, true)
+	return
 	var possibilities: Array[float] = []
 	var ranges: Array[bool] = []
 	possibilities.resize(playerArmy.size())
@@ -316,13 +329,16 @@ func retreat():
 	return_hero_to_castle.emit(hero)
 
 func surrender():
+	rebuild_her_army()
+	
+	return_hero_to_castle.emit(hero)
+
+func rebuild_her_army():
 	var new_army = {}
 	for i in range(playerArmy.size()):
 		if(playerArmy[i].stack > 0):
 			new_army[hero.army.keys()[i]] = playerArmy[i].stack
 	hero.army = new_army.duplicate()
-	
-	return_hero_to_castle.emit(hero)
 
 func army_value() -> int:
 	var sum = 0

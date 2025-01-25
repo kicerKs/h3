@@ -9,6 +9,7 @@ func on_enter() -> void:
 	pass
 
 func update(_delta: float) -> void:
+	#Jeżeli tutaj dotarłeś, to prawdopodobnie znaczy, że trzeba zablokować poruszanie bohatera na czas walki
 	hero.global_position = hero.global_position.move_toward(hero.current_path[current_path_point], 1)
 	if(hero.position == hero.current_path[current_path_point]):
 		current_path_point += 1

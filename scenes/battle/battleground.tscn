@@ -49,7 +49,7 @@ position = Vector2(0, 96)
 tile_set = SubResource("TileSet_iqbgi")
 script = ExtResource("4_04u8y")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="BattleCamera" type="Camera2D" parent="."]
 position = Vector2(980, 550)
 zoom = Vector2(0.6, 0.54)
 
