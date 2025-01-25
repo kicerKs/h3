@@ -17,7 +17,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
-	
+
+func _unhandled_input(event: InputEvent) -> void:
+	state.handle_input(event)
+
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 

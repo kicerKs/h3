@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 
 func initialize_battle(hero:Hero, oponents:Array[ArmyUnit], obstacles:Dictionary):
+	hero.state_machine.transition_to_state("Idle")
 	var main = find_parent("Main")
 	battle = Battle.new_battle(hero, oponents, obstacles)
 	battle.battle_end.connect(end_battle)
@@ -32,6 +33,7 @@ func end_battle(hero: Hero, win: bool):
 	(main.find_child("GUI") as CanvasLayer).visible = true
 	Input.set_custom_mouse_cursor(null)
 	if win:
+		hero.state_machine.transition_to_state("Selected")
 		pass #przypisać do poprzedniego bohater/armi zwróconego bohater/armię
 	else:
 		pass #zabić bohatera

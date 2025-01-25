@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	var hero: Hero = Hero.new()
+	var hero: Hero = get_node("/root/Main/World/Heroes/Player")
 	hero.army = [
 		ArmyUnit.new(Angel.new(), 1),
 		ArmyUnit.new(Soldier.new(), 12),

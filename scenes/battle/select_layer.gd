@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_action("mouse_click_left") and event.is_pressed():
 		var mouse_position_on_map = local_to_map(Vector2i(get_global_mouse_position().x, get_global_mouse_position().y - 96))
 		var tileData = self.get_cell_tile_data(mouse_position_on_map)

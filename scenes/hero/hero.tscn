@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://scenes/hero/selected_hero_state.gd" id="5_boi5r"]
 [ext_resource type="Script" path="res://scenes/hero/moving_hero_state.gd" id="6_7116h"]
 
-[node name="Hero" type="Node2D"]
+[node name="Hero" type="Node2D" node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_ulsyx")
+state_machine = NodePath("StateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_itmlt")
