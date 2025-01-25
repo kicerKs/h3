@@ -17,6 +17,7 @@ func _ready() -> void:
 	current_week = 1
 	current_month = 1
 	update_turn.emit(current_day, current_week, current_month)
+	new_day.emit()
 
 # Use it e.g. when loading a new game from file
 func setup_turn_system(day, week, month):
@@ -24,11 +25,11 @@ func setup_turn_system(day, week, month):
 	current_week = week
 	current_month = month
 	update_turn.emit(current_day, current_week, current_month)
+	new_day.emit()
 
 # Called after clicking new turn in GUI
 func new_turn():
 	current_day += 1
-	new_day.emit()
 	if current_day > 7:
 		current_day = 1
 		current_week += 1
@@ -37,3 +38,5 @@ func new_turn():
 			current_week = 1
 			current_month += 1
 	update_turn.emit(current_day, current_week, current_month)
+	new_day.emit()
+	print(Game.resources["Gold"], Game.resources["Stone"])
