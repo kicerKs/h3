@@ -14,7 +14,7 @@ var projectile: Sprite2D
 var random = RandomNumberGenerator.new()
 var hero: Hero
 var obstacles: Dictionary
-var oponent: Dictionary
+var oponent: Array[ArmyUnit]
 var target: Mob
 
 var controls: Controls
@@ -31,7 +31,7 @@ static var round_count = 1
 signal return_hero_to_castle(Hero)
 signal battle_end(Hero, bool)
 
-static func new_battle(hero:Hero, oponent:Dictionary, obstacles: Dictionary):
+static func new_battle(hero:Hero, oponent:Array[ArmyUnit], obstacles: Dictionary):
 	var battle: Battle = scene.instantiate()
 	battle.hero = hero
 	battle.oponent = oponent
@@ -51,18 +51,18 @@ func _ready() -> void:
 	round_count = 1
 	
 	#hero = Hero.new()
-	#hero.army = {
-		#Cyborg.new(): 1,
-		#Soldier.new(): 12,
-		#Firebat.new(): 3,
-		#Tank.new(): 8,
-	#}
-	#var oponent = {
-		#Cyborg.new(): 1,
-		#Sniper.new(): 1,
-		#Firebat.new(): 1,
-		#Marine.new(): 1,
-	#}
+	#hero.army = [
+		#ArmyUnit.new(Angel.new(), 1),
+		#ArmyUnit.new(Angel.new(), 12),
+		#ArmyUnit.new(Firebat.new(), 3),
+		#ArmyUnit.new(Tank.new(), 8)
+	#]
+	#oponent = [
+		#ArmyUnit.new(Cyborg.new(), 1),
+		#ArmyUnit.new(Sniper.new(), 1),
+		#ArmyUnit.new(Soldier.new(), 1),
+		#ArmyUnit.new(Marine.new(), 1)
+	#]
 	battle_ground.clear_fields()
 	add_obstacles(obstacles)
 	bound_control_buttons()
@@ -132,7 +132,7 @@ func check_win():
 		if(mob.stack > 0):
 			player_win = false
 	if(player_win):
-		rebuild_her_army()
+		rebuild_hero_army()
 		battle_end.emit(hero, true)
 		return
 		
@@ -325,40 +325,36 @@ func try_to_surrender():
 	block_actions = false
 
 func retreat():
-	hero.army = {}
+	hero.army = []
 	return_hero_to_castle.emit(hero)
 
 func surrender():
-	rebuild_her_army()
-	
+	rebuild_hero_army()
 	return_hero_to_castle.emit(hero)
 
-func rebuild_her_army():
-	var new_army = {}
+func rebuild_hero_army():
+	var new_army: Array[ArmyUnit] = []
 	for i in range(playerArmy.size()):
 		if(playerArmy[i].stack > 0):
-			new_army[hero.army.keys()[i]] = playerArmy[i].stack
+			new_army.append(ArmyUnit.new(playerArmy[i].new(), playerArmy[i].stack))
 	hero.army = new_army.duplicate()
 
 func army_value() -> int:
 	var sum = 0
-	for mob:Mob in hero.army.keys():
-		sum += mob.cost * hero.army[mob]
+	for unit:ArmyUnit in hero.army:
+		sum += unit.mob.cost * unit.stack
 	return int(sum/2)
 
-func set_battle(hero: Hero, oponent: Dictionary):
+func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 	var positions: Array
 	var iterator = 0
-	var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
-	if(!hero.army.keys().size() % 2):
-		positions = [0,10,4,6,2,8,5]
-	else:
-		positions = [0,10,5,2,8,4,6]
+	#var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
+	positions = army_placing(hero.army)
 	
 	for army in [hero.army, oponent]:
-		for mob: Mob in army.keys():
-			var mob_node = mob.scene.instantiate()
-			mob_node.stack = army[mob]
+		for unit: ArmyUnit in army:
+			var mob_node = unit.mob.scene.instantiate()
+			mob_node.stack = unit.stack
 			mobs_node.add_child(mob_node)
 			mob_node.mob_play.connect(battle_ground.mobTurnListener)
 			mob_node.mob_ended.connect(next_mob)
@@ -377,7 +373,14 @@ func set_battle(hero: Hero, oponent: Dictionary):
 				mob_node.hit_box_input.connect(set_cursor_to_sword)
 				enemyArmy.append(mob_node)
 			iterator+=1
+		positions = army_placing(oponent)
 		iterator = 0
+
+func army_placing(army: Array[ArmyUnit]) -> Array[int]:
+	if(!army.size() % 2):
+		return [0,10,4,6,2,8,5]
+	else:
+		return [0,10,5,2,8,4,6]
 
 func show_info_box(mob: Mob):
 	var x_offset = 80 if(mob.player) else -100

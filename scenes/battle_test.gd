@@ -12,19 +12,19 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	var hero = Hero.new()
-	hero.army = {
-		Angel.new(): 1,
-		Soldier.new(): 12,
-		Firebat.new(): 3,
-		Tank.new(): 8,
-	}
-	var oponent = {
-		Cyborg.new(): 1,
-		Sniper.new(): 1,
-		Firebat.new(): 1,
-		Marine.new(): 1,
-	}
+	var hero: Hero = Hero.new()
+	hero.army = [
+		ArmyUnit.new(Angel.new(), 1),
+		ArmyUnit.new(Soldier.new(), 12),
+		ArmyUnit.new(Firebat.new(), 3),
+		ArmyUnit.new(Tank.new(), 8)
+	]
+	var oponent: Array[ArmyUnit] = [
+		ArmyUnit.new(Cyborg.new(), 1),
+		ArmyUnit.new(Sniper.new(), 1),
+		ArmyUnit.new(Firebat.new(), 1),
+		ArmyUnit.new(Marine.new(), 1)
+	]
 	var obstacles = {
 		Vector2i(6,6): 1,
 		Vector2i(5,6): 1,

@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func initialize_battle(hero:Hero, oponents:Dictionary, obstacles:Dictionary):
+func initialize_battle(hero:Hero, oponents:Array[ArmyUnit], obstacles:Dictionary):
 	var main = find_parent("Main")
 	battle = Battle.new_battle(hero, oponents, obstacles)
 	battle.battle_end.connect(end_battle)

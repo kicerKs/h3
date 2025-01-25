@@ -5,7 +5,7 @@ class_name Hero
 var attack = 0
 var defense = 0
 var luck = 0 
-var army: Dictionary
+var army: Array[ArmyUnit] = []
 
 var current_path = null
 
