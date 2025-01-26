@@ -1,39 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch6ncmv23kajx"]
+[gd_scene load_steps=9 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
 [ext_resource type="Script" path="res://scenes/battle_test.gd" id="2_3vrwt"]
 [ext_resource type="Texture2D" uid="uid://dhd1jp8f0jf0e" path="res://assets/ui_v1.png" id="3_v8b5c"]
+[ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="4_dsbl3"]
+[ext_resource type="Theme" uid="uid://ddoxeeddfrv2k" path="res://ui/theme_hero_bar.tres" id="5_vpdh1"]
+[ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="6_q5uu5"]
+[ext_resource type="Theme" uid="uid://dtnkl6yujlecp" path="res://ui/theme_unit_button.tres" id="8_gny6i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0qop"]
+texture = ExtResource("6_q5uu5")
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_lva4t")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -46.5
+offset_right = 121.0
+offset_bottom = 46.5
+grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/GridContainer"]
-layout_mode = 2
-text = "Current day: xD"
-
-[node name="Button" type="Button" parent="PanelContainer/GridContainer"]
-layout_mode = 2
-text = "End Turn"
 
 [node name="BattleTest" type="Button" parent="PanelContainer/GridContainer"]
 layout_mode = 2
 text = "Battle Test"
 script = ExtResource("2_3vrwt")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -109.0
-offset_right = 235.0
-grow_vertical = 0
+offset_left = -248.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer3"]
+layout_mode = 2
 texture = ExtResource("3_v8b5c")
 region_rect = Rect2(4, 4, 42, 42)
 patch_margin_left = 5
@@ -41,5 +50,402 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[connection signal="pressed" from="PanelContainer/GridContainer/Button" to="." method="_on_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Hero1" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("4_dsbl3")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Hero1Movement" type="ProgressBar" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer/Hero1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_vpdh1")
+value = 50.0
+show_percentage = false
+
+[node name="ButtonShowHero" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero2" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero2Movement" type="ProgressBar" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer/Hero2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_vpdh1")
+show_percentage = false
+
+[node name="ButtonUseHero" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero3" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero3Movement" type="ProgressBar" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer/Hero3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_vpdh1")
+show_percentage = false
+
+[node name="ButtonCity" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero4" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("4_dsbl3")
+expand_icon = true
+
+[node name="Hero4Movement" type="ProgressBar" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer/Hero4"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_vpdh1")
+value = 50.0
+show_percentage = false
+
+[node name="ButtonNewTurn" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Zakończ turę"
+theme_override_font_sizes/font_size = 14
+icon = ExtResource("4_dsbl3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o0qop")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_dsbl3")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nazwa herosa"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("4_dsbl3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("4_dsbl3")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 10
+texture = ExtResource("4_dsbl3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("8_gny6i")
+text = "100"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button2" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "35"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button3" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "55"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+texture = ExtResource("4_dsbl3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "1"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button2" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "12"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button3" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "13"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button4" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_gny6i")
+text = "7"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="MonthLabel" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Miesiąc: XD"
+
+[node name="WeekLabel" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Tydzień: XD"
+
+[node name="DayLabel" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Dzień: XD"
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 1002.0
+grow_vertical = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_v8b5c")
+region_rect = Rect2(4, 4, 36, 42)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 15
+columns = 14
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect2" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect3" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect4" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect5" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect6" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
+[node name="ColorRect7" type="ColorRect" parent="PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Liczba"
+
 [connection signal="pressed" from="PanelContainer/GridContainer/BattleTest" to="PanelContainer/GridContainer/BattleTest" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer3/MarginContainer/VBoxContainer/GridContainer/ButtonNewTurn" to="." method="_on_button_new_turn_pressed"]
