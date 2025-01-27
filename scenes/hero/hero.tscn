@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://car8ednr3ojmt"]
+[gd_scene load_steps=7 format=3 uid="uid://car8ednr3ojmt"]
 
 [ext_resource type="Script" path="res://scenes/hero/hero.gd" id="1_ulsyx"]
-[ext_resource type="Script" path="res://scenes/hero/skills.gd" id="2_42fyh"]
 [ext_resource type="Texture2D" uid="uid://c40rrhwuog8tn" path="res://assets/ph_player.png" id="2_itmlt"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="3_f08jo"]
 [ext_resource type="Script" path="res://scenes/hero/idle_hero_state.gd" id="4_wnoae"]
@@ -10,11 +9,7 @@
 
 [node name="Hero" type="Node2D" node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_ulsyx")
-Skills = NodePath("Skills")
 state_machine = NodePath("StateMachine")
-
-[node name="Skills" type="Node" parent="."]
-script = ExtResource("2_42fyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_itmlt")
