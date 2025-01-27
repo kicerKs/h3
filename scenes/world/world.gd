@@ -11,6 +11,8 @@ func _ready() -> void:
 	$MainCamera.limit_bottom = off.y
 	$MainCamera.limit_left = 0
 	$MainCamera.limit_right = off.x
+	
+	$Heroes/Player.recruit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

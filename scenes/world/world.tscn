@@ -1,10 +1,12 @@
-[gd_scene load_steps=31 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=34 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
 [ext_resource type="Texture2D" uid="uid://yjoijwh8uilt" path="res://assets/ph_background.png" id="1_m7udl"]
 [ext_resource type="Texture2D" uid="uid://bokp260yxjtwk" path="res://assets/ph_tilesheet.png" id="2_dcgv1"]
 [ext_resource type="Script" path="res://scenes/world/world_pathfinding.gd" id="2_q68no"]
+[ext_resource type="Texture2D" uid="uid://dw3328gnfd5bx" path="res://assets/circle_green.png" id="3_8wqin"]
+[ext_resource type="Texture2D" uid="uid://dvjitw8hetlj4" path="res://assets/circle_red.png" id="4_pcblg"]
 [ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero/hero.tscn" id="5_xmunp"]
 [ext_resource type="Texture2D" uid="uid://ym7pevta174a" path="res://assets/movement_blocks/block.png" id="6_gjjer"]
 [ext_resource type="Texture2D" uid="uid://cbje5n10mp82i" path="res://assets/movement_blocks/fast.png" id="7_6c0rx"]
@@ -17,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ctfup70tll2oa" path="res://assets/grass_map_items/path.png" id="12_323hb"]
 [ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="16_dtjol"]
 [ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
+[ext_resource type="Resource" uid="uid://75lcfsfnooey" path="res://scenes/hero/presets/hero_preset_1.tres" id="18_fle40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w356e"]
 texture = ExtResource("2_dcgv1")
@@ -746,10 +749,26 @@ sources/5 = SubResource("TileSetAtlasSource_03ym3")
 script = ExtResource("1_5cfbr")
 metadata/_edit_horizontal_guides_ = [1807.0]
 
-[node name="Pathfinding" type="Node" parent="." node_paths=PackedStringArray("tilemap", "player")]
+[node name="Pathfinding" type="Node" parent="." node_paths=PackedStringArray("tilemap", "player", "line2d_green", "line2d_red")]
 script = ExtResource("2_q68no")
 tilemap = NodePath("../MapMoving")
 player = NodePath("../Heroes/Player")
+line2d_green = NodePath("HeroPathGreen")
+line2d_red = NodePath("HeroPathRed")
+
+[node name="HeroPathGreen" type="Line2D" parent="Pathfinding"]
+unique_name_in_owner = true
+texture_repeat = 2
+texture = ExtResource("3_8wqin")
+texture_mode = 1
+joint_mode = 1
+
+[node name="HeroPathRed" type="Line2D" parent="Pathfinding"]
+unique_name_in_owner = true
+texture_repeat = 2
+texture = ExtResource("4_pcblg")
+texture_mode = 1
+joint_mode = 1
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(320, 180)
@@ -777,6 +796,7 @@ tile_set = SubResource("TileSet_r64yk")
 [node name="Heroes" type="Node" parent="."]
 
 [node name="Player" parent="Heroes" instance=ExtResource("5_xmunp")]
+attributes = ExtResource("18_fle40")
 
 [node name="Mines" type="Node" parent="."]
 

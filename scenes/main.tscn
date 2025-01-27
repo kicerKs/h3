@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb7v5q6cph0br"]
+[gd_scene load_steps=5 format=3 uid="uid://bb7v5q6cph0br"]
 
 [ext_resource type="PackedScene" uid="uid://gt3c6cq5nj55" path="res://scenes/world/world.tscn" id="1_kv433"]
 [ext_resource type="PackedScene" uid="uid://ch6ncmv23kajx" path="res://ui/gui.tscn" id="2_0l6wj"]
-[ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="4_1xkek"]
 [ext_resource type="Script" path="res://scenes/battle_manager.gd" id="5_ir1db"]
 
 [sub_resource type="GDScript" id="GDScript_re5tf"]
@@ -68,8 +67,6 @@ script = SubResource("GDScript_re5tf")
 [node name="World" parent="." instance=ExtResource("1_kv433")]
 
 [node name="GUI" parent="." instance=ExtResource("2_0l6wj")]
-
-[node name="MinePattern" parent="." instance=ExtResource("4_1xkek")]
 
 [node name="BattleManager" type="Node" parent="."]
 script = ExtResource("5_ir1db")

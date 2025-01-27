@@ -15,7 +15,7 @@ func update(_delta: float) -> void:
 func handle_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("mouse_click_left"):
 		var pf = get_node("/root/Main/World/Pathfinding")
-		var path = pf.start_pathfinding()
+		var path = pf.start_pathfinding(hero.get_movement())
 		if path != null:
 			hero.current_path = path
 			change_state.emit(MOVING)

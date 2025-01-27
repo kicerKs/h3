@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroStats" load_steps=5 format=3 uid="uid://bxu8ywd7foprv"]
+[gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://bxu8ywd7foprv"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_fnght"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="2_outke"]
@@ -15,6 +15,7 @@ lvl = 1
 
 [resource]
 script = ExtResource("2_outke")
+name = ""
 attack = 12
 defense = 5
 _luck = 1
