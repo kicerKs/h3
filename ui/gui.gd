@@ -14,3 +14,6 @@ func _on_turn_system_update_turn(day: Variant, week: Variant, month: Variant) ->
 
 func _on_button_new_turn_pressed() -> void:
 	TurnSystem.new_turn()
+
+func get_gui_size():
+	return Vector2($RightPanel.size.x, $BottomPanel.size.y)
