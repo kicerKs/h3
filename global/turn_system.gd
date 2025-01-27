@@ -39,4 +39,3 @@ func new_turn():
 			current_month += 1
 	update_turn.emit(current_day, current_week, current_month)
 	new_day.emit()
-	print(Game.resources["Gold"], Game.resources["Stone"])

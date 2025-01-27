@@ -780,18 +780,13 @@ tile_set = SubResource("TileSet_r64yk")
 
 [node name="Mines" type="Node" parent="."]
 
-[node name="Stone" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+[node name="Wood" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
 position = Vector2(960, 320)
 script = ExtResource("17_luk71")
-resource_type = "Stone"
-production_rate = 1
 appearance = Color(0.306959, 0.245455, 0.142752, 0)
-active_mine = true
 
-[node name="Gold" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+[node name="Credits" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
 position = Vector2(1280, 384)
 script = ExtResource("17_luk71")
-resource_type = "Gold"
-production_rate = 1000
+resource_type = 2
 appearance = Color(0.509155, 0.462902, 0.185056, 0)
-active_mine = true

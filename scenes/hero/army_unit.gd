@@ -1,4 +1,4 @@
-class_name ArmyUnit extends Node
+class_name ArmyUnit extends Resource
 
 var mob: Mob
 var stack: int

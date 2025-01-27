@@ -1,6 +1,6 @@
 extends Node
 
-var resources = {"Gold": 0, "Stone": 0}
+@export var Resources: GameResources
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

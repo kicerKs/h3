@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TurnSystem="*res://global/turn_system.gd"
-Game="*res://global/game.tscn"
+Game="*res://global/game/game.tscn"
 
 [display]
 
