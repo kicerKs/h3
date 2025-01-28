@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c6lfaq7t3y6b5" path="res://assets/grass_map_items/czerwony.png" id="11_pb1if"]
 [ext_resource type="Texture2D" uid="uid://ctfup70tll2oa" path="res://assets/grass_map_items/path.png" id="12_323hb"]
 [ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="16_dtjol"]
-[ext_resource type="Texture2D" uid="uid://cqg1kaanjlbjy" path="res://assets/obstacles/trees.png" id="16_msq3o"]
+[ext_resource type="Texture2D" uid="uid://csithu1w3t1sq" path="res://assets/obstacles/trees.png" id="16_msq3o"]
 [ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
 [ext_resource type="Texture2D" uid="uid://ijtd161a3mq3" path="res://assets/obstacles/mountains.png" id="17_qewyr"]
 [ext_resource type="Resource" uid="uid://75lcfsfnooey" path="res://scenes/hero/presets/hero_preset_1.tres" id="18_fle40"]
