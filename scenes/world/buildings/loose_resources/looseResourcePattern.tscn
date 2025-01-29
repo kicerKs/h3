@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dugn5d38k4x0h"]
+
+[ext_resource type="Texture2D" uid="uid://dc0iopknn5hqq" path="res://assets/wood.png" id="1_v0obb"]
+[ext_resource type="Script" path="res://scenes/world/buildings/loose_resources/loose_resource_pattern.gd" id="2_61yvl"]
+
+[node name="LooseResourcePattern" type="Sprite2D"]
+texture = ExtResource("1_v0obb")
+centered = false
+script = ExtResource("2_61yvl")
