@@ -887,8 +887,27 @@ position = Vector2(896, 1152)
 [node name="TreasureChest4" parent="Mines" instance=ExtResource("19_7mdal")]
 position = Vector2(1472, 1600)
 
-[node name="LooseResourcePattern" parent="Mines" instance=ExtResource("19_v4n5l")]
-position = Vector2(688, 88)
+[node name="WoodResource1" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(256, 576)
+
+[node name="WoodResource2" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(1216, 1536)
+
+[node name="MetalResource1" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(448, 1216)
+resource_type = 1
+
+[node name="MetalResource2" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(1536, 1536)
+resource_type = 1
+
+[node name="CoalRecource" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(1088, 512)
+resource_type = 2
+
+[node name="SiliconRecource" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(1280, 1344)
+resource_type = 5
 
 [node name="ObeliskPattern1" parent="Mines" instance=ExtResource("20_ja5ag")]
 position = Vector2(1152, 320)
