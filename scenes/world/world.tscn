@@ -979,8 +979,6 @@ position = Vector2(960, 960)
 mob_type = ExtResource("24_gbodf")
 
 [node name="Mines" type="Node" parent="."]
-script = ExtResource("17_luk71")
-resource_type = 6
 
 [node name="GasolineMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(1664, 1216)
