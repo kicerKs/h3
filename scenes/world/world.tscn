@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=43 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
 [ext_resource type="Texture2D" uid="uid://ijtd161a3mq3" path="res://assets/obstacles/mountains.png" id="17_qewyr"]
 [ext_resource type="Resource" uid="uid://75lcfsfnooey" path="res://scenes/hero/presets/hero_preset_1.tres" id="18_fle40"]
+[ext_resource type="PackedScene" uid="uid://b86us4cl2nje4" path="res://scenes/world/buildings/loose_resources/treasureChest.tscn" id="19_7mdal"]
 [ext_resource type="PackedScene" uid="uid://br7ajt54gtn6q" path="res://scenes/world/buildings/luck/totemPattern.tscn" id="19_qvn3y"]
 [ext_resource type="PackedScene" uid="uid://dugn5d38k4x0h" path="res://scenes/world/buildings/loose_resources/looseResourcePattern.tscn" id="19_v4n5l"]
 [ext_resource type="PackedScene" uid="uid://cdps5kgydmi7m" path="res://scenes/world/buildings/xp/obeliskPattern.tscn" id="20_ja5ag"]
@@ -853,17 +854,30 @@ metadata/_edit_lock_ = true
 [node name="Mines" type="Node" parent="."]
 
 [node name="Wood" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
-position = Vector2(960, 320)
+position = Vector2(944, 160)
 script = ExtResource("17_luk71")
 appearance = Color(0.306959, 0.245455, 0.142752, 0)
 
 [node name="Credits" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
-position = Vector2(1728, 192)
+position = Vector2(1040, 120)
 script = ExtResource("17_luk71")
 resource_type = 2
 appearance = Color(0.509155, 0.462902, 0.185056, 0)
 
+[node name="TreasureChest1" parent="Mines" instance=ExtResource("19_7mdal")]
+position = Vector2(576, 704)
+
+[node name="TreasureChest2" parent="Mines" instance=ExtResource("19_7mdal")]
+position = Vector2(1408, 256)
+
+[node name="TreasureChest3" parent="Mines" instance=ExtResource("19_7mdal")]
+position = Vector2(896, 1152)
+
+[node name="TreasureChest4" parent="Mines" instance=ExtResource("19_7mdal")]
+position = Vector2(1472, 1600)
+
 [node name="LooseResourcePattern" parent="Mines" instance=ExtResource("19_v4n5l")]
+position = Vector2(688, 88)
 
 [node name="ObeliskPattern1" parent="Mines" instance=ExtResource("20_ja5ag")]
 position = Vector2(1152, 320)
@@ -875,16 +889,13 @@ position = Vector2(1600, 1080)
 position = Vector2(1088, 1792)
 
 [node name="TotemPattern1" parent="Mines" instance=ExtResource("19_qvn3y")]
-position = Vector2(1408, 256)
+position = Vector2(1472, 576)
 
 [node name="TotemPattern2" parent="Mines" instance=ExtResource("19_qvn3y")]
-position = Vector2(576, 704)
+position = Vector2(1408, 1344)
 
-[node name="TotemPattern3" parent="Mines" instance=ExtResource("19_qvn3y")]
-position = Vector2(896, 1152)
-
-[node name="TotemPattern4" parent="Mines" instance=ExtResource("19_qvn3y")]
-position = Vector2(1472, 1600)
+[node name="MinePattern" parent="Mines" instance=ExtResource("16_dtjol")]
+position = Vector2(784, 136)
 
 [node name="Enemies" type="Node" parent="."]
 
