@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://chr8sqmmfsms8"]
+
+[ext_resource type="SpriteFrames" uid="uid://23vrqe433ptk" path="res://scenes/units/animations/CyborgAnimations.tres" id="1_5vdxv"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_ijoqy"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_xdfh5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeoed"]
+atlas = ExtResource("2_xdfh5")
+region = Rect2(150, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_ijoqy")
+attack = 15
+defense = 15
+damage_min = 15
+damage_max = 25
+hp_base = 100
+speed = 7
+growth = 2
+ai_val = 1946
+cost = 1000
+mob_number = 5
+mob_name = "Cyborg"
+flying = false
+distant = false
+icon = SubResource("AtlasTexture_eeoed")
+animations = ExtResource("1_5vdxv")

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://c4vtjfirl5c06"]
+
+[ext_resource type="SpriteFrames" uid="uid://dq0mkrbddkcqj" path="res://scenes/units/animations/AngelAnimations.tres" id="1_8pwvm"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_svfib"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_t5ll6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps5y3"]
+atlas = ExtResource("2_t5ll6")
+region = Rect2(180, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_svfib")
+attack = 20
+defense = 20
+damage_min = 50
+damage_max = 50
+hp_base = 200
+speed = 12
+growth = 1
+ai_val = 5019
+cost = 3000
+mob_number = 6
+mob_name = "Angel"
+flying = true
+distant = false
+icon = SubResource("AtlasTexture_ps5y3")
+animations = ExtResource("1_8pwvm")

@@ -15,3 +15,4 @@ func _init():
 	mob_name = "Angel"
 	mob_number = 6
 	distant = false
+	flying = true

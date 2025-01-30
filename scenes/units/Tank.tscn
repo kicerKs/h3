@@ -1,68 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6nouxahdjovu"]
+[gd_scene load_steps=4 format=3 uid="uid://b6nouxahdjovu"]
 
 [ext_resource type="Script" path="res://scenes/units/Tank.gd" id="1_hl74i"]
-[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_f5pis"]
+[ext_resource type="SpriteFrames" uid="uid://cce8x6yt11daa" path="res://scenes/units/animations/TankAnimations.tres" id="2_aej6l"]
 [ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_wfy2v"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0n8ga"]
-atlas = ExtResource("2_f5pis")
-region = Rect2(0, 512, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_quu8k"]
-atlas = ExtResource("2_f5pis")
-region = Rect2(128, 512, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8n2j"]
-atlas = ExtResource("2_f5pis")
-region = Rect2(0, 512, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw1ve"]
-atlas = ExtResource("2_f5pis")
-region = Rect2(0, 512, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kym3x"]
-atlas = ExtResource("2_f5pis")
-region = Rect2(0, 512, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wron1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0n8ga")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_quu8k")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i8n2j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aw1ve")
-}],
-"loop": true,
-"name": &"hit",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kym3x")
-}],
-"loop": true,
-"name": &"move",
-"speed": 20.0
-}]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_hl74i")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 25)
-sprite_frames = SubResource("SpriteFrames_wron1")
+sprite_frames = ExtResource("2_aej6l")
 animation = &"Idle"
 
 [node name="AreaLU" type="Area2D" parent="Sprite"]

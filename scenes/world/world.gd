@@ -7,6 +7,7 @@ func _ready() -> void:
 	get_viewport().connect("size_changed", set_camera_boundaries)
 	set_camera_boundaries()
 	$Heroes/Player.recruit()
+	$MainCamera.focus($Heroes/Player.position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

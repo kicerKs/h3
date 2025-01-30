@@ -1,8 +1,8 @@
 class_name ArmyUnit extends Resource
 
-var mob: Mob
-var stack: int
+@export var mob: MobAttributes
+@export var stack: int
 
-func _init(mob: Mob, stack: int):
+func _init(mob: MobAttributes, stack: int):
 	self.mob = mob
 	self.stack = stack

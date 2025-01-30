@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://burd01x2jpea6"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_47os7"]
+[ext_resource type="SpriteFrames" uid="uid://dejof6tnne0ix" path="res://scenes/units/animations/SniperAnimations.tres" id="1_mt6f8"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_5as2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6dva"]
+atlas = ExtResource("2_5as2o")
+region = Rect2(30, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_47os7")
+attack = 6
+defense = 3
+damage_min = 2
+damage_max = 3
+hp_base = 10
+speed = 4
+growth = 9
+ai_val = 126
+cost = 100
+mob_number = 1
+mob_name = "Sniper"
+flying = false
+distant = true
+icon = SubResource("AtlasTexture_a6dva")
+animations = ExtResource("1_mt6f8")

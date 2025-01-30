@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm2iu1ac1ys6j"]
+
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="1_5ow7l"]
+[ext_resource type="Script" path="res://scenes/world/buildings/combats/map_combat_pattern.gd" id="1_vasiy"]
+[ext_resource type="Script" path="res://scenes/hero/army_unit.gd" id="2_enfce"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tx0m"]
+atlas = ExtResource("1_5ow7l")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="Resource" id="Resource_vwuso"]
+script = ExtResource("2_enfce")
+stack = 0
+
+[node name="MapCombatPattern" type="Sprite2D"]
+texture = SubResource("AtlasTexture_6tx0m")
+script = ExtResource("1_vasiy")
+units = Array[ExtResource("2_enfce")]([SubResource("Resource_vwuso")])

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://353x4rqk2tpc"]
+
+[ext_resource type="SpriteFrames" uid="uid://dy0uj4qbhivbo" path="res://scenes/units/animations/MarineAnimations.tres" id="1_1b5r5"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_kq7in"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_62tna"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3qd1"]
+atlas = ExtResource("2_62tna")
+region = Rect2(90, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_kq7in")
+attack = 10
+defense = 12
+damage_min = 3
+damage_max = 9
+hp_base = 35
+speed = 5
+growth = 4
+ai_val = 445
+cost = 300
+mob_number = 3
+mob_name = "Marine"
+flying = true
+distant = false
+icon = SubResource("AtlasTexture_f3qd1")
+animations = ExtResource("1_1b5r5")

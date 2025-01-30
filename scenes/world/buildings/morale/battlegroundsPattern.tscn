@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqx1320h4l2xb"]
+
+[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_carxo"]
+[ext_resource type="Script" path="res://scenes/world/buildings/morale/battlegrounds_pattern.gd" id="2_yuvvw"]
+
+[node name="BattlegroundsPattern" type="Sprite2D"]
+texture = ExtResource("1_carxo")
+centered = false
+script = ExtResource("2_yuvvw")

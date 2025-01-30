@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7ajt54gtn6q"]
+
+[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_rybo0"]
+[ext_resource type="Script" path="res://scenes/world/buildings/luck/totem_pattern.gd" id="2_uiuqj"]
+
+[node name="TotemPattern" type="Sprite2D"]
+texture = ExtResource("1_rybo0")
+centered = false
+script = ExtResource("2_uiuqj")

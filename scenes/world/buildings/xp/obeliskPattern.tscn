@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdps5kgydmi7m"]
+
+[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_jhjlr"]
+[ext_resource type="Script" path="res://scenes/world/buildings/xp/obelisk_pattern.gd" id="1_xupm1"]
+
+[node name="ObeliskPattern" type="Sprite2D"]
+texture = ExtResource("1_jhjlr")
+centered = false
+script = ExtResource("1_xupm1")

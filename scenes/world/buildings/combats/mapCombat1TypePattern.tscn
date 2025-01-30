@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccdyec3cepyii"]
+
+[ext_resource type="Script" path="res://scenes/world/buildings/combats/map_combat_1_type_pattern.gd" id="1_4b3i8"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="1_iqkxb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgsng"]
+atlas = ExtResource("1_iqkxb")
+region = Rect2(0, 0, 64, 128)
+
+[node name="MapCombat1TypePattern" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_jgsng")
+centered = false
+script = ExtResource("1_4b3i8")

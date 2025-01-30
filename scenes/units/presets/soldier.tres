@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://b7fyggeu4sjlv"]
+
+[ext_resource type="SpriteFrames" uid="uid://c858i3k8pmnhw" path="res://scenes/units/animations/SoldierAnimations.tres" id="1_002wu"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_6nv1y"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_c3ekg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81rei"]
+atlas = ExtResource("2_c3ekg")
+region = Rect2(0, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_6nv1y")
+attack = 4
+defense = 5
+damage_min = 1
+damage_max = 3
+hp_base = 10
+speed = 4
+growth = 14
+ai_val = 80
+cost = 60
+mob_number = 0
+mob_name = "Soldier"
+flying = false
+distant = false
+icon = SubResource("AtlasTexture_81rei")
+animations = ExtResource("1_002wu")

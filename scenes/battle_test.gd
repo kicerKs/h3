@@ -14,16 +14,16 @@ func _process(delta: float) -> void:
 func _on_pressed() -> void:
 	var hero: Hero = get_node("/root/Main/World/Heroes/Player")
 	hero.army = [
-		ArmyUnit.new(Angel.new(), 1),
-		ArmyUnit.new(Soldier.new(), 12),
-		ArmyUnit.new(Firebat.new(), 3),
-		ArmyUnit.new(Tank.new(), 8)
+		ArmyUnit.new(load("res://scenes/units/presets/angel.tres"), 1),
+		ArmyUnit.new(load("res://scenes/units/presets/soldier.tres"), 12),
+		ArmyUnit.new(load("res://scenes/units/presets/firebat.tres"), 3),
+		ArmyUnit.new(load("res://scenes/units/presets/tank.tres"), 8)
 	]
 	var oponent: Array[ArmyUnit] = [
-		ArmyUnit.new(Cyborg.new(), 1),
-		ArmyUnit.new(Sniper.new(), 1),
-		ArmyUnit.new(Firebat.new(), 1),
-		ArmyUnit.new(Marine.new(), 1)
+		ArmyUnit.new(load("res://scenes/units/presets/cyborg.tres"), 1),
+		ArmyUnit.new(load("res://scenes/units/presets/sniper.tres"), 1),
+		ArmyUnit.new(load("res://scenes/units/presets/firebat.tres"), 1),
+		ArmyUnit.new(load("res://scenes/units/presets/marine.tres"), 1)
 	]
 	var obstacles = {
 		Vector2i(6,6): 1,

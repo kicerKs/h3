@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://btaky05tupcvl"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_d7ebh"]
+[ext_resource type="SpriteFrames" uid="uid://cce8x6yt11daa" path="res://scenes/units/animations/TankAnimations.tres" id="1_mnsey"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_njskh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs8ym"]
+atlas = ExtResource("2_njskh")
+region = Rect2(120, 0, 30, 40)
+
+[resource]
+script = ExtResource("1_d7ebh")
+attack = 12
+defense = 7
+damage_min = 10
+damage_max = 12
+hp_base = 30
+speed = 5
+growth = 3
+ai_val = 582
+cost = 400
+mob_number = 4
+mob_name = "Tank"
+flying = false
+distant = true
+icon = SubResource("AtlasTexture_vs8ym")
+animations = ExtResource("1_mnsey")

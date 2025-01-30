@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3cnfo7cx0n2u"]
+
+[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_dh1j3"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/city_pattern.gd" id="2_ubu2h"]
+
+[node name="CityPattern" type="Sprite2D"]
+texture = ExtResource("1_dh1j3")
+centered = false
+script = ExtResource("2_ubu2h")
