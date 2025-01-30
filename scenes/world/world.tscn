@@ -854,16 +854,26 @@ metadata/_edit_lock_ = true
 
 [node name="Mines" type="Node" parent="."]
 
-[node name="Wood" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
-position = Vector2(944, 160)
+[node name="WoodMine" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+position = Vector2(320, 1216)
 script = ExtResource("17_luk71")
 appearance = Color(0.306959, 0.245455, 0.142752, 0)
 
-[node name="Credits" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
-position = Vector2(1040, 120)
+[node name="CoalMine" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
+position = Vector2(960, 448)
 script = ExtResource("17_luk71")
 resource_type = 2
 appearance = Color(0.509155, 0.462902, 0.185056, 0)
+
+[node name="MetalMine" parent="Mines" instance=ExtResource("16_dtjol")]
+position = Vector2(384, 576)
+script = ExtResource("17_luk71")
+resource_type = 1
+
+[node name="SiliconMine" parent="Mines" instance=ExtResource("16_dtjol")]
+position = Vector2(128, 960)
+script = ExtResource("17_luk71")
+resource_type = 5
 
 [node name="TreasureChest1" parent="Mines" instance=ExtResource("19_7mdal")]
 position = Vector2(576, 704)
@@ -894,9 +904,6 @@ position = Vector2(1472, 576)
 
 [node name="TotemPattern2" parent="Mines" instance=ExtResource("19_qvn3y")]
 position = Vector2(1408, 1344)
-
-[node name="MinePattern" parent="Mines" instance=ExtResource("16_dtjol")]
-position = Vector2(784, 136)
 
 [node name="BattlegroundsPattern" parent="Mines" instance=ExtResource("23_jhmnw")]
 position = Vector2(1152, 1280)
