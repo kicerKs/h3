@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=40 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
 [ext_resource type="Texture2D" uid="uid://ijtd161a3mq3" path="res://assets/obstacles/mountains.png" id="17_qewyr"]
 [ext_resource type="Resource" uid="uid://75lcfsfnooey" path="res://scenes/hero/presets/hero_preset_1.tres" id="18_fle40"]
+[ext_resource type="PackedScene" uid="uid://br7ajt54gtn6q" path="res://scenes/world/buildings/luck/totemPattern.tscn" id="19_qvn3y"]
 [ext_resource type="PackedScene" uid="uid://ccdyec3cepyii" path="res://scenes/world/buildings/combats/mapCombat1TypePattern.tscn" id="20_kaejh"]
 [ext_resource type="Resource" uid="uid://353x4rqk2tpc" path="res://scenes/units/presets/marine.tres" id="21_dec7q"]
 
@@ -859,6 +860,9 @@ position = Vector2(1280, 384)
 script = ExtResource("17_luk71")
 resource_type = 2
 appearance = Color(0.509155, 0.462902, 0.185056, 0)
+
+[node name="TotemPattern" parent="Mines" instance=ExtResource("19_qvn3y")]
+position = Vector2(576, 144)
 
 [node name="Enemies" type="Node" parent="."]
 

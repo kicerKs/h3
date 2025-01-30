@@ -13,6 +13,8 @@ script = ExtResource("2_enfce")
 stack = 0
 
 [node name="MapCombatPattern" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_6tx0m")
+centered = false
 script = ExtResource("1_vasiy")
 units = Array[ExtResource("2_enfce")]([SubResource("Resource_vwuso")])
