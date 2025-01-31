@@ -3,45 +3,72 @@ class_name Hero
 
 @export_group("Stats")
 @export var _army: Array[ArmyUnit] = []
-
 @export_group("Systems")
 @export var attributes: HeroAttributes
-@export var state_machine: StateMachine
 
-# To wywal jak podłączysz już do funkcji
-var luck = 0 
-var morale = 0
-var army:
+@onready var state_machine: StateMachine = $StateMachine
+
+signal max_movement_changed(value)
+signal movement_changed(value)
+signal army_changed(army)
+
+var _luck = 0
+var _morale = 0
+
+var luck:
 	get():
-		return _army
+		return get_luck()
+	set(value):
+		_luck = value
+var morale:
+	get():
+		return get_morale()
+	set(value):
+		_morale = value
+var army: Array[ArmyUnit]:
+	get():
+		return get_army()
 
 var current_path = null
 var _movement: int
 
 func subtract_movement(value):
 	_movement -= value
+	movement_changed.emit(_movement)
 
 func get_movement():
 	return _movement
 
 func get_luck():
-	return clamp(luck + attributes.get_luck_modifier(), -3, 3)
+	return clamp(_luck + attributes.get_luck_modifier(), -3, 3)
 
 func get_morale():
-	return clamp(morale + attributes.get_leadership_modifier(), -3, 3)
+	return clamp(_morale + attributes.get_leadership_modifier(), -3, 3)
 
 func get_army():
+	if len(_army) > 7:
+		_army = _army.slice(0, 6)
+	else:
+		while len(_army) < 7:
+			_army.append(ArmyUnit.nowy(null, -1))
 	return _army
 
-func recruit():
+func recruit(pos):
+	self.global_position = pos
 	TurnSystem.connect("new_day", send_estates)
 	TurnSystem.connect("new_day", calculate_movement)
-	#TODO: dodaj do gui
+	state_machine.transition_to_state("Selected")
+	calculate_movement()
+
+func dismiss():
+	TurnSystem.disconnect("new_day", send_estates)
+	TurnSystem.disconnect("new_day", calculate_movement)
+	state_machine.transition_to_state("Inactive")
 
 func calculate_movement():
-	print("XD")
 	var base = 1000 #TODO: Change to slowest creature in army
 	_movement = int( base * attributes.get_logistics_modifier() )
+	max_movement_changed.emit(_movement)
 
 # Skill-specific
 

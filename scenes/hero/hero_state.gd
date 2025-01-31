@@ -4,6 +4,7 @@ class_name HeroState
 const IDLE = "Idle"
 const SELECTED = "Selected"
 const MOVING = "Moving"
+const INACTIVE = "Inactive"
 
 var hero: Hero
 

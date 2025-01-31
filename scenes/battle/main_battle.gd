@@ -361,29 +361,30 @@ func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 	
 	for army in [hero.army, oponent]:
 		for unit: ArmyUnit in army:
-			#var mob_node = unit.mob.scene.instantiate()
-			var mob_scene = load("res://scenes/units/Mob.tscn")
-			var mob_node = mob_scene.instantiate()
-			mob_node.mob_attributes = unit.mob
-			mob_node.stack = unit.stack
-			mobs_node.add_child(mob_node)
-			mob_node.mob_play.connect(battle_ground.mobTurnListener)
-			mob_node.mob_ended.connect(next_mob)
-			mob_node.mob_info_show.connect(show_info_box)
-			mob_node.mob_info_hide.connect(hide_info_box)
-			if(army == hero.army):
-				battle_ground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
-				playerArmy.append(mob_node)
-			else:
-				battle_ground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
-				mob_node.player = false
-				mob_node.mob_play.connect(_calculate_ai_attack_possibility)
-				mob_node.get_child(0).flip_h = true
-				mob_node.find_child("Stack").position.x = -mob_node.find_child("Stack").position.x - mob_node.find_child("Stack").size.x
-				mob_node.mob_clicked.connect(attackMob)
-				mob_node.hit_box_input.connect(set_cursor_to_sword)
-				enemyArmy.append(mob_node)
-			iterator+=1
+			if unit.mob != null:
+				#var mob_node = unit.mob.scene.instantiate()
+				var mob_scene = load("res://scenes/units/Mob.tscn")
+				var mob_node = mob_scene.instantiate()
+				mob_node.mob_attributes = unit.mob
+				mob_node.stack = unit.stack
+				mobs_node.add_child(mob_node)
+				mob_node.mob_play.connect(battle_ground.mobTurnListener)
+				mob_node.mob_ended.connect(next_mob)
+				mob_node.mob_info_show.connect(show_info_box)
+				mob_node.mob_info_hide.connect(hide_info_box)
+				if(army == hero.army):
+					battle_ground.initialPlaceMob(mob_node, Vector2i(0,positions[iterator]-1))
+					playerArmy.append(mob_node)
+				else:
+					battle_ground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
+					mob_node.player = false
+					mob_node.mob_play.connect(_calculate_ai_attack_possibility)
+					mob_node.get_child(0).flip_h = true
+					mob_node.find_child("Stack").position.x = -mob_node.find_child("Stack").position.x - mob_node.find_child("Stack").size.x
+					mob_node.mob_clicked.connect(attackMob)
+					mob_node.hit_box_input.connect(set_cursor_to_sword)
+					enemyArmy.append(mob_node)
+				iterator+=1
 		positions = army_placing(oponent)
 		iterator = 0
 

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="HeroAttributes" load_steps=6 format=3 uid="uid://calgm2db6hwmn"]
+
+[ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_mr71f"]
+[ext_resource type="Texture2D" uid="uid://cix465n5ao7vc" path="res://assets/heroes_icons.png" id="2_edkjt"]
+[ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_u2qpo"]
+
+[sub_resource type="Resource" id="Resource_owdek"]
+script = ExtResource("1_mr71f")
+skill = 4
+lvl = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccvhw"]
+atlas = ExtResource("2_edkjt")
+region = Rect2(400, 0, 100, 100)
+
+[resource]
+script = ExtResource("3_u2qpo")
+name = "Prime"
+icon = SubResource("AtlasTexture_ccvhw")
+attack = 2
+defense = 1
+_luck = 0
+_morale = 0
+_skills = Array[ExtResource("1_mr71f")]([SubResource("Resource_owdek")])

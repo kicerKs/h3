@@ -1,7 +1,6 @@
 extends Node
 
 @export var tilemap: TileMapLayer
-@export var player: Hero
 @export var line2d_green: Line2D
 @export var line2d_red: Line2D
 
@@ -9,6 +8,7 @@ var astar_grid: AStarGrid2D
 
 signal start(path)
 
+var player: Hero
 var calculated_path = null
 var green_path = null
 var red_path = null
@@ -43,8 +43,8 @@ func reset_path():
 	line2d_green.points = []
 	line2d_red.points = []
 
-func start_pathfinding(movement: int):
-	print(movement)
+func start_pathfinding(h: Hero, movement: int):
+	player = h
 	var end_point = tilemap.local_to_map(tilemap.get_local_mouse_position())
 	if astar_grid.is_in_bounds(end_point.x, end_point.y) and !astar_grid.is_point_solid(tilemap.local_to_map(tilemap.get_local_mouse_position())):
 		var path = astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position()))
@@ -56,8 +56,9 @@ func start_pathfinding(movement: int):
 				line_path.append(vec + Vector2(31,31))
 			green_path = []
 			red_path = []
-			for vec in line_path:
-				if calculate_movement_cost(vec) < movement:
+			green_path.append(line_path[0])
+			for vec in line_path.slice(1):
+				if calculate_movement_cost(vec) <= movement:
 					movement -= calculate_movement_cost(vec)
 					green_path.append(vec)
 				else:

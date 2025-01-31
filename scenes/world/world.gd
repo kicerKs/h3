@@ -6,8 +6,8 @@ var resources = {}
 func _ready() -> void:
 	get_viewport().connect("size_changed", set_camera_boundaries)
 	set_camera_boundaries()
-	$Heroes/Player.recruit()
-	$MainCamera.focus($Heroes/Player.position)
+	Game.HeroManager.recruit_hero(Game.HeroManager.get_random_hero(), $Cities/City.global_position+Vector2(0,64))
+	$MainCamera.focus($Heroes.get_children()[0].position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

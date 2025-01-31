@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var gui_heroes: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,3 +18,9 @@ func _on_button_new_turn_pressed() -> void:
 
 func get_gui_size():
 	return Vector2($RightPanel.size.x, $BottomPanel.size.y)
+
+func add_hero(hero: Hero):
+	gui_heroes.add_hero(hero)
+
+func remove_hero(hero: Hero):
+	gui_heroes.remove_hero(hero)

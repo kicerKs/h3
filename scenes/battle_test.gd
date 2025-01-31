@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	var hero: Hero = get_node("/root/Main/World/Heroes/Player")
+	var hero: Hero = get_node("/root/Main/World/Heroes").get_children()[0]
 	print(hero.attributes.attack)
 	print(hero)
 	

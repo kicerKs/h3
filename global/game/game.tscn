@@ -1,11 +1,89 @@
-[gd_scene load_steps=3 format=3 uid="uid://41uy3vn5x3sb"]
+[gd_scene load_steps=21 format=3 uid="uid://41uy3vn5x3sb"]
 
 [ext_resource type="Script" path="res://global/game/game.gd" id="1_0sfuw"]
+[ext_resource type="Script" path="res://global/game/hero_manager.gd" id="2_h85ao"]
 [ext_resource type="Script" path="res://global/game/resources.gd" id="2_plwyv"]
+[ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero/hero.tscn" id="3_yb1gi"]
+[ext_resource type="Script" path="res://scenes/hero/army_unit.gd" id="4_drcg5"]
+[ext_resource type="Resource" uid="uid://onwadky8181l" path="res://scenes/hero/presets/calamity.tres" id="4_kh333"]
+[ext_resource type="Resource" uid="uid://b7fyggeu4sjlv" path="res://scenes/units/presets/soldier.tres" id="5_iwqcb"]
+[ext_resource type="Resource" uid="uid://b15ta8vx56cpn" path="res://scenes/hero/presets/falcon.tres" id="7_8n7sa"]
+[ext_resource type="Resource" uid="uid://djf5l70i8ngbj" path="res://scenes/hero/presets/general.tres" id="8_nfb3w"]
+[ext_resource type="Resource" uid="uid://cdbxp5bkmfhq8" path="res://scenes/hero/presets/grimemaw.tres" id="9_jhykp"]
+[ext_resource type="Resource" uid="uid://f7hvt02iktto" path="res://scenes/hero/presets/minas.tres" id="10_d6fvt"]
+[ext_resource type="Resource" uid="uid://calgm2db6hwmn" path="res://scenes/hero/presets/prime.tres" id="11_5q76q"]
+[ext_resource type="Resource" uid="uid://cr2n04y5rftjj" path="res://scenes/hero/presets/zephyr.tres" id="12_4jv4t"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("Resources")]
+[sub_resource type="Resource" id="Resource_04v27"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 1
+
+[sub_resource type="Resource" id="Resource_hqa1b"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 2
+
+[sub_resource type="Resource" id="Resource_t5ee2"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 3
+
+[sub_resource type="Resource" id="Resource_oq7uv"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 4
+
+[sub_resource type="Resource" id="Resource_73cog"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 5
+
+[sub_resource type="Resource" id="Resource_jtpxr"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 6
+
+[sub_resource type="Resource" id="Resource_ruksx"]
+script = ExtResource("4_drcg5")
+mob = ExtResource("5_iwqcb")
+stack = 7
+
+[node name="Game" type="Node" node_paths=PackedStringArray("Resources", "HeroManager")]
 script = ExtResource("1_0sfuw")
 Resources = NodePath("Resources")
+HeroManager = NodePath("HeroManager")
+
+[node name="HeroManager" type="Node" parent="."]
+script = ExtResource("2_h85ao")
+
+[node name="Calamity" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_04v27")])
+attributes = ExtResource("4_kh333")
+
+[node name="Falcon" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_hqa1b")])
+attributes = ExtResource("7_8n7sa")
+
+[node name="General" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_t5ee2")])
+attributes = ExtResource("8_nfb3w")
+
+[node name="Grimemaw" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_oq7uv")])
+attributes = ExtResource("9_jhykp")
+
+[node name="Minas" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_73cog")])
+attributes = ExtResource("10_d6fvt")
+
+[node name="Prime" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_jtpxr")])
+attributes = ExtResource("11_5q76q")
+
+[node name="Zephyr" parent="HeroManager" instance=ExtResource("3_yb1gi")]
+_army = Array[ExtResource("4_drcg5")]([SubResource("Resource_ruksx")])
+attributes = ExtResource("12_4jv4t")
 
 [node name="Resources" type="Node" parent="."]
 script = ExtResource("2_plwyv")

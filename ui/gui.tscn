@@ -1,19 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch6ncmv23kajx"]
+[gd_scene load_steps=12 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
 [ext_resource type="Script" path="res://scenes/battle_test.gd" id="2_3vrwt"]
+[ext_resource type="Script" path="res://ui/gui_heroes.gd" id="2_uwirx"]
 [ext_resource type="Texture2D" uid="uid://dhd1jp8f0jf0e" path="res://assets/ui_v1.png" id="3_v8b5c"]
 [ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="4_dsbl3"]
 [ext_resource type="Theme" uid="uid://ddoxeeddfrv2k" path="res://ui/theme_hero_bar.tres" id="5_vpdh1"]
 [ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="6_q5uu5"]
+[ext_resource type="Script" path="res://ui/hero_movement_bar.gd" id="7_v3j6m"]
 [ext_resource type="Script" path="res://ui/resources_panel.gd" id="8_6xt0d"]
 [ext_resource type="Theme" uid="uid://dtnkl6yujlecp" path="res://ui/theme_unit_button.tres" id="8_gny6i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0qop"]
 texture = ExtResource("6_q5uu5")
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("gui_heroes")]
 script = ExtResource("1_lva4t")
+gui_heroes = NodePath("Heroes")
+
+[node name="Heroes" type="Node" parent="."]
+script = ExtResource("2_uwirx")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 4
@@ -68,6 +74,7 @@ size_flags_horizontal = 4
 columns = 2
 
 [node name="Hero1" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -76,7 +83,8 @@ icon = ExtResource("4_dsbl3")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Hero1Movement" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero1"]
+[node name="Hero1MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero1"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -88,6 +96,7 @@ grow_vertical = 0
 theme = ExtResource("5_vpdh1")
 value = 50.0
 show_percentage = false
+script = ExtResource("7_v3j6m")
 
 [node name="ButtonShowHero" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -98,6 +107,7 @@ icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero2" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -105,7 +115,8 @@ size_flags_vertical = 6
 icon = ExtResource("4_dsbl3")
 expand_icon = true
 
-[node name="Hero2Movement" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero2"]
+[node name="Hero2MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero2"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -116,6 +127,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_vpdh1")
 show_percentage = false
+script = ExtResource("7_v3j6m")
 
 [node name="ButtonUseHero" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -126,6 +138,7 @@ icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero3" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -133,7 +146,8 @@ size_flags_vertical = 4
 icon = ExtResource("4_dsbl3")
 expand_icon = true
 
-[node name="Hero3Movement" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero3"]
+[node name="Hero3MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero3"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -144,6 +158,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_vpdh1")
 show_percentage = false
+script = ExtResource("7_v3j6m")
 
 [node name="ButtonCity" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -154,6 +169,7 @@ icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero4" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -161,7 +177,8 @@ size_flags_vertical = 4
 icon = ExtResource("4_dsbl3")
 expand_icon = true
 
-[node name="Hero4Movement" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero4"]
+[node name="Hero4MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero4"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -173,6 +190,7 @@ grow_vertical = 0
 theme = ExtResource("5_vpdh1")
 value = 50.0
 show_percentage = false
+script = ExtResource("7_v3j6m")
 
 [node name="ButtonNewTurn" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -206,7 +224,8 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SelectedHeroIcon" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -217,7 +236,8 @@ expand_mode = 3
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="SelectedHeroName" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Nazwa herosa"
 
@@ -242,13 +262,15 @@ size_flags_vertical = 6
 texture = ExtResource("4_dsbl3")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="SelectedHeroAttack" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="SellectedHeroDefense" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10"
@@ -260,7 +282,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="SelectedHeroMorale" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -273,8 +296,9 @@ stretch_mode = 5
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
+[node name="SelectedHeroUnit1" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -283,21 +307,26 @@ text = "100"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="Button2" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+[node name="SelectedHeroUnit2" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "35"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="Button3" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+[node name="SelectedHeroUnit3" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "55"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="TextureRect2" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="SelectedHeroLuck" type="TextureRect" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -309,28 +338,36 @@ stretch_mode = 5
 [node name="HBoxContainer2" type="HBoxContainer" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+[node name="SelectedHeroUnit4" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "1"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="Button2" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+[node name="SelectedHeroUnit5" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "12"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="Button3" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+[node name="SelectedHeroUnit6" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "13"
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="Button4" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+[node name="SelectedHeroUnit7" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
 layout_mode = 2
 theme = ExtResource("8_gny6i")
 text = "7"
@@ -457,4 +494,8 @@ layout_mode = 2
 text = "Liczba"
 
 [connection signal="pressed" from="PanelContainer/GridContainer/BattleTest" to="PanelContainer/GridContainer/BattleTest" method="_on_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero1" to="Heroes" method="_on_hero_1_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero2" to="Heroes" method="_on_hero_2_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero3" to="Heroes" method="_on_hero_3_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero4" to="Heroes" method="_on_hero_4_pressed"]
 [connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/ButtonNewTurn" to="." method="_on_button_new_turn_pressed"]

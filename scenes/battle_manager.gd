@@ -17,7 +17,7 @@ func initialize_battle(hero:Hero, oponents:Array[ArmyUnit], obstacles:Dictionary
 	var main = find_parent("Main")
 	battle = Battle.new_battle(hero, oponents, obstacles)
 	battle.battle_end.connect(end_battle)
-	
+	battle.connect("return_hero_to_castle", Game.HeroManager.remove_hero)
 	#połączyć sygnał powrotu bohatera do zamku w return_hero_to_castle(hero) signal
 	
 	main.add_child(battle)
@@ -29,12 +29,11 @@ func initialize_battle(hero:Hero, oponents:Array[ArmyUnit], obstacles:Dictionary
 func end_battle(hero: Hero, win: bool):
 	var main = find_parent("Main")
 	main.find_child("MainCamera",true,false).make_current()
-	main.remove_child(battle)
 	(main.find_child("GUI") as CanvasLayer).visible = true
 	Input.set_custom_mouse_cursor(null)
 	if win:
 		hero.state_machine.transition_to_state("Selected")
 		pass #przypisać do poprzedniego bohater/armi zwróconego bohater/armię
 	else:
-		pass #zabić bohatera
-	pass
+		battle.emit_signal("return_hero_to_castle", hero)
+	main.remove_child(battle)
