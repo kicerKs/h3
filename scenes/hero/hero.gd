@@ -11,7 +11,9 @@ class_name Hero
 # To wywal jak podłączysz już do funkcji
 var luck = 0 
 var morale = 0
-var army: Array[ArmyUnit] = []
+var army:
+	get():
+		return _army
 
 var current_path = null
 var _movement: int

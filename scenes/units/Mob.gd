@@ -16,8 +16,12 @@ var walking_path: Array[Vector2i]#:
 		#print(value)
 		#walking_path = value
 var player = true
-var flying = false
-var distant = false
+var flying = false:
+	get():
+		return mob_attributes.flying
+var distant = false:
+	get():
+		return mob_attributes.distant
 var counterattack = true
 var stack = 0:
 	set(value):
@@ -26,26 +30,50 @@ var stack = 0:
 			hp_stack = value*hp_base
 		$Stack.text = str(stack)
 
-var attack = 1
+var mob_attributes: MobAttributes
+var attack = 1:
+	get():
+		return mob_attributes.attack
 var defense = 1:
 	get():
-		return defense * (1.2 if(defense_boost)else 1)
-var damage_min = 1
-var damage_max = 1
-var hp_base = 1
+		return mob_attributes.defense * (1.2 if(defense_boost)else 1)
+var damage_min = 1:
+	get():
+		return mob_attributes.damage_min
+var damage_max = 1:
+	get():
+		return mob_attributes.damage_max
+var hp_base = 1:
+	get():
+		return mob_attributes.hp_base
 var hp_stack = 0:
 	set(value):
 		if(hp_stack != 0):
 			stack = ceil(float(value)/float(hp_base))
 		hp_stack = value
-var speed = 1
-var growth = 1
-var ai_val = 1
-var cost = 1
+var speed = 1:
+	get():
+		return mob_attributes.speed
+var growth = 1:
+	get():
+		return mob_attributes.growth
+var ai_val = 1:
+	get():
+		return mob_attributes.ai_val
+var cost = 1:
+	get():
+		return mob_attributes.cost
 var defense_boost = false
-var mob_number = -1
+var mob_number = -1:
+	get():
+		return mob_attributes.mob_number
 var morale = 1
-var mob_name = ""
+var mob_name = "":
+	get():
+		return mob_attributes.mob_name
+
+func _ready():
+	$Sprite.sprite_frames = mob_attributes.animations
 
 func _process(delta: float) -> void:
 	pass

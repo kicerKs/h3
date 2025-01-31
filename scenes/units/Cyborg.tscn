@@ -8,6 +8,8 @@
 script = ExtResource("1_aow68")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
 position = Vector2(0, 25)
 sprite_frames = ExtResource("2_46hxy")
 animation = &"move"

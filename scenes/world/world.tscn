@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=68 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
@@ -866,15 +866,15 @@ sources/0 = SubResource("TileSetAtlasSource_ve8sh")
 sources/1 = SubResource("TileSetAtlasSource_3fyr4")
 sources/2 = SubResource("TileSetAtlasSource_miap3")
 
-[sub_resource type="Resource" id="Resource_ke2t4"]
+[sub_resource type="Resource" id="Resource_vln8a"]
 script = ExtResource("30_l2xgh")
 mob = ExtResource("18_hgn3v")
 stack = 3
 
-[sub_resource type="Resource" id="Resource_h8ifj"]
+[sub_resource type="Resource" id="Resource_pfo0f"]
 script = ExtResource("30_l2xgh")
 mob = ExtResource("22_j8oaj")
-stack = 2
+stack = 15
 
 [sub_resource type="Resource" id="Resource_pavx3"]
 script = ExtResource("30_l2xgh")
@@ -895,6 +895,21 @@ stack = 3
 script = ExtResource("30_l2xgh")
 mob = ExtResource("21_dec7q")
 stack = 3
+
+[sub_resource type="Resource" id="Resource_8hbqx"]
+script = ExtResource("30_l2xgh")
+mob = ExtResource("23_y72tv")
+stack = 20
+
+[sub_resource type="Resource" id="Resource_wl7fg"]
+script = ExtResource("30_l2xgh")
+mob = ExtResource("19_d4jcv")
+stack = 5
+
+[sub_resource type="Resource" id="Resource_i1t8a"]
+script = ExtResource("30_l2xgh")
+mob = ExtResource("22_j8oaj")
+stack = 15
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_5cfbr")
@@ -1043,7 +1058,7 @@ number = 4
 
 [node name="CyborgsSnipers" parent="Enemies" instance=ExtResource("29_cfrja")]
 position = Vector2(1104, 896)
-units = Array[ExtResource("30_l2xgh")]([SubResource("Resource_ke2t4"), SubResource("Resource_h8ifj")])
+units = Array[ExtResource("30_l2xgh")]([SubResource("Resource_vln8a"), SubResource("Resource_pfo0f")])
 
 [node name="SnipersTanks" parent="Enemies" instance=ExtResource("29_cfrja")]
 position = Vector2(1232, 384)
@@ -1131,6 +1146,7 @@ position = Vector2(1472, 1600)
 
 [node name="Player" parent="Heroes" instance=ExtResource("5_xmunp")]
 position = Vector2(576, 1472)
+_army = Array[ExtResource("30_l2xgh")]([SubResource("Resource_8hbqx"), SubResource("Resource_wl7fg"), SubResource("Resource_i1t8a")])
 attributes = ExtResource("18_fle40")
 
 [node name="BattlegroundsPattern" parent="." instance=ExtResource("23_jhmnw")]

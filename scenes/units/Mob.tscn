@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqx2nt4on0lk2"]
+
+[ext_resource type="Script" path="res://scenes/units/Mob.gd" id="1_kldek"]
+[ext_resource type="SpriteFrames" uid="uid://dy0uj4qbhivbo" path="res://scenes/units/animations/MarineAnimations.tres" id="2_vvy7u"]
+[ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_kclch"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kldek")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+position = Vector2(0, 25)
+sprite_frames = ExtResource("2_vvy7u")
+animation = &"Idle"
+
+[node name="AreaLU" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, 0, -64)
+
+[node name="AreaRU" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRU"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, -64, 64, -32)
+
+[node name="AreaLM" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, -32, -64, 32)
+
+[node name="AreaRM" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRM"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 64, -32, 64, 32)
+
+[node name="AreaLD" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaLD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, -64, 32, 0, 64)
+
+[node name="AreaRD" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/AreaRD"]
+position = Vector2(0, 31)
+polygon = PackedVector2Array(0, 0, 0, 64, 64, 32)
+
+[node name="Stack" type="LineEdit" parent="."]
+offset_left = 26.0
+offset_top = 15.0
+offset_right = 93.0625
+offset_bottom = 46.0
+theme = ExtResource("3_kclch")
+text = "65"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[connection signal="input_event" from="Sprite/AreaLU" to="." method="_area_event_LU"]
+[connection signal="input_event" from="Sprite/AreaRU" to="." method="_area_event_RU"]
+[connection signal="input_event" from="Sprite/AreaLM" to="." method="_area_event_LM"]
+[connection signal="input_event" from="Sprite/AreaRM" to="." method="_area_event_RM"]
+[connection signal="input_event" from="Sprite/AreaLD" to="." method="_area_event_LD"]
+[connection signal="input_event" from="Sprite/AreaRD" to="." method="_area_event_RD"]

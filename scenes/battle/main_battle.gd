@@ -51,17 +51,21 @@ func _ready() -> void:
 	round_count = 1
 	
 	#hero = Hero.new()
+	#hero.attributes = load("res://scenes/hero/presets/hero_preset_1.tres")
 	#hero.army = [
-		#ArmyUnit.new(Angel.new(), 1),
-		#ArmyUnit.new(Angel.new(), 12),
-		#ArmyUnit.new(Firebat.new(), 3),
-		#ArmyUnit.new(Tank.new(), 8)
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/angel.tres"), 1),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/cyborg.tres"), 12),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/firebat.tres"), 3),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/tank.tres"), 8),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 8),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/sniper.tres"), 8),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/soldier.tres"), 8),
 	#]
 	#oponent = [
-		#ArmyUnit.new(Cyborg.new(), 1),
-		#ArmyUnit.new(Sniper.new(), 1),
-		#ArmyUnit.new(Soldier.new(), 1),
-		#ArmyUnit.new(Marine.new(), 1)
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/cyborg.tres"), 1),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/sniper.tres"), 1),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/soldier.tres"), 1),
+	#	ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 1)
 	#]
 	battle_ground.clear_fields()
 	add_obstacles(obstacles)
@@ -223,8 +227,8 @@ func fight(distant: bool = false):
 	target = null
 
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
-	var A = attacker.attack + (0 if !attacker.player else hero.attack)
-	var D = defender.defense + (0 if !defender.player else hero.defense)
+	var A = attacker.attack + (0 if !attacker.player else hero.attributes.attack)
+	var D = defender.defense + (0 if !defender.player else hero.attributes.defense)
 	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
 	var i1 = 0.0 if(A>=D) else 0.05*(A-D)
@@ -245,8 +249,6 @@ func _conut_base_attack() -> float:
 		return damage
 
 func _calculate_ai_attack_possibility():
-	battle_end.emit(hero, true)
-	return
 	var possibilities: Array[float] = []
 	var ranges: Array[bool] = []
 	possibilities.resize(playerArmy.size())
@@ -336,7 +338,13 @@ func rebuild_hero_army():
 	var new_army: Array[ArmyUnit] = []
 	for i in range(playerArmy.size()):
 		if(playerArmy[i].stack > 0):
-			new_army.append(ArmyUnit.new(playerArmy[i].new(), playerArmy[i].stack))
+			pass
+			#TODO: ZRÓB COŚ Z TYM, chociaż może zadziała?
+			var unit = ArmyUnit.new()
+			unit.mob = playerArmy[i].mob_attributes
+			unit.stack = playerArmy[i].stack
+			new_army.append(unit)
+			#new_army.append(ArmyUnit.new(playerArmy[i].new(), playerArmy[i].stack))
 	hero.army = new_army.duplicate()
 
 func army_value() -> int:
@@ -353,7 +361,10 @@ func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 	
 	for army in [hero.army, oponent]:
 		for unit: ArmyUnit in army:
-			var mob_node = unit.mob.scene.instantiate()
+			#var mob_node = unit.mob.scene.instantiate()
+			var mob_scene = load("res://scenes/units/Mob.tscn")
+			var mob_node = mob_scene.instantiate()
+			mob_node.mob_attributes = unit.mob
 			mob_node.stack = unit.stack
 			mobs_node.add_child(mob_node)
 			mob_node.mob_play.connect(battle_ground.mobTurnListener)
