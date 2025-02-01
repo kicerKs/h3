@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://b86us4cl2nje4"]
+[gd_scene load_steps=4 format=3 uid="uid://b86us4cl2nje4"]
 
 [ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_56o0i"]
 [ext_resource type="Script" path="res://scenes/world/buildings/loose_resources/treasure_chest.gd" id="2_2xo8l"]
 
-[node name="TreasureChest" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol0js"]
+size = Vector2(62, 62)
+
+[node name="TreasureChest" type="Area2D" groups=["TreasureChests"]]
 scale = Vector2(1, 1.00757)
+script = ExtResource("2_2xo8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_56o0i")
 centered = false
-script = ExtResource("2_2xo8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 31.7596)
+shape = SubResource("RectangleShape2D_ol0js")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
