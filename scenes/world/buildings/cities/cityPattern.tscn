@@ -7,3 +7,25 @@
 texture = ExtResource("1_dh1j3")
 centered = false
 script = ExtResource("2_ubu2h")
+
+[node name="Buildings" type="Node" parent="."]
+
+[node name="TownHall" type="Node" parent="Buildings"]
+
+[node name="Marketplace" type="Node" parent="Buildings"]
+
+[node name="Tavern" type="Node" parent="Buildings"]
+
+[node name="Dwell1" type="Node" parent="Buildings"]
+
+[node name="Dwell2" type="Node" parent="Buildings"]
+
+[node name="Dwell3" type="Node" parent="Buildings"]
+
+[node name="Dwell4" type="Node" parent="Buildings"]
+
+[node name="Dwell5" type="Node" parent="Buildings"]
+
+[node name="Dwell6" type="Node" parent="Buildings"]
+
+[node name="Dwell7" type="Node" parent="Buildings"]

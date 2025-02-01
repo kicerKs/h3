@@ -69,7 +69,7 @@ func get_armorer_modifier():
 	return 1
 
 func get_logistics_modifier():
-	if HeroSkill.Skills.LOGISTICS in _skills:
+	if HeroSkill.Skills.LOGISTICS in get_skills():
 		match get_skill_lvl(HeroSkill.Skills.LOGISTICS):
 			1:
 				return 1.05
@@ -80,7 +80,7 @@ func get_logistics_modifier():
 	return 1
 
 func get_luck_modifier():
-	if HeroSkill.Skills.LUCK in _skills:
+	if HeroSkill.Skills.LUCK in get_skills():
 		match get_skill_lvl(HeroSkill.Skills.LUCK):
 			1:
 				return 1
@@ -91,7 +91,7 @@ func get_luck_modifier():
 	return 0
 
 func get_leadership_modifier():
-	if HeroSkill.Skills.LEADERSHIP in _skills:
+	if HeroSkill.Skills.LEADERSHIP in get_skills():
 		match get_skill_lvl(HeroSkill.Skills.LEADERSHIP):
 			1:
 				return 1

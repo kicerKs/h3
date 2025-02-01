@@ -10,7 +10,10 @@ class_name Hero
 
 signal max_movement_changed(value)
 signal movement_changed(value)
-signal army_changed(army)
+signal army_changed
+
+var inside_something = false
+signal interact
 
 var _luck = 0
 var _morale = 0
@@ -19,18 +22,21 @@ var luck:
 	get():
 		return get_luck()
 	set(value):
-		_luck = value
+		_luck = clamp(value, 0, 3)
 var morale:
 	get():
 		return get_morale()
 	set(value):
-		_morale = value
+		_morale = clamp(value, -3, 3)
 var army: Array[ArmyUnit]:
 	get():
 		return get_army()
 
 var current_path = null
 var _movement: int
+
+func _ready():
+	add_to_group("Heroes")
 
 func subtract_movement(value):
 	_movement -= value
@@ -40,7 +46,7 @@ func get_movement():
 	return _movement
 
 func get_luck():
-	return clamp(_luck + attributes.get_luck_modifier(), -3, 3)
+	return clamp(_luck + attributes.get_luck_modifier(), 0, 3)
 
 func get_morale():
 	return clamp(_morale + attributes.get_leadership_modifier(), -3, 3)
@@ -52,6 +58,12 @@ func get_army():
 		while len(_army) < 7:
 			_army.append(ArmyUnit.nowy(null, -1))
 	return _army
+
+func swap_units(i, j):
+	var t = _army[i]
+	_army[i] = _army[j]
+	_army[j] = t
+	army_changed.emit()
 
 func recruit(pos):
 	self.global_position = pos

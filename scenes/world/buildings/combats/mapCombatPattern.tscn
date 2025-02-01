@@ -1,20 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm2iu1ac1ys6j"]
+[gd_scene load_steps=7 format=3 uid="uid://cm2iu1ac1ys6j"]
 
 [ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="1_5ow7l"]
 [ext_resource type="Script" path="res://scenes/world/buildings/combats/map_combat_pattern.gd" id="1_vasiy"]
 [ext_resource type="Script" path="res://scenes/hero/army_unit.gd" id="2_enfce"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6tx0m"]
-atlas = ExtResource("1_5ow7l")
-region = Rect2(64, 0, 64, 128)
-
 [sub_resource type="Resource" id="Resource_vwuso"]
 script = ExtResource("2_enfce")
 stack = 0
 
-[node name="MapCombatPattern" type="Sprite2D"]
-scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_6tx0m")
-centered = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7fcm"]
+atlas = ExtResource("1_5ow7l")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2m8r"]
+size = Vector2(192, 192)
+
+[node name="MapCombatPattern" type="Area2D"]
 script = ExtResource("1_vasiy")
 units = Array[ExtResource("2_enfce")]([SubResource("Resource_vwuso")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_x7fcm")
+centered = false
+offset = Vector2(32, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_x2m8r")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

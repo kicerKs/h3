@@ -1,7 +1,21 @@
-[gd_scene format=3 uid="uid://c4ckl6pprtqf3"]
+[gd_scene load_steps=4 format=3 uid="uid://c4ckl6pprtqf3"]
 
-[node name="MinePattern" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="1_k8qdn"]
+[ext_resource type="Texture2D" uid="uid://dn6n8vsthuhjb" path="res://assets/mine.png" id="1_y80sa"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 64.0
-offset_bottom = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn72n"]
+size = Vector2(62, 62)
+
+[node name="MinePattern" type="Area2D"]
+script = ExtResource("1_k8qdn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y80sa")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_nn72n")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

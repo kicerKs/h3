@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://car8ednr3ojmt"]
+[gd_scene load_steps=9 format=3 uid="uid://car8ednr3ojmt"]
 
 [ext_resource type="Script" path="res://scenes/hero/hero.gd" id="1_ulsyx"]
 [ext_resource type="Texture2D" uid="uid://c40rrhwuog8tn" path="res://assets/ph_player.png" id="2_itmlt"]
@@ -8,12 +8,19 @@
 [ext_resource type="Script" path="res://scenes/hero/moving_hero_state.gd" id="6_7116h"]
 [ext_resource type="Script" path="res://scenes/hero/inactive_hero_state.gd" id="7_rpijk"]
 
-[node name="Hero" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x38c"]
+size = Vector2(62, 62)
+
+[node name="Hero" type="Area2D"]
 script = ExtResource("1_ulsyx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_itmlt")
 centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_6x38c")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_f08jo")

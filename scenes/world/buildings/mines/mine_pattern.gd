@@ -1,13 +1,11 @@
 extends Node2D
 
 @export var resource_type: GameResources.ResourceTypes
-@export var appearance: Color = Color(0, 0, 0, 0)
 
 var production_rate: int = 0 # amount of resources each round
-var active_mine: bool = true
+var active_mine: bool = false
 
 func _ready() -> void:
-	$ColorRect.color = appearance
 	add_to_group("Mines")
 	TurnSystem.connect("new_day", _on_turn_system_new_day)
 	
@@ -22,7 +20,22 @@ func _ready() -> void:
 func activate_mines() -> void:
 	if not active_mine:
 		active_mine = true
+		print("Mine Activated!")
 
 func _on_turn_system_new_day() -> void:
 	if active_mine:
 		Game.Resources.add_resource(resource_type, production_rate)
+
+func _on_area_entered(area) -> void:
+	if area.is_in_group("Heroes"):
+		var hero = area as Hero
+		hero.inside_something = true
+		hero.connect("interact", activate_mines)
+		print(hero)
+
+func _on_area_exited(area) -> void:
+	if area.is_in_group("Heroes"):
+		var hero = area as Hero
+		hero.inside_something = false
+		hero.disconnect("interact", activate_mines)
+		print(hero)

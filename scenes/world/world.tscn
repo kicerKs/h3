@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://gt3c6cq5nj55"]
+[gd_scene load_steps=63 format=4 uid="uid://gt3c6cq5nj55"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_5cfbr"]
 [ext_resource type="Script" path="res://scenes/world/main_camera.gd" id="1_d0lij"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://ctfup70tll2oa" path="res://assets/grass_map_items/path.png" id="12_323hb"]
 [ext_resource type="PackedScene" uid="uid://c4ckl6pprtqf3" path="res://scenes/world/buildings/mines/minePattern.tscn" id="16_dtjol"]
 [ext_resource type="Texture2D" uid="uid://csithu1w3t1sq" path="res://assets/obstacles/trees.png" id="16_msq3o"]
-[ext_resource type="Script" path="res://scenes/world/buildings/mines/mine_pattern.gd" id="17_luk71"]
 [ext_resource type="Texture2D" uid="uid://ijtd161a3mq3" path="res://assets/obstacles/mountains.png" id="17_qewyr"]
 [ext_resource type="PackedScene" uid="uid://y67ils3hyyix" path="res://scenes/world/buildings/dwellings/dwellingPattern.tscn" id="17_wwrq4"]
 [ext_resource type="Resource" uid="uid://chr8sqmmfsms8" path="res://scenes/units/presets/cyborg.tres" id="18_hgn3v"]
@@ -979,38 +978,29 @@ mob_type = ExtResource("24_gbodf")
 
 [node name="GasolineMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(1664, 1216)
-script = ExtResource("17_luk71")
 resource_type = 4
 
 [node name="WoodMine" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
 position = Vector2(320, 1216)
-script = ExtResource("17_luk71")
-appearance = Color(0.306959, 0.245455, 0.142752, 0)
 
 [node name="CoalMine" parent="Mines" groups=["Mines"] instance=ExtResource("16_dtjol")]
 position = Vector2(960, 448)
-script = ExtResource("17_luk71")
 resource_type = 2
-appearance = Color(0.509155, 0.462902, 0.185056, 0)
 
 [node name="MetalMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(384, 576)
-script = ExtResource("17_luk71")
 resource_type = 1
 
 [node name="SiliconMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(128, 960)
-script = ExtResource("17_luk71")
 resource_type = 5
 
 [node name="CreditsMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(1600, 704)
-script = ExtResource("17_luk71")
 resource_type = 6
 
 [node name="PsiCrystalMine" parent="Mines" instance=ExtResource("16_dtjol")]
 position = Vector2(832, 256)
-script = ExtResource("17_luk71")
 resource_type = 3
 
 [node name="BattlegroundsPattern" parent="Mines" instance=ExtResource("23_jhmnw")]
@@ -1019,39 +1009,39 @@ position = Vector2(1152, 1280)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Marines" parent="Enemies" instance=ExtResource("20_kaejh")]
-position = Vector2(720, 1280)
+position = Vector2(704, 1216)
 mob = ExtResource("21_dec7q")
 number = 4
 
 [node name="Firebats" parent="Enemies" instance=ExtResource("20_kaejh")]
-position = Vector2(656, 704)
+position = Vector2(640, 704)
 mob = ExtResource("20_d3kpa")
 number = 5
 
 [node name="Soldiers" parent="Enemies" instance=ExtResource("20_kaejh")]
-position = Vector2(400, 768)
+position = Vector2(384, 768)
 mob = ExtResource("23_y72tv")
 number = 6
 
 [node name="Angels" parent="Enemies" instance=ExtResource("20_kaejh")]
-position = Vector2(1552, 1152)
+position = Vector2(1536, 1152)
 mob = ExtResource("19_d4jcv")
 number = 4
 
 [node name="CyborgsSnipers" parent="Enemies" instance=ExtResource("29_cfrja")]
-position = Vector2(1104, 896)
+position = Vector2(1088, 896)
 units = Array[ExtResource("30_l2xgh")]([SubResource("Resource_vln8a"), SubResource("Resource_pfo0f")])
 
 [node name="SnipersTanks" parent="Enemies" instance=ExtResource("29_cfrja")]
-position = Vector2(1232, 384)
+position = Vector2(1216, 384)
 units = Array[ExtResource("30_l2xgh")]([SubResource("Resource_pavx3"), SubResource("Resource_83s2o")])
 
 [node name="AngelsMarines" parent="Enemies" instance=ExtResource("29_cfrja")]
-position = Vector2(848, 320)
+position = Vector2(832, 320)
 units = Array[ExtResource("30_l2xgh")]([SubResource("Resource_4dgo8"), SubResource("Resource_j62rx")])
 
 [node name="Tanks" parent="Enemies" instance=ExtResource("20_kaejh")]
-position = Vector2(1488, 1408)
+position = Vector2(1472, 1408)
 mob = ExtResource("24_gbodf")
 number = 4
 

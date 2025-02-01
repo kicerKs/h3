@@ -7,9 +7,9 @@ func on_enter() -> void:
 	pass
 
 func update(_delta: float) -> void:
-	# Check if there is a path, if it is change state
-	#if hero.current_path != null:
-	#	change_state.emit(MOVING)
+	# Check for interaction with something on the map
+	if hero.inside_something:
+		hero.interact.emit()
 	pass
 
 func handle_input(event: InputEvent) -> void:

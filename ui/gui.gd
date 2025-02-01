@@ -9,9 +9,9 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_turn_system_update_turn(day: Variant, week: Variant, month: Variant) -> void:
-	%MonthLabel.text = "Miesiac: " + str(month)
-	%WeekLabel.text = "Tydzień: " + str(week)
-	%DayLabel.text = "Dzień: " + str(day)
+	%MonthLabel.text = "Month: " + str(month)
+	%WeekLabel.text = "Week: " + str(week)
+	%DayLabel.text = "Day: " + str(day)
 
 func _on_button_new_turn_pressed() -> void:
 	TurnSystem.new_turn()

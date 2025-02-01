@@ -30,11 +30,10 @@ func _ready() -> void:
 	var normal_cells = tilemap.get_used_cells_by_id(2)
 	for cell in normal_cells:
 		astar_grid.set_point_weight_scale(cell, 1)
+	var other_cells = tilemap.get_used_cells_by_id(5)
+	for cell in other_cells:
+		astar_grid.set_point_solid(cell, true)
 	astar_grid.update()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func reset_path():
 	calculated_path = null
@@ -45,9 +44,20 @@ func reset_path():
 
 func start_pathfinding(h: Hero, movement: int):
 	player = h
+	var bStart = false
+	var bEnd = false
+	var start_point = tilemap.local_to_map(player.position)
+	if tilemap.get_cell_source_id(start_point) == 5:
+		astar_grid.set_point_solid(start_point, false)
+		astar_grid.update()
+		bStart = true
 	var end_point = tilemap.local_to_map(tilemap.get_local_mouse_position())
+	if tilemap.get_cell_source_id(end_point) == 5:
+		astar_grid.set_point_solid(end_point, false)
+		astar_grid.update()
+		bEnd = true
 	if astar_grid.is_in_bounds(end_point.x, end_point.y) and !astar_grid.is_point_solid(tilemap.local_to_map(tilemap.get_local_mouse_position())):
-		var path = astar_grid.get_point_path(tilemap.local_to_map(player.position), tilemap.local_to_map(tilemap.get_local_mouse_position()))
+		var path = astar_grid.get_point_path(start_point, end_point)
 		if calculated_path != path: # Pokaż ścieżkę, ale nie zaczynaj pathfindingu
 			reset_path()
 			calculated_path = path
@@ -70,9 +80,21 @@ func start_pathfinding(h: Hero, movement: int):
 			var p = []
 			for vector in green_path:
 				p.append([vector - Vector2(31,31),calculate_movement_cost(vector)])
+			if bStart:
+				astar_grid.set_point_solid(start_point, true)
+				astar_grid.update()
+			if bEnd:
+				astar_grid.set_point_solid(end_point, true)
+				astar_grid.update()
 			if len(p) < 2:
 				return null
 			return p
+	if bStart:
+		astar_grid.set_point_solid(start_point, true)
+		astar_grid.update()
+	if bEnd:
+		astar_grid.set_point_solid(end_point, true)
+		astar_grid.update()
 	return null
 
 func calculate_movement_cost(point):
@@ -81,6 +103,8 @@ func calculate_movement_cost(point):
 		1:
 			return 50
 		2:
+			return 100
+		5:
 			return 100
 		_:
 			return 9999

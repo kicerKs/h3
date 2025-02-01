@@ -1,15 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch6ncmv23kajx"]
+[gd_scene load_steps=19 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
 [ext_resource type="Script" path="res://scenes/battle_test.gd" id="2_3vrwt"]
 [ext_resource type="Script" path="res://ui/gui_heroes.gd" id="2_uwirx"]
 [ext_resource type="Texture2D" uid="uid://dhd1jp8f0jf0e" path="res://assets/ui_v1.png" id="3_v8b5c"]
-[ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="4_dsbl3"]
 [ext_resource type="Theme" uid="uid://ddoxeeddfrv2k" path="res://ui/theme_hero_bar.tres" id="5_vpdh1"]
 [ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="6_q5uu5"]
 [ext_resource type="Script" path="res://ui/hero_movement_bar.gd" id="7_v3j6m"]
 [ext_resource type="Script" path="res://ui/resources_panel.gd" id="8_6xt0d"]
 [ext_resource type="Theme" uid="uid://dtnkl6yujlecp" path="res://ui/theme_unit_button.tres" id="8_gny6i"]
+[ext_resource type="Texture2D" uid="uid://dogy4c33c0ahv" path="res://assets/helmet.png" id="8_tvsi2"]
+[ext_resource type="Texture2D" uid="uid://djp2us1q5gynt" path="res://assets/flag.png" id="9_jssav"]
+[ext_resource type="Texture2D" uid="uid://cxjk84cly2vhn" path="res://assets/gate.png" id="10_eytve"]
+[ext_resource type="Texture2D" uid="uid://ce7inn56y380p" path="res://assets/kalpsydra.png" id="11_pr6hk"]
+[ext_resource type="Texture2D" uid="uid://b67s3e23rgala" path="res://assets/attack.png" id="13_cq8fm"]
+[ext_resource type="Texture2D" uid="uid://cvpkpeppc74al" path="res://assets/deffence.png" id="14_woaay"]
+[ext_resource type="Texture2D" uid="uid://bi04fv8el0cow" path="res://assets/Morale I.png" id="15_nsn0v"]
+[ext_resource type="Texture2D" uid="uid://bs80pkgpbmjlp" path="res://assets/Luck I.png" id="17_5po8t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0qop"]
 texture = ExtResource("6_q5uu5")
@@ -79,7 +86,6 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-icon = ExtResource("4_dsbl3")
 icon_alignment = 1
 expand_icon = true
 
@@ -94,7 +100,6 @@ offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_vpdh1")
-value = 50.0
 show_percentage = false
 script = ExtResource("7_v3j6m")
 
@@ -103,7 +108,7 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-icon = ExtResource("4_dsbl3")
+icon = ExtResource("8_tvsi2")
 expand_icon = true
 
 [node name="Hero2" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
@@ -112,7 +117,6 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero2MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero2"]
@@ -134,7 +138,7 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-icon = ExtResource("4_dsbl3")
+icon = ExtResource("9_jssav")
 expand_icon = true
 
 [node name="Hero3" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
@@ -143,7 +147,6 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero3MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero3"]
@@ -165,7 +168,7 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("4_dsbl3")
+icon = ExtResource("10_eytve")
 expand_icon = true
 
 [node name="Hero4" type="Button" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer"]
@@ -174,7 +177,6 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("4_dsbl3")
 expand_icon = true
 
 [node name="Hero4MovementBar" type="ProgressBar" parent="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero4"]
@@ -188,7 +190,6 @@ offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_vpdh1")
-value = 50.0
 show_percentage = false
 script = ExtResource("7_v3j6m")
 
@@ -199,7 +200,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "Zakończ turę"
 theme_override_font_sizes/font_size = 14
-icon = ExtResource("4_dsbl3")
+icon = ExtResource("11_pr6hk")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
@@ -229,7 +230,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("4_dsbl3")
 expand_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -250,7 +250,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-texture = ExtResource("4_dsbl3")
+texture = ExtResource("13_cq8fm")
 expand_mode = 3
 stretch_mode = 5
 
@@ -259,7 +259,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-texture = ExtResource("4_dsbl3")
+texture = ExtResource("14_woaay")
 expand_mode = 3
 
 [node name="SelectedHeroAttack" type="Label" parent="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
@@ -288,7 +288,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 10
-texture = ExtResource("4_dsbl3")
+texture = ExtResource("15_nsn0v")
 expand_mode = 3
 stretch_mode = 5
 
@@ -331,7 +331,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
-texture = ExtResource("4_dsbl3")
+texture = ExtResource("17_5po8t")
 expand_mode = 3
 stretch_mode = 5
 
@@ -499,3 +499,10 @@ text = "Liczba"
 [connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero3" to="Heroes" method="_on_hero_3_pressed"]
 [connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/Hero4" to="Heroes" method="_on_hero_4_pressed"]
 [connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/GridContainer/ButtonNewTurn" to="." method="_on_button_new_turn_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit1" to="Heroes" method="_on_selected_hero_unit_1_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit2" to="Heroes" method="_on_selected_hero_unit_2_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit3" to="Heroes" method="_on_selected_hero_unit_3_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit4" to="Heroes" method="_on_selected_hero_unit_4_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit5" to="Heroes" method="_on_selected_hero_unit_5_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit6" to="Heroes" method="_on_selected_hero_unit_6_pressed"]
+[connection signal="pressed" from="RightPanel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit7" to="Heroes" method="_on_selected_hero_unit_7_pressed"]
