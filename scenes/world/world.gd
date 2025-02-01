@@ -22,3 +22,7 @@ func set_camera_boundaries():
 	$MainCamera.limit_bottom = off.y + (get_viewport().size.y/2)
 	$MainCamera.limit_left = 0 - (get_viewport().size.x/2)
 	$MainCamera.limit_right = off.x + (get_viewport().size.x/2)
+
+func remove_combat(pos: Vector2):
+	var tilemap: TileMapLayer = $MapMoving
+	tilemap.set_cell(pos, 1)

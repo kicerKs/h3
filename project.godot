@@ -38,6 +38,10 @@ version_control/autoload_on_startup=true
 [global_group]
 
 Mines=""
+LooseResources=""
+LuckBuildings=""
+ExpBuildings=""
+MoraleBuildings=""
 
 [input]
 

@@ -18,6 +18,9 @@ signal interact
 var _luck = 0
 var _morale = 0
 
+var luck_bonus = -1
+var morale_bonus = -99
+
 var luck:
 	get():
 		return get_luck()
@@ -32,6 +35,11 @@ var army: Array[ArmyUnit]:
 	get():
 		return get_army()
 
+var level = 1
+var experience: int = 0
+var xp_threshold: int = 1000
+signal levelup(hero: Hero, isDef: bool, selection)
+
 var current_path = null
 var _movement: int
 
@@ -42,14 +50,23 @@ func subtract_movement(value):
 	_movement -= value
 	movement_changed.emit(_movement)
 
+func calculate_movement():
+	var base = 1000 #TODO: Change to slowest creature in army
+	_movement = int( base * attributes.get_logistics_modifier() )
+	max_movement_changed.emit(_movement)
+
 func get_movement():
 	return _movement
 
 func get_luck():
-	return clamp(_luck + attributes.get_luck_modifier(), 0, 3)
+	return clamp(_luck + clamp(luck_bonus, 0, 10) + attributes.get_luck_modifier(), 0, 3)
 
 func get_morale():
-	return clamp(_morale + attributes.get_leadership_modifier(), -3, 3)
+	return clamp(_morale + clamp(morale_bonus, -10, 10) + attributes.get_leadership_modifier(), -3, 3)
+
+func reset_luck_morale_bonuses():
+	luck_bonus = -1
+	morale_bonus = -99
 
 func get_army():
 	if len(_army) > 7:
@@ -65,6 +82,8 @@ func swap_units(i, j):
 	_army[j] = t
 	army_changed.emit()
 
+# Add / Remove hero
+
 func recruit(pos):
 	self.global_position = pos
 	TurnSystem.connect("new_day", send_estates)
@@ -77,10 +96,22 @@ func dismiss():
 	TurnSystem.disconnect("new_day", calculate_movement)
 	state_machine.transition_to_state("Inactive")
 
-func calculate_movement():
-	var base = 1000 #TODO: Change to slowest creature in army
-	_movement = int( base * attributes.get_logistics_modifier() )
-	max_movement_changed.emit(_movement)
+# Levelling
+
+func add_xp(num):
+	experience += num
+	if experience >= xp_threshold:
+		level += 1
+		xp_threshold = xp_threshold * 2
+		levelup.emit(self, attributes.get_level_up_random_skills())
+
+func finalize_levelup(isDef: bool, skill: HeroSkill.Skills):
+	if isDef:
+		attributes.defense += 1
+	else:
+		attributes.attack += 1
+	attributes.add_skill(skill)
+	print(attributes.get_skills())
 
 # Skill-specific
 

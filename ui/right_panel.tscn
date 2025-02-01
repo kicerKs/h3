@@ -1,0 +1,385 @@
+[gd_scene load_steps=16 format=3 uid="uid://wxt73e4po3ro"]
+
+[ext_resource type="Texture2D" uid="uid://dhd1jp8f0jf0e" path="res://assets/ui_v1.png" id="1_hhx3x"]
+[ext_resource type="Script" path="res://ui/gui_heroes.gd" id="1_l7861"]
+[ext_resource type="Theme" uid="uid://ddoxeeddfrv2k" path="res://ui/theme_hero_bar.tres" id="2_5vbrp"]
+[ext_resource type="Script" path="res://ui/hero_movement_bar.gd" id="3_jtf60"]
+[ext_resource type="Texture2D" uid="uid://dogy4c33c0ahv" path="res://assets/helmet.png" id="4_84tyc"]
+[ext_resource type="Texture2D" uid="uid://djp2us1q5gynt" path="res://assets/flag.png" id="5_kgev4"]
+[ext_resource type="Texture2D" uid="uid://cxjk84cly2vhn" path="res://assets/gate.png" id="6_4mi48"]
+[ext_resource type="Texture2D" uid="uid://ce7inn56y380p" path="res://assets/kalpsydra.png" id="7_y1gsd"]
+[ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="8_al131"]
+[ext_resource type="Texture2D" uid="uid://b67s3e23rgala" path="res://assets/attack.png" id="9_0gw5n"]
+[ext_resource type="Texture2D" uid="uid://cvpkpeppc74al" path="res://assets/deffence.png" id="10_3c62y"]
+[ext_resource type="Texture2D" uid="uid://bi04fv8el0cow" path="res://assets/Morale I.png" id="11_6xpaj"]
+[ext_resource type="Theme" uid="uid://dtnkl6yujlecp" path="res://ui/theme_unit_button.tres" id="12_ld1tk"]
+[ext_resource type="Texture2D" uid="uid://bs80pkgpbmjlp" path="res://assets/Luck I.png" id="13_4niko"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0qop"]
+texture = ExtResource("8_al131")
+
+[node name="RightPanel" type="PanelContainer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+script = ExtResource("1_l7861")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_hhx3x")
+region_rect = Rect2(4, 4, 42, 42)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Hero1" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon_alignment = 1
+expand_icon = true
+
+[node name="Hero1MovementBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/Hero1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_5vbrp")
+show_percentage = false
+script = ExtResource("3_jtf60")
+
+[node name="ButtonShowHero" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("4_84tyc")
+expand_icon = true
+
+[node name="Hero2" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+expand_icon = true
+
+[node name="Hero2MovementBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/Hero2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_5vbrp")
+show_percentage = false
+script = ExtResource("3_jtf60")
+
+[node name="ButtonUseHero" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("5_kgev4")
+expand_icon = true
+
+[node name="Hero3" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_icon = true
+
+[node name="Hero3MovementBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/Hero3"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_5vbrp")
+show_percentage = false
+script = ExtResource("3_jtf60")
+
+[node name="ButtonCity" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("6_4mi48")
+expand_icon = true
+
+[node name="Hero4" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_icon = true
+
+[node name="Hero4MovementBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/Hero4"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_5vbrp")
+show_percentage = false
+script = ExtResource("3_jtf60")
+
+[node name="ButtonNewTurn" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Zakończ turę"
+theme_override_font_sizes/font_size = 14
+icon = ExtResource("7_y1gsd")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o0qop")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SelectedHeroIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SelectedHeroName" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nazwa herosa"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("9_0gw5n")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("10_3c62y")
+expand_mode = 3
+
+[node name="SelectedHeroAttack" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+horizontal_alignment = 1
+
+[node name="SellectedHeroDefense" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="SelectedHeroMorale" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 10
+texture = ExtResource("11_6xpaj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SelectedHeroUnit1" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("12_ld1tk")
+text = "100"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroUnit2" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "35"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroUnit3" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "55"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroLuck" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+texture = ExtResource("13_4niko")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SelectedHeroUnit4" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "1"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroUnit5" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "12"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroUnit6" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "13"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SelectedHeroUnit7" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 76)
+layout_mode = 2
+theme = ExtResource("12_ld1tk")
+text = "7"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="MonthLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Miesiąc: XD"
+
+[node name="WeekLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Tydzień: XD"
+
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Dzień: XD"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero1" to="." method="_on_hero_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero2" to="." method="_on_hero_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero3" to="." method="_on_hero_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero4" to="." method="_on_hero_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/ButtonNewTurn" to="." method="_on_button_new_turn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit1" to="." method="_on_selected_hero_unit_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit2" to="." method="_on_selected_hero_unit_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SelectedHeroUnit3" to="." method="_on_selected_hero_unit_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit4" to="." method="_on_selected_hero_unit_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit5" to="." method="_on_selected_hero_unit_5_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit6" to="." method="_on_selected_hero_unit_6_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/SelectedHeroUnit7" to="." method="_on_selected_hero_unit_7_pressed"]

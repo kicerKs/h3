@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://br7ajt54gtn6q"]
+[gd_scene load_steps=4 format=3 uid="uid://br7ajt54gtn6q"]
 
-[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_rybo0"]
+[ext_resource type="Texture2D" uid="uid://c4itdshcc1l8s" path="res://assets/totem.png" id="2_rjg3y"]
 [ext_resource type="Script" path="res://scenes/world/buildings/luck/totem_pattern.gd" id="2_uiuqj"]
 
-[node name="TotemPattern" type="Sprite2D"]
-texture = ExtResource("1_rybo0")
-centered = false
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y71cd"]
+size = Vector2(62, 62)
+
+[node name="TotemPattern" type="Area2D" groups=["LuckBuildings"]]
 script = ExtResource("2_uiuqj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rjg3y")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_y71cd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

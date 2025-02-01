@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dugn5d38k4x0h"]
+[gd_scene load_steps=4 format=3 uid="uid://dugn5d38k4x0h"]
 
 [ext_resource type="Texture2D" uid="uid://dc0iopknn5hqq" path="res://assets/wood.png" id="1_v0obb"]
 [ext_resource type="Script" path="res://scenes/world/buildings/loose_resources/loose_resource_pattern.gd" id="2_61yvl"]
 
-[node name="LooseResourcePattern" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uvxq"]
+size = Vector2(62, 62)
+
+[node name="LooseResourcePattern" type="Area2D" groups=["LooseResources"]]
+script = ExtResource("2_61yvl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_8uvxq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_v0obb")
 centered = false
-script = ExtResource("2_61yvl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

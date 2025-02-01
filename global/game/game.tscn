@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero/hero.tscn" id="3_yb1gi"]
 [ext_resource type="Script" path="res://scenes/hero/army_unit.gd" id="4_drcg5"]
 [ext_resource type="Resource" uid="uid://onwadky8181l" path="res://scenes/hero/presets/calamity.tres" id="4_kh333"]
-[ext_resource type="Resource" uid="uid://b7fyggeu4sjlv" path="res://scenes/units/presets/soldier.tres" id="5_iwqcb"]
+[ext_resource type="Resource" uid="uid://c4vtjfirl5c06" path="res://scenes/units/presets/angel.tres" id="5_74r5h"]
 [ext_resource type="Resource" uid="uid://b15ta8vx56cpn" path="res://scenes/hero/presets/falcon.tres" id="7_8n7sa"]
 [ext_resource type="Resource" uid="uid://djf5l70i8ngbj" path="res://scenes/hero/presets/general.tres" id="8_nfb3w"]
 [ext_resource type="Resource" uid="uid://cdbxp5bkmfhq8" path="res://scenes/hero/presets/grimemaw.tres" id="9_jhykp"]
@@ -16,37 +16,37 @@
 
 [sub_resource type="Resource" id="Resource_04v27"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 1
 
 [sub_resource type="Resource" id="Resource_hqa1b"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 2
 
 [sub_resource type="Resource" id="Resource_t5ee2"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 3
 
 [sub_resource type="Resource" id="Resource_oq7uv"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 4
 
 [sub_resource type="Resource" id="Resource_73cog"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 5
 
 [sub_resource type="Resource" id="Resource_jtpxr"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 6
 
 [sub_resource type="Resource" id="Resource_ruksx"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_iwqcb")
+mob = ExtResource("5_74r5h")
 stack = 7
 
 [node name="Game" type="Node" node_paths=PackedStringArray("Resources", "HeroManager")]

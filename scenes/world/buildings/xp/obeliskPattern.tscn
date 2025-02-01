@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdps5kgydmi7m"]
+[gd_scene load_steps=4 format=3 uid="uid://cdps5kgydmi7m"]
 
-[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_jhjlr"]
 [ext_resource type="Script" path="res://scenes/world/buildings/xp/obelisk_pattern.gd" id="1_xupm1"]
+[ext_resource type="Texture2D" uid="uid://cfgu8rqyn0wyk" path="res://assets/obelisk.png" id="2_ulyms"]
 
-[node name="ObeliskPattern" type="Sprite2D"]
-texture = ExtResource("1_jhjlr")
-centered = false
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygivi"]
+size = Vector2(62, 62)
+
+[node name="ObeliskPattern" type="Area2D" groups=["ExpBuildings"]]
 script = ExtResource("1_xupm1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ulyms")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_ygivi")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

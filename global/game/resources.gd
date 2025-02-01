@@ -75,3 +75,25 @@ func exchange_rate(give: ResourceTypes, number: int, receive: ResourceTypes):
 				return int(number/1000)
 			else:
 				return int(number/4)
+
+static func get_resource_name(type: ResourceTypes):
+	match type:
+		ResourceTypes.WOOD:
+			return "Wood"
+		ResourceTypes.METAL:
+			return "Metal"
+		ResourceTypes.COAL:
+			return "Coal"
+		ResourceTypes.PSI_CRYSTAL:
+			return "Psi Crystal"
+		ResourceTypes.SILICON:
+			return "Silicon"
+		ResourceTypes.GASOLINE:
+			return "Gasoline"
+		ResourceTypes.CREDITS:
+			return "Credits"
+
+static func get_resource_icon(type: ResourceTypes):
+	match type:
+		_:
+			return load("res://assets/ph_icon.png")

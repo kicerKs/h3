@@ -10,6 +10,14 @@ var selected_hero: Hero
 
 var selected_unit = -1
 
+func _on_button_new_turn_pressed() -> void:
+	TurnSystem.new_turn()
+
+func _on_turn_system_update_turn(day: Variant, week: Variant, month: Variant) -> void:
+	%MonthLabel.text = "Month: " + str(month)
+	%WeekLabel.text = "Week: " + str(week)
+	%DayLabel.text = "Day: " + str(day)
+
 func _on_hero_1_pressed() -> void:
 	if len(heroes) >= 1:
 		select_hero(heroes[0])

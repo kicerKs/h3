@@ -115,7 +115,7 @@ func get_estates_modifier():
 # Adding, checking and levelup
 
 func add_skill(skill: HeroSkill.Skills):
-	if can_add_new_skill():
+	if can_add_new_skill() and skill not in get_skills():
 		_skills.append(HeroSkill.new_skill(skill))
 	elif can_add_skill(skill):
 		upgrade_skill(skill)
