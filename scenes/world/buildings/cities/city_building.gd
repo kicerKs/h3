@@ -17,12 +17,25 @@ class_name CityBuilding
 signal entered
 signal try_to_build
 signal cant_build
+signal builded
+
+func _ready():
+	if is_built:
+		connect_signals()
 
 func enter():
 	pass
 
-func build():
+func connect_signals():
 	pass
+
+func build():
+	print("IM BUILDING MYSELF")
+	for bc in building_costs:
+		Game.Resources.add_resource(bc.resource, -1 * bc.amount)
+	is_built = true
+	connect_signals()
+	builded.emit()
 
 func on_click():
 	if is_built:

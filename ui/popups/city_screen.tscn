@@ -742,28 +742,17 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HeroContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="HeroIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="HeroIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Army1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-unique_name_in_owner = true
-texture_filter = 3
-texture_repeat = 1
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-text = "20"
-icon = SubResource("AtlasTexture_8cyoo")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="Army2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -775,7 +764,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Army3" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -787,7 +776,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Army4" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army3" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -799,7 +788,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Army5" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army4" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -811,7 +800,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Army6" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army5" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -823,7 +812,19 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Army7" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Army6" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_8cyoo")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army7" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeroContainer"]
 unique_name_in_owner = true
 texture_filter = 3
 texture_repeat = 1
@@ -854,11 +855,11 @@ text = "Wyjdź"
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Factory/FactoryButton" to="." method="_on_factory_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/AssemblyLine/AssemblyLineButton" to="." method="_on_assembly_line_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/AngelPortal/AngelPortalButton" to="." method="_on_angel_portal_button_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army1" to="." method="_on_army_1_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army2" to="." method="_on_army_2_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army3" to="." method="_on_army_3_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army4" to="." method="_on_army_4_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army5" to="." method="_on_army_5_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army6" to="." method="_on_army_6_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Army7" to="." method="_on_army_7_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army1" to="." method="_on_army_1_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army2" to="." method="_on_army_2_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army3" to="." method="_on_army_3_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army4" to="." method="_on_army_4_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army5" to="." method="_on_army_5_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army6" to="." method="_on_army_6_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HeroContainer/Army7" to="." method="_on_army_7_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

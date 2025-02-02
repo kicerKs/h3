@@ -21,9 +21,22 @@ var selected_unit: int
 func show_city_screen(c: City, h: Hero):
 	self.visible = true
 	city = c
-	hero = h
-	hero.connect("army_changed", redraw_army)
-	%HeroIcon.texture = hero.attributes.icon
+	c.townhall.connect("builded", draw_all_buildings)
+	c.treasury.connect("builded", draw_all_buildings)
+	c.spaceport.connect("builded", draw_all_buildings)
+	c.marketplace.connect("builded", draw_all_buildings)
+	c.tavern.connect("builded", draw_all_buildings)
+	c.barracks.connect("builded", draw_all_buildings)
+	c.sniper_range.connect("builded", draw_all_buildings)
+	c.workshop.connect("builded", draw_all_buildings)
+	c.academy.connect("builded", draw_all_buildings)
+	c.factory.connect("builded", draw_all_buildings)
+	c.assembly_line.connect("builded", draw_all_buildings)
+	c.angel_portal.connect("builded", draw_all_buildings)
+	if h != null:
+		hero = h
+		hero.connect("army_changed", redraw_army)
+		%HeroIcon.texture = hero.attributes.icon
 	draw_all_buildings()
 	redraw_army()
 
@@ -55,107 +68,132 @@ func draw_building(building: CityBuilding, but: Button, resource_nodes: Array):
 			resource_nodes[i][1].visible = true
 
 func redraw_army():
-	if hero.army[0].mob != null:
-		%Army1.icon = hero.army[0].mob.icon
-		%Army1.text = str(hero.army[0].stack)
+	%HeroContainer.visible = true
+	if hero != null:
+		if hero.army[0].mob != null:
+			%Army1.icon = hero.army[0].mob.icon
+			%Army1.text = str(hero.army[0].stack)
+		else:
+			%Army1.icon = Texture2D.new()
+			%Army1.text = ""
+		if hero.army[1].mob != null:
+			%Army2.icon = hero.army[1].mob.icon
+			%Army2.text = str(hero.army[1].stack)
+		else:
+			%Army2.icon = Texture2D.new()
+			%Army2.text = ""
+		if hero.army[2].mob != null:
+			%Army3.icon = hero.army[2].mob.icon
+			%Army3.text = str(hero.army[2].stack)
+		else:
+			%Army3.icon = Texture2D.new()
+			%Army3.text = ""
+		if hero.army[3].mob != null:
+			%Army4.icon = hero.army[3].mob.icon
+			%Army4.text = str(hero.army[3].stack)
+		else:
+			%Army4.icon = Texture2D.new()
+			%Army4.text = ""
+		if hero.army[4].mob != null:
+			%Army5.icon = hero.army[4].mob.icon
+			%Army5.text = str(hero.army[4].stack)
+		else:
+			%Army5.icon = Texture2D.new()
+			%Army5.text = ""
+		if hero.army[5].mob != null:
+			%Army6.icon = hero.army[5].mob.icon
+			%Army6.text = str(hero.army[5].stack)
+		else:
+			%Army6.icon = Texture2D.new()
+			%Army6.text = ""
+		if hero.army[6].mob != null:
+			%Army7.icon = hero.army[6].mob.icon
+			%Army7.text = str(hero.army[6].stack)
+		else:
+			%Army7.icon = Texture2D.new()
+			%Army7.text = ""
 	else:
-		%Army1.icon = Texture2D.new()
-		%Army1.text = ""
-	if hero.army[1].mob != null:
-		%Army2.icon = hero.army[1].mob.icon
-		%Army2.text = str(hero.army[1].stack)
-	else:
-		%Army2.icon = Texture2D.new()
-		%Army2.text = ""
-	if hero.army[2].mob != null:
-		%Army3.icon = hero.army[2].mob.icon
-		%Army3.text = str(hero.army[2].stack)
-	else:
-		%Army3.icon = Texture2D.new()
-		%Army3.text = ""
-	if hero.army[3].mob != null:
-		%Army4.icon = hero.army[3].mob.icon
-		%Army4.text = str(hero.army[3].stack)
-	else:
-		%Army4.icon = Texture2D.new()
-		%Army4.text = ""
-	if hero.army[4].mob != null:
-		%Army5.icon = hero.army[4].mob.icon
-		%Army5.text = str(hero.army[4].stack)
-	else:
-		%Army5.icon = Texture2D.new()
-		%Army5.text = ""
-	if hero.army[5].mob != null:
-		%Army6.icon = hero.army[5].mob.icon
-		%Army6.text = str(hero.army[5].stack)
-	else:
-		%Army6.icon = Texture2D.new()
-		%Army6.text = ""
-	if hero.army[6].mob != null:
-		%Army7.icon = hero.army[6].mob.icon
-		%Army7.text = str(hero.army[6].stack)
-	else:
-		%Army7.icon = Texture2D.new()
-		%Army7.text = ""
+		%HeroContainer.visible = false
 
 func _on_army_1_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 0
-	else:
-		hero.swap_units(selected_unit, 0)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 0
+		else:
+			hero.swap_units(selected_unit, 0)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_2_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 1
-	else:
-		hero.swap_units(selected_unit, 1)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 1
+		else:
+			hero.swap_units(selected_unit, 1)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_3_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 2
-	else:
-		hero.swap_units(selected_unit, 2)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 2
+		else:
+			hero.swap_units(selected_unit, 2)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_4_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 3
-	else:
-		hero.swap_units(selected_unit, 3)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 3
+		else:
+			hero.swap_units(selected_unit, 3)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_5_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 4
-	else:
-		hero.swap_units(selected_unit, 4)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 4
+		else:
+			hero.swap_units(selected_unit, 4)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_6_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 5
-	else:
-		hero.swap_units(selected_unit, 5)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 5
+		else:
+			hero.swap_units(selected_unit, 5)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_army_7_pressed() -> void:
-	if selected_unit == -1:
-		selected_unit = 6
-	else:
-		hero.swap_units(selected_unit, 6)
-		selected_unit = -1
-		%Army1.release_focus()
+	if hero != null:
+		if selected_unit == -1:
+			selected_unit = 6
+		else:
+			hero.swap_units(selected_unit, 6)
+			selected_unit = -1
+			%Army1.release_focus()
 
 func _on_button_exit_pressed() -> void:
 	self.visible = false
+	city.townhall.disconnect("builded", draw_all_buildings)
+	city.treasury.disconnect("builded", draw_all_buildings)
+	city.spaceport.disconnect("builded", draw_all_buildings)
+	city.marketplace.disconnect("builded", draw_all_buildings)
+	city.tavern.disconnect("builded", draw_all_buildings)
+	city.barracks.disconnect("builded", draw_all_buildings)
+	city.sniper_range.disconnect("builded", draw_all_buildings)
+	city.workshop.disconnect("builded", draw_all_buildings)
+	city.academy.disconnect("builded", draw_all_buildings)
+	city.factory.disconnect("builded", draw_all_buildings)
+	city.assembly_line.disconnect("builded", draw_all_buildings)
+	city.angel_portal.disconnect("builded", draw_all_buildings)
+	get_parent().find_child("RightPanel").process_mode = Node.PROCESS_MODE_INHERIT
+	hero = null
 
 func _on_town_hall_button_pressed() -> void:
 	city.townhall.on_click()

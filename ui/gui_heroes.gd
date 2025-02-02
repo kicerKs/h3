@@ -325,3 +325,8 @@ func _on_button_use_hero_pressed() -> void:
 func _on_button_show_hero_pressed() -> void:
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	get_parent().find_child("HeroScreen").show_hero_screen(selected_hero)
+
+
+func _on_button_city_pressed() -> void:
+	self.process_mode = Node.PROCESS_MODE_DISABLED
+	get_parent().find_child("CityScreen").show_city_screen(get_node("/root/Main/World/Cities/City"), get_node("/root/Main/World/Cities/City").visiting_hero)

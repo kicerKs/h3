@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
-[ext_resource type="Script" path="res://scenes/battle_test.gd" id="2_3vrwt"]
 [ext_resource type="PackedScene" uid="uid://wxt73e4po3ro" path="res://ui/right_panel.tscn" id="4_2evm2"]
 [ext_resource type="PackedScene" uid="uid://dnh3miv3xn4l3" path="res://ui/popups/level_up_popup.tscn" id="5_4151n"]
 [ext_resource type="PackedScene" uid="uid://c3ohq6scgf573" path="res://ui/bottom_panel.tscn" id="5_crifi"]
@@ -10,27 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://c535bgbswt0hu" path="res://ui/popups/recruit_popup.tscn" id="8_tsrpc"]
 [ext_resource type="PackedScene" uid="uid://cujxhrxudabji" path="res://ui/popups/hero_screen.tscn" id="9_fp6av"]
 [ext_resource type="PackedScene" uid="uid://0gd5ccsws7mm" path="res://ui/popups/city_screen.tscn" id="10_e3lp5"]
+[ext_resource type="PackedScene" uid="uid://n6tgf23sdv5i" path="res://ui/popups/buiild_popup.tscn" id="11_fav2p"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("gui_heroes")]
 script = ExtResource("1_lva4t")
 gui_heroes = NodePath("RightPanel")
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -46.5
-offset_right = 121.0
-offset_bottom = 46.5
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="BattleTest" type="Button" parent="PanelContainer/GridContainer"]
-layout_mode = 2
-text = "Battle Test"
-script = ExtResource("2_3vrwt")
 
 [node name="RightPanel" parent="." instance=ExtResource("4_2evm2")]
 
@@ -54,4 +37,5 @@ visible = false
 [node name="RecruitPopup" parent="." instance=ExtResource("8_tsrpc")]
 visible = false
 
-[connection signal="pressed" from="PanelContainer/GridContainer/BattleTest" to="PanelContainer/GridContainer/BattleTest" method="_on_pressed"]
+[node name="BuiildPopup" parent="." instance=ExtResource("11_fav2p")]
+visible = false
