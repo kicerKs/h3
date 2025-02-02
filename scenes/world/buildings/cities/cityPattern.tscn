@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3cnfo7cx0n2u"]
+[gd_scene load_steps=16 format=3 uid="uid://c3cnfo7cx0n2u"]
 
-[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_dh1j3"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/city_pattern.gd" id="2_ubu2h"]
+[ext_resource type="Texture2D" uid="uid://rdya04sykynr" path="res://assets/city.png" id="2_x4lw5"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/town_hall.gd" id="3_j4ygh"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/treasury.gd" id="4_cts85"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/marketplace.gd" id="4_p2bfx"]
@@ -15,10 +15,31 @@
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/assembly_line.gd" id="11_2n1lj"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/angel_portal.gd" id="12_daki3"]
 
-[node name="CityPattern" type="Sprite2D"]
-texture = ExtResource("1_dh1j3")
-centered = false
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yl5r"]
+size = Vector2(62, 62)
+
+[node name="CityPattern" type="Area2D" node_paths=PackedStringArray("townhall", "treasury", "spaceport", "marketplace", "tavern", "barracks", "sniper_range", "workshop", "academy", "factory", "assembly_line", "angel_portal")]
 script = ExtResource("2_ubu2h")
+townhall = NodePath("Buildings/TownHall")
+treasury = NodePath("Buildings/Treasury")
+spaceport = NodePath("Buildings/Spaceport")
+marketplace = NodePath("Buildings/Marketplace")
+tavern = NodePath("Buildings/Tavern")
+barracks = NodePath("Buildings/Barracks")
+sniper_range = NodePath("Buildings/SniperRange")
+workshop = NodePath("Buildings/Workshop")
+academy = NodePath("Buildings/Academy")
+factory = NodePath("Buildings/Factory")
+assembly_line = NodePath("Buildings/AssemblyLine")
+angel_portal = NodePath("Buildings/AngelPortal")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x4lw5")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_5yl5r")
 
 [node name="Buildings" type="Node" parent="."]
 
@@ -57,3 +78,6 @@ script = ExtResource("11_2n1lj")
 
 [node name="AngelPortal" type="Node" parent="Buildings"]
 script = ExtResource("12_daki3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -1,8 +1,8 @@
-extends Resource
+extends Node
 class_name CityBuilding
 
 @export_category("Basic info")
-@export var name: String
+@export var building_name: String
 @export var texture: Texture2D
 @export var tooltip: String
 

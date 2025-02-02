@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch6ncmv23kajx"]
+[gd_scene load_steps=11 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
 [ext_resource type="Script" path="res://scenes/battle_test.gd" id="2_3vrwt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dwe8yba42h2ay" path="res://ui/popups/treasure_chest_popup.tscn" id="7_hxp8b"]
 [ext_resource type="PackedScene" uid="uid://c535bgbswt0hu" path="res://ui/popups/recruit_popup.tscn" id="8_tsrpc"]
 [ext_resource type="PackedScene" uid="uid://cujxhrxudabji" path="res://ui/popups/hero_screen.tscn" id="9_fp6av"]
+[ext_resource type="PackedScene" uid="uid://0gd5ccsws7mm" path="res://ui/popups/city_screen.tscn" id="10_e3lp5"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("gui_heroes")]
 script = ExtResource("1_lva4t")
@@ -49,5 +50,7 @@ visible = false
 
 [node name="HeroScreen" parent="." instance=ExtResource("9_fp6av")]
 visible = false
+
+[node name="CityScreen" parent="." instance=ExtResource("10_e3lp5")]
 
 [connection signal="pressed" from="PanelContainer/GridContainer/BattleTest" to="PanelContainer/GridContainer/BattleTest" method="_on_pressed"]
