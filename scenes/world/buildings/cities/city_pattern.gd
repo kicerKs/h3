@@ -20,10 +20,10 @@ var just_visited = false
 func show_city_screen():
 	if !just_visited:
 		just_visited = true
+		get_node("/root/Main/GUI/CityScreen").show_city_screen(self, visiting_hero)
 
 func _on_area_entered(area) -> void:
 	if area.is_in_group("Heroes"):
-		just_visited = true
 		visiting_hero = area as Hero
 		visiting_hero.inside_something = true
 		visiting_hero.connect("interact", show_city_screen)

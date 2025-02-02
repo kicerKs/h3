@@ -12,6 +12,17 @@ func _ready():
 		el.connect("pickedup", show_xp)
 	for el in get_tree().get_nodes_in_group("MoraleBuildings"):
 		el.connect("pickedup", show_morale)
+	for el in get_tree().get_nodes_in_group("CityBuilding"):
+		el.connect("cant_build", show_cant_build)
+
+func show_cant_build(el: Node2D):
+	print("LOLLOLOLO")
+	self.visible = true
+	node = el
+	%Title.text = "Not enough resources!"
+	%Icon.visible = false
+	%Desc.text = "You don't have enough resources to buiild " + node.building_name + "!"
+	option = "CityBuilding"
 
 func show_resources(el: Node2D, num: int):
 	self.visible = true
@@ -53,6 +64,7 @@ func show_xp(el: Node2D):
 
 func _on_approve_button_pressed() -> void:
 	self.visible = false
+	%Icon.visible = true
 	match option:
 		"LooseResource":
 			node.remove()
@@ -61,4 +73,6 @@ func _on_approve_button_pressed() -> void:
 		"ExpBuildings":
 			node.finalize()
 		"MoraleBuildings":
+			pass #nic się nie musi zmieniać
+		"CityBuilding":
 			pass #nic się nie musi zmieniać

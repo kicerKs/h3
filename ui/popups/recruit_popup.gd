@@ -10,9 +10,11 @@ var node: Node2D
 
 func _ready():
 	for el in get_tree().get_nodes_in_group("Dwellings"):
+		print(el.name)
 		el.connect("entered", nowy)
 
 func nowy(n: Node2D, h: Hero, u: MobAttributes, maximum: int):
+	print("NO KURWA MAC")
 	self.visible = true
 	self.unit = u
 	self.hero = h

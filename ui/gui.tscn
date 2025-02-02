@@ -36,6 +36,12 @@ script = ExtResource("2_3vrwt")
 
 [node name="BottomPanel" parent="." instance=ExtResource("5_crifi")]
 
+[node name="CityScreen" parent="." instance=ExtResource("10_e3lp5")]
+visible = false
+
+[node name="HeroScreen" parent="." instance=ExtResource("9_fp6av")]
+visible = false
+
 [node name="LevelUpPopup" parent="." instance=ExtResource("5_4151n")]
 visible = false
 
@@ -47,10 +53,5 @@ visible = false
 
 [node name="RecruitPopup" parent="." instance=ExtResource("8_tsrpc")]
 visible = false
-
-[node name="HeroScreen" parent="." instance=ExtResource("9_fp6av")]
-visible = false
-
-[node name="CityScreen" parent="." instance=ExtResource("10_e3lp5")]
 
 [connection signal="pressed" from="PanelContainer/GridContainer/BattleTest" to="PanelContainer/GridContainer/BattleTest" method="_on_pressed"]
