@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3cnfo7cx0n2u"]
+[gd_scene load_steps=15 format=3 uid="uid://c3cnfo7cx0n2u"]
 
 [ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_dh1j3"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/city_pattern.gd" id="2_ubu2h"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/town_hall.gd" id="3_j4ygh"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/treasury.gd" id="4_cts85"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/marketplace.gd" id="4_p2bfx"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/tavern.gd" id="5_lav6t"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/spaceport.gd" id="5_nqvy0"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/barracks.gd" id="6_m0lg6"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/sniper_range.gd" id="7_fu1gi"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/workshop.gd" id="8_e4fjy"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/academy.gd" id="9_cs4rv"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/factory.gd" id="10_ee7x6"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/assembly_line.gd" id="11_2n1lj"]
+[ext_resource type="Script" path="res://scenes/world/buildings/cities/angel_portal.gd" id="12_daki3"]
 
 [node name="CityPattern" type="Sprite2D"]
 texture = ExtResource("1_dh1j3")
@@ -11,21 +23,37 @@ script = ExtResource("2_ubu2h")
 [node name="Buildings" type="Node" parent="."]
 
 [node name="TownHall" type="Node" parent="Buildings"]
+script = ExtResource("3_j4ygh")
+
+[node name="Treasury" type="Node" parent="Buildings"]
+script = ExtResource("4_cts85")
+
+[node name="Spaceport" type="Node" parent="Buildings"]
+script = ExtResource("5_nqvy0")
 
 [node name="Marketplace" type="Node" parent="Buildings"]
+script = ExtResource("4_p2bfx")
 
 [node name="Tavern" type="Node" parent="Buildings"]
+script = ExtResource("5_lav6t")
 
-[node name="Dwell1" type="Node" parent="Buildings"]
+[node name="Barracks" type="Node" parent="Buildings"]
+script = ExtResource("6_m0lg6")
 
-[node name="Dwell2" type="Node" parent="Buildings"]
+[node name="SniperRange" type="Node" parent="Buildings"]
+script = ExtResource("7_fu1gi")
 
-[node name="Dwell3" type="Node" parent="Buildings"]
+[node name="Workshop" type="Node" parent="Buildings"]
+script = ExtResource("8_e4fjy")
 
-[node name="Dwell4" type="Node" parent="Buildings"]
+[node name="Academy" type="Node" parent="Buildings"]
+script = ExtResource("9_cs4rv")
 
-[node name="Dwell5" type="Node" parent="Buildings"]
+[node name="Factory" type="Node" parent="Buildings"]
+script = ExtResource("10_ee7x6")
 
-[node name="Dwell6" type="Node" parent="Buildings"]
+[node name="AssemblyLine" type="Node" parent="Buildings"]
+script = ExtResource("11_2n1lj")
 
-[node name="Dwell7" type="Node" parent="Buildings"]
+[node name="AngelPortal" type="Node" parent="Buildings"]
+script = ExtResource("12_daki3")
