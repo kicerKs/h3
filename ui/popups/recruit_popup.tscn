@@ -1,0 +1,204 @@
+[gd_scene load_steps=6 format=3 uid="uid://c535bgbswt0hu"]
+
+[ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="1_2a0ny"]
+[ext_resource type="Script" path="res://ui/popups/recruit_popup.gd" id="1_3r5s5"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="2_btito"]
+[ext_resource type="Texture2D" uid="uid://cht4snnb7no5y" path="res://assets/resources/credits.png" id="4_pqh3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khci7"]
+atlas = ExtResource("2_btito")
+region = Rect2(0, 0, 64, 128)
+
+[node name="RecruitPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_3r5s5")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -142.0
+offset_right = 174.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_2a0ny")
+region_rect = Rect2(2, 2, 46, 46)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Recruit Soldiers"
+horizontal_alignment = 1
+
+[node name="UnitIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_khci7")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cost per Troop"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="CreditsIcon1" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("4_pqh3h")
+
+[node name="ResourceIcon1" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CreditsPerTroop" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "200"
+horizontal_alignment = 1
+
+[node name="ResourcePerTroop" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "Available"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "Recruit"
+horizontal_alignment = 1
+
+[node name="Available" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Recruit" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "7"
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+rounded = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Total cost"
+horizontal_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="CreditsIcon2" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/GridContainer2"]
+layout_mode = 2
+texture = ExtResource("4_pqh3h")
+
+[node name="ResourceIcon2" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CreditsTotal" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1400"
+horizontal_alignment = 1
+
+[node name="ResourceTotal" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "8"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonMax" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Maximum"
+
+[node name="ButtonBuy" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Buy"
+
+[node name="ButtonExit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Slider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonMax" to="." method="_on_button_max_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonBuy" to="." method="_on_button_buy_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonExit" to="." method="_on_button_cancel_pressed"]

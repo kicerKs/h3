@@ -1,0 +1,374 @@
+[gd_scene load_steps=12 format=3 uid="uid://cujxhrxudabji"]
+
+[ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="1_c1g8v"]
+[ext_resource type="Script" path="res://ui/popups/hero_screen.gd" id="1_jgabe"]
+[ext_resource type="Texture2D" uid="uid://cix465n5ao7vc" path="res://assets/heroes_icons.png" id="2_mdjd6"]
+[ext_resource type="Texture2D" uid="uid://b67s3e23rgala" path="res://assets/attack.png" id="3_1p4il"]
+[ext_resource type="Texture2D" uid="uid://cvpkpeppc74al" path="res://assets/deffence.png" id="4_x8wws"]
+[ext_resource type="Texture2D" uid="uid://dnkpt61yx166k" path="res://assets/Morale 0.png" id="5_8hwwv"]
+[ext_resource type="Texture2D" uid="uid://w7cifkpvdhob" path="res://assets/Luck 0.png" id="6_bjbnj"]
+[ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="7_yd481"]
+[ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="8_pdgsx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mkli"]
+atlas = ExtResource("2_mdjd6")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2emt"]
+atlas = ExtResource("8_pdgsx")
+region = Rect2(0, 0, 30, 40)
+
+[node name="HeroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jgabe")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_c1g8v")
+region_rect = Rect2(2, 2, 46, 46)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeroIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_7mkli")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HeroName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Nazwa herosa"
+horizontal_alignment = 1
+
+[node name="HeroTitle" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lvl 10 Warrior"
+horizontal_alignment = 1
+
+[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "X"
+flat = true
+alignment = 2
+
+[node name="ExpBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 4
+
+[node name="AttackLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Attack"
+horizontal_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Defense"
+horizontal_alignment = 1
+
+[node name="MoraleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Morale"
+horizontal_alignment = 1
+
+[node name="LuckLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Luck"
+horizontal_alignment = 1
+
+[node name="AttackTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_1p4il")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="DefenseTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_x8wws")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="MoraleTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_8hwwv")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="LuckTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("6_bjbnj")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Attack" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="Defense" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="Morale" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+1"
+horizontal_alignment = 1
+
+[node name="Luck" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="Skill1Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("7_yd481")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Skill1Level" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Basic"
+
+[node name="Skill1Name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Logistics"
+
+[node name="Skill2Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("7_yd481")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Skill2Level" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Basic"
+
+[node name="Skill2Name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Logistics"
+
+[node name="Skill3Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("7_yd481")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Skill3Level" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Basic"
+
+[node name="Skill3Name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Logistics"
+
+[node name="Skill4Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("7_yd481")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Skill4Level" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Basic"
+
+[node name="Skill4Name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Logistics"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Army1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army3" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army4" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army5" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army6" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Army7" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 3
+texture_repeat = 1
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+text = "20"
+icon = SubResource("AtlasTexture_s2emt")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army1" to="." method="_on_army_1_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army2" to="." method="_on_army_2_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army3" to="." method="_on_army_3_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army4" to="." method="_on_army_4_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army5" to="." method="_on_army_5_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army6" to="." method="_on_army_6_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Army7" to="." method="_on_army_7_pressed"]

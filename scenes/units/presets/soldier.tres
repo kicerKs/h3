@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://b7fyggeu4sjlv"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://b7fyggeu4sjlv"]
 
 [ext_resource type="SpriteFrames" uid="uid://c858i3k8pmnhw" path="res://scenes/units/animations/SoldierAnimations.tres" id="1_002wu"]
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_6nv1y"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_c3ekg"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_a3rng"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81rei"]
 atlas = ExtResource("2_c3ekg")
 region = Rect2(0, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1anni"]
+atlas = ExtResource("4_a3rng")
+region = Rect2(0, 0, 64, 128)
 
 [resource]
 script = ExtResource("1_6nv1y")
@@ -24,4 +29,7 @@ mob_name = "Soldier"
 flying = false
 distant = false
 icon = SubResource("AtlasTexture_81rei")
+standing_frame = SubResource("AtlasTexture_1anni")
 animations = ExtResource("1_002wu")
+have_resource_cost = false
+resource_cost = 0

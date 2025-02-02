@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://c4vtjfirl5c06"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://c4vtjfirl5c06"]
 
 [ext_resource type="SpriteFrames" uid="uid://dq0mkrbddkcqj" path="res://scenes/units/animations/AngelAnimations.tres" id="1_8pwvm"]
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_svfib"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_t5ll6"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_6256y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ps5y3"]
 atlas = ExtResource("2_t5ll6")
 region = Rect2(180, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6666"]
+atlas = ExtResource("4_6256y")
+region = Rect2(0, 768, 128, 128)
 
 [resource]
 script = ExtResource("1_svfib")
@@ -24,4 +29,7 @@ mob_name = "Angel"
 flying = true
 distant = false
 icon = SubResource("AtlasTexture_ps5y3")
+standing_frame = SubResource("AtlasTexture_h6666")
 animations = ExtResource("1_8pwvm")
+have_resource_cost = true
+resource_cost = 3

@@ -35,6 +35,8 @@ func _on_hero_4_pressed() -> void:
 		select_hero(heroes[3])
 
 func select_hero(hero: Hero):
+	if selected_hero != null:
+		selected_hero.disconnect("army_changed", redraw_army)
 	selected_hero = hero
 	selected_hero.connect("army_changed", redraw_army)
 	%SelectedHeroIcon.texture = hero.attributes.icon
@@ -314,3 +316,12 @@ func _on_selected_hero_unit_7_pressed() -> void:
 			selected_hero.swap_units(selected_unit, 6)
 			selected_unit = -1
 			%SelectedHeroUnit7.release_focus()
+
+
+func _on_button_use_hero_pressed() -> void:
+	selected_hero.interact_forced.emit()
+
+
+func _on_button_show_hero_pressed() -> void:
+	self.process_mode = Node.PROCESS_MODE_DISABLED
+	get_parent().find_child("HeroScreen").show_hero_screen(selected_hero)

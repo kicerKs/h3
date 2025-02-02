@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://353x4rqk2tpc"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://353x4rqk2tpc"]
 
 [ext_resource type="SpriteFrames" uid="uid://dy0uj4qbhivbo" path="res://scenes/units/animations/MarineAnimations.tres" id="1_1b5r5"]
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_kq7in"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_62tna"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_wqyof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3qd1"]
 atlas = ExtResource("2_62tna")
 region = Rect2(90, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4pu5"]
+atlas = ExtResource("4_wqyof")
+region = Rect2(0, 384, 128, 128)
 
 [resource]
 script = ExtResource("1_kq7in")
@@ -24,4 +29,7 @@ mob_name = "Marine"
 flying = true
 distant = false
 icon = SubResource("AtlasTexture_f3qd1")
+standing_frame = SubResource("AtlasTexture_e4pu5")
 animations = ExtResource("1_1b5r5")
+have_resource_cost = false
+resource_cost = 0

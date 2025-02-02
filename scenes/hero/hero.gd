@@ -14,6 +14,7 @@ signal army_changed
 
 var inside_something = false
 signal interact
+signal interact_forced
 
 var _luck = 0
 var _morale = 0
@@ -62,7 +63,10 @@ func get_luck():
 	return clamp(_luck + clamp(luck_bonus, 0, 10) + attributes.get_luck_modifier(), 0, 3)
 
 func get_morale():
-	return clamp(_morale + clamp(morale_bonus, -10, 10) + attributes.get_leadership_modifier(), -3, 3)
+	if morale_bonus != -99:
+		return clamp(_morale + clamp(morale_bonus, -10, 10) + attributes.get_leadership_modifier(), -3, 3)
+	else:
+		return clamp(_morale +  attributes.get_leadership_modifier(), -3, 3)
 
 func reset_luck_morale_bonuses():
 	luck_bonus = -1
@@ -75,6 +79,21 @@ func get_army():
 		while len(_army) < 7:
 			_army.append(ArmyUnit.nowy(null, -1))
 	return _army
+
+func add_units_to_army(unit: MobAttributes, number: int):
+	for i in _army.size():
+		if _army[i].mob == unit:
+			_army[i].stack += number
+			army_changed.emit()
+			return
+	for i in _army.size():
+		if _army[i].mob == null:
+			_army[i] = ArmyUnit.nowy(unit, number)
+			army_changed.emit()
+			return
+	if len(_army) < 7:
+		_army.append(ArmyUnit.nowy(unit, number))
+		army_changed.emit()
 
 func swap_units(i, j):
 	var t = _army[i]

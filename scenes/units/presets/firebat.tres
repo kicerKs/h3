@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://cedtv47kcy58r"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://cedtv47kcy58r"]
 
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_cf05e"]
 [ext_resource type="SpriteFrames" uid="uid://dciwforuwlikp" path="res://scenes/units/animations/FirebatAnimations.tres" id="1_n0lfr"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_wm5f8"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_atxoh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqcyf"]
 atlas = ExtResource("2_wm5f8")
 region = Rect2(60, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22pvj"]
+atlas = ExtResource("4_atxoh")
+region = Rect2(0, 256, 128, 128)
 
 [resource]
 script = ExtResource("1_cf05e")
@@ -24,4 +29,7 @@ mob_name = "Firebat"
 flying = false
 distant = false
 icon = SubResource("AtlasTexture_hqcyf")
+standing_frame = SubResource("AtlasTexture_22pvj")
 animations = ExtResource("1_n0lfr")
+have_resource_cost = true
+resource_cost = 2

@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://btaky05tupcvl"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://btaky05tupcvl"]
 
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_d7ebh"]
 [ext_resource type="SpriteFrames" uid="uid://cce8x6yt11daa" path="res://scenes/units/animations/TankAnimations.tres" id="1_mnsey"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_njskh"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_3ttmk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vs8ym"]
 atlas = ExtResource("2_njskh")
 region = Rect2(120, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xjiw"]
+atlas = ExtResource("4_3ttmk")
+region = Rect2(0, 512, 128, 128)
 
 [resource]
 script = ExtResource("1_d7ebh")
@@ -24,4 +29,7 @@ mob_name = "Tank"
 flying = false
 distant = true
 icon = SubResource("AtlasTexture_vs8ym")
+standing_frame = SubResource("AtlasTexture_7xjiw")
 animations = ExtResource("1_mnsey")
+have_resource_cost = true
+resource_cost = 4

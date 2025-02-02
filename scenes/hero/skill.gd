@@ -36,6 +36,8 @@ static func get_skill_name(sk: Skills):
 			return "Leadership"
 		Skills.ESTATES:
 			return "Estates"
+		_:
+			return ""
 
 static func get_skill_level_name(lvl: int):
 	match lvl:
@@ -45,6 +47,8 @@ static func get_skill_level_name(lvl: int):
 			return "Advanced"
 		3:
 			return "Master"
+		_:
+			return ""
 
 static func get_skill_name_with_level(sk: Skills, lvl: int):
 	return get_skill_level_name(lvl) + " " + get_skill_name(sk)

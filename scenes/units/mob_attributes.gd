@@ -16,4 +16,8 @@ class_name MobAttributes
 @export var distant: bool
 
 @export var icon: AtlasTexture
+@export var standing_frame: AtlasTexture
 @export var animations: SpriteFrames
+
+@export var have_resource_cost: bool
+@export var resource_cost: GameResources.ResourceTypes

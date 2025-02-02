@@ -20,7 +20,7 @@ var _resources = {
 	ResourceTypes.PSI_CRYSTAL: 0,
 	ResourceTypes.GASOLINE: 0,
 	ResourceTypes.SILICON: 0,
-	ResourceTypes.CREDITS: 0,
+	ResourceTypes.CREDITS: 2000,
 }
 
 func has_resources(type: ResourceTypes, number: int) -> bool:

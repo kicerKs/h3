@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://chr8sqmmfsms8"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://chr8sqmmfsms8"]
 
 [ext_resource type="SpriteFrames" uid="uid://23vrqe433ptk" path="res://scenes/units/animations/CyborgAnimations.tres" id="1_5vdxv"]
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_ijoqy"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_xdfh5"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_gf24c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eeoed"]
 atlas = ExtResource("2_xdfh5")
 region = Rect2(150, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3mk1"]
+atlas = ExtResource("4_gf24c")
+region = Rect2(0, 640, 64, 128)
 
 [resource]
 script = ExtResource("1_ijoqy")
@@ -24,4 +29,7 @@ mob_name = "Cyborg"
 flying = false
 distant = false
 icon = SubResource("AtlasTexture_eeoed")
+standing_frame = SubResource("AtlasTexture_r3mk1")
 animations = ExtResource("1_5vdxv")
+have_resource_cost = true
+resource_cost = 5

@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="MobAttributes" load_steps=5 format=3 uid="uid://burd01x2jpea6"]
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://burd01x2jpea6"]
 
 [ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_47os7"]
 [ext_resource type="SpriteFrames" uid="uid://dejof6tnne0ix" path="res://scenes/units/animations/SniperAnimations.tres" id="1_mt6f8"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="2_5as2o"]
+[ext_resource type="Texture2D" uid="uid://b0ed5ylfjppsh" path="res://assets/units.png" id="4_650fu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6dva"]
 atlas = ExtResource("2_5as2o")
 region = Rect2(30, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0cxa"]
+atlas = ExtResource("4_650fu")
+region = Rect2(0, 128, 64, 128)
 
 [resource]
 script = ExtResource("1_47os7")
@@ -24,4 +29,7 @@ mob_name = "Sniper"
 flying = false
 distant = true
 icon = SubResource("AtlasTexture_a6dva")
+standing_frame = SubResource("AtlasTexture_y0cxa")
 animations = ExtResource("1_mt6f8")
+have_resource_cost = false
+resource_cost = 0

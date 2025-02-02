@@ -372,7 +372,9 @@ theme_override_font_sizes/font_size = 13
 text = "Dzień: XD"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero1" to="." method="_on_hero_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/ButtonShowHero" to="." method="_on_button_show_hero_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero2" to="." method="_on_hero_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/ButtonUseHero" to="." method="_on_button_use_hero_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero3" to="." method="_on_hero_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Hero4" to="." method="_on_hero_4_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/ButtonNewTurn" to="." method="_on_button_new_turn_pressed"]
