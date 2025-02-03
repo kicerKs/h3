@@ -383,7 +383,6 @@ func army_value() -> int:
 func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 	var positions: Array
 	var iterator = 0
-	#var positions1 = [Vector2i(5,5),Vector2i(3,5),Vector2i(4,4),Vector2i(5,4)]
 	positions = army_placing(hero.army)
 	
 	for army in [hero.army, oponent]:
@@ -411,15 +410,12 @@ func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 					mob_node.mob_clicked.connect(attackMob)
 					mob_node.hit_box_input.connect(set_cursor_to_sword)
 					enemyArmy.append(mob_node)
-				iterator+=1
+			iterator+=1
 		positions = army_placing(oponent)
 		iterator = 0
 
 func army_placing(army: Array[ArmyUnit]) -> Array[int]:
-	if(!army.size() % 2):
-		return [0,10,4,6,2,8,5]
-	else:
-		return [0,10,5,2,8,4,6]
+	return [0,2,4,5,6,8,10]
 
 func show_info_box(mob: Mob):
 	var x_offset = 80 if(mob.player) else -100
