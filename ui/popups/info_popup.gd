@@ -16,6 +16,7 @@ func _ready():
 		el.connect("cant_build", show_cant_build)
 
 func show_tavern_cannot():
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	%Title.text = "Move your hero!"
 	%Icon.visible = false
@@ -23,6 +24,7 @@ func show_tavern_cannot():
 	option = "None"
 
 func show_cant_build(el: Node2D):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	node = el
 	%Title.text = "Not enough resources!"
@@ -31,6 +33,7 @@ func show_cant_build(el: Node2D):
 	option = "CityBuilding"
 
 func show_resources(el: Node2D, num: int):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	node = el
 	var type = node.resource_type
@@ -40,6 +43,7 @@ func show_resources(el: Node2D, num: int):
 	option = "LooseResource"
 
 func show_luck(el: Node2D, num: int):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	node = el
 	%Title.text = "It's your lucky day!"
@@ -48,6 +52,7 @@ func show_luck(el: Node2D, num: int):
 	option = "LuckBuildings"
 
 func show_morale(el: Node2D, num: int):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	node = el
 	if num < 0:
@@ -61,6 +66,7 @@ func show_morale(el: Node2D, num: int):
 	option = "MoraleBuildings"
 
 func show_xp(el: Node2D):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	node = el
 	%Title.text = "You learned something new!"
@@ -69,6 +75,7 @@ func show_xp(el: Node2D):
 	option = "ExpBuildings"
 
 func _on_approve_button_pressed() -> void:
+	Game.HeroManager.unpause_selected_hero()
 	self.visible = false
 	%Icon.visible = true
 	match option:

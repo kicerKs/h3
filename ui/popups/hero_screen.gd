@@ -5,6 +5,7 @@ var hero: Hero
 var selected_unit = -1
 
 func show_hero_screen(h: Hero):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	hero = h
 	hero.connect("army_changed", redraw_army)
@@ -140,6 +141,7 @@ func redraw_army():
 		%Army7.text = ""
 
 func _on_exit_pressed() -> void:
+	Game.HeroManager.unpause_selected_hero()
 	self.visible = false
 	hero.disconnect("army_changed", redraw_army)
 	get_parent().find_child("RightPanel").process_mode = Node.PROCESS_MODE_INHERIT

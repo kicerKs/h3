@@ -14,7 +14,7 @@ func _ready():
 		el.connect("entered", nowy)
 
 func nowy(n: Node2D, h: Hero, u: MobAttributes, maximum: int):
-	print("NO KURWA MAC")
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	self.unit = u
 	self.hero = h
@@ -58,9 +58,11 @@ func _on_button_buy_pressed() -> void:
 			Game.Resources.add_resource(unit.resource_cost, -1 * %Slider.value * 2)
 		hero.add_units_to_army(unit, %Slider.value)
 		node.available_to_recruit -= %Slider.value
+		Game.HeroManager.unpause_selected_hero()
 		self.nowy(node, hero, unit, maximum_to_recruit - %Slider.value)
 
 func _on_button_cancel_pressed() -> void:
+	Game.HeroManager.unpause_selected_hero()
 	self.visible = false
 
 func setup_slider():

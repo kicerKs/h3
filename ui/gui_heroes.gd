@@ -19,25 +19,26 @@ func _on_turn_system_update_turn(day: Variant, week: Variant, month: Variant) ->
 	%DayLabel.text = "Day: " + str(day)
 
 func _on_hero_1_pressed() -> void:
-	if len(heroes) >= 1:
+	if len(heroes) >= 1 and Game.HeroManager.paused_from == 0:
 		Game.HeroManager.select_hero(heroes[0])
 		get_node("/root/Main/World/MainCamera").focus(heroes[0].global_position)
 		select_hero(heroes[0])
 
 func _on_hero_2_pressed() -> void:
-	if len(heroes) >= 2:
+	print(Game.HeroManager.paused_from)
+	if len(heroes) >= 2 and Game.HeroManager.paused_from == 0:
 		Game.HeroManager.select_hero(heroes[1])
 		get_node("/root/Main/World/MainCamera").focus(heroes[1].global_position)
 		select_hero(heroes[1])
 
 func _on_hero_3_pressed() -> void:
-	if len(heroes) >= 3:
+	if len(heroes) >= 3 and Game.HeroManager.paused_from == 0:
 		Game.HeroManager.select_hero(heroes[2])
 		get_node("/root/Main/World/MainCamera").focus(heroes[2].global_position)
 		select_hero(heroes[2])
 
 func _on_hero_4_pressed() -> void:
-	if len(heroes) >= 4:
+	if len(heroes) >= 4 and Game.HeroManager.paused_from == 0:
 		Game.HeroManager.select_hero(heroes[3])
 		get_node("/root/Main/World/MainCamera").focus(heroes[3].global_position)
 		select_hero(heroes[3])
@@ -51,7 +52,7 @@ func select_hero(hero: Hero):
 	%SelectedHeroName.text = hero.attributes.name
 	%SelectedHeroAttack.text = str(hero.attributes.attack)
 	%SellectedHeroDefense.text = str(hero.attributes.defense)
-	# TODO: grafiki do morale i luck
+	get_node("/root/Main/World/MainCamera").focus(selected_hero.global_position)
 	match selected_hero.morale:
 		-3:
 			%SelectedHeroMorale.texture = load("res://assets/Morale minus III.png")

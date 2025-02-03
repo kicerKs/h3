@@ -11,6 +11,8 @@ class_name HeroManager
 	$Zephyr
 ]
 var active_heroes: Array[Hero]
+var selected_hero: Hero
+var paused_from: int = 0
 
 func _ready():
 	pass
@@ -19,10 +21,12 @@ func recruit_hero(hero: Hero, pos: Vector2):
 	if hero in available_heroes and len(active_heroes) < 4:
 		available_heroes.erase(hero)
 		active_heroes.append(hero)
-		get_node("/root/Main/GUI").add_hero(hero)
+		
 		remove_child(hero)
 		get_node("/root/Main/World/Heroes").add_child(hero)
 		hero.recruit(pos)
+		get_node("/root/Main/GUI").add_hero(hero)
+		select_hero(hero)
 
 func remove_hero(hero: Hero):
 	if hero in active_heroes:
@@ -57,5 +61,18 @@ func select_hero(hero: Hero):
 	for h in active_heroes:
 		if h == hero:
 			h.state_machine.transition_to_state("Selected")
+			selected_hero = h
 		else:
 			h.state_machine.transition_to_state("Idle")
+
+func pause_selected_hero():
+	print("Pause")
+	if paused_from == 0:
+		selected_hero.state_machine.transition_to_state("Idle")
+	paused_from += 1
+
+func unpause_selected_hero():
+	print("unpause")
+	paused_from -= 1
+	if paused_from == 0:
+		selected_hero.state_machine.transition_to_state("Selected")

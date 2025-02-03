@@ -10,7 +10,7 @@ func _ready():
 		el.connect("pickedup", nowy)
 
 func nowy(n: Node2D, selection):
-	print("AHA?")
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	selected = null
 	sel = selection
@@ -24,6 +24,7 @@ func _on_approve_button_pressed() -> void:
 	if selected != null:
 		node.chosen(selected)
 	self.visible = false
+	Game.HeroManager.unpause_selected_hero()
 
 func _on_credits_button_pressed() -> void:
 	selected = 0

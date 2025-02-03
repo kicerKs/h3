@@ -6,6 +6,7 @@ var sel
 var hero: Hero
 
 func nowy(h: Hero, selection):
+	Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	selected = null
 	sel = selection
@@ -36,3 +37,4 @@ func _on_approve_button_pressed() -> void:
 	if selected != null:
 		hero.finalize_levelup(statIsDefense, sel[selected][0])
 	self.visible = false
+	Game.HeroManager.unpause_selected_hero()
