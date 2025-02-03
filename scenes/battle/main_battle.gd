@@ -231,12 +231,13 @@ func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool
 	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
 	var i1 = 0.0 if(A>=D) else 0.05*(A-D)
+	var i2 = 0.0 if !attacker.player else (hero.attributes.get_archery_modifier() if distance_attack else hero.attributes.get_offence_modifier())
 	var R1 = 0.0 if(D>=A) else 0.025*(D-A)
+	var R2 = 0.0 if !defender.player else hero.attributes.get_armorer_modifier()
 	var R5 = 0.0
-	var R6 = 0.0 #TODO dla ścian
 	if(distance_attack and battle_ground.straight_distance_mobs(actual_plaing_mob,target) > 10 or !distance_attack and actual_plaing_mob.distant):
 		R5 = 0.5
-	return roundi(_conut_base_attack() * (1.0+i1+luck) * (1.0-R1) * (1.0-R5) * (1.0-R6))
+	return roundi(_conut_base_attack() * (1.0+i1+i2+luck) * (1.0-R1) * (1.0-R2) * (1.0-R5))
 
 func _conut_base_attack() -> float:
 	if(actual_plaing_mob.stack <= 10):

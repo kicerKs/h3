@@ -1,11 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0nm0hkcd2kae"]
+[gd_scene load_steps=4 format=3 uid="uid://dt7d3bjoxk7hf"]
 
-[ext_resource type="Script" path="res://scenes/units/Marine.gd" id="1_wju8y"]
 [ext_resource type="SpriteFrames" uid="uid://dy0uj4qbhivbo" path="res://scenes/units/animations/MarineAnimations.tres" id="2_tyqrt"]
 [ext_resource type="Theme" uid="uid://dh08wpvlgnaoh" path="res://scenes/units/lifeNodeTheme.tres" id="3_ec13c"]
 
+[sub_resource type="GDScript" id="GDScript_k35at"]
+script/source = "class_name Marine extends Mob
+
+func _init():
+	attack = 10
+	defense = 12
+	damage_min = 6
+	damage_max = 9
+	hp_base = 35
+	speed = 5
+	growth = 4
+	ai_val = 445
+	cost = 300
+	scene = load(\"res://scenes/units/Marine.tscn\")
+	mob_name = \"Marine\"
+	flying = true
+	mob_number = 3
+"
+
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_wju8y")
+script = SubResource("GDScript_k35at")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 25)
