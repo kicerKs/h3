@@ -24,7 +24,10 @@ func pass_mob(mob: Mob, hero: Hero = null):
 	
 	for child in find_child("Background").get_children(true):
 		if(child is Mob): find_child("Background").remove_child(child)
-	var mobScene: Node2D = mob.scene.instantiate()
+	#var mobScene: Node2D = mob.scene.instantiate()
+	var scene = load("res://scenes/units/Mob.tscn")
+	var mobScene = scene.instantiate()
+	mobScene.mob_attributes = mob.mob_attributes
 	(mobScene.find_child('Stack') as LineEdit).visible = false
 
 	mobScene.scale = Vector2(1.2, 1.2)

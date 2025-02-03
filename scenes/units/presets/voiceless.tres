@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://bd4jsqyltoe5p"]
+
+[ext_resource type="SpriteFrames" uid="uid://dh38oery6518v" path="res://scenes/units/animations/VoicelessAnimations.tres" id="1_krfrl"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_xle2r"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_vqhai"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_nfpmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhiii"]
+atlas = ExtResource("2_vqhai")
+region = Rect2(90, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdtoi"]
+atlas = ExtResource("4_nfpmh")
+region = Rect2(0, 384, 64, 128)
+
+[resource]
+script = ExtResource("1_xle2r")
+attack = 11
+defense = 8
+damage_min = 7
+damage_max = 9
+hp_base = 25
+speed = 5
+growth = 4
+ai_val = 570
+cost = 350
+mob_number = 4
+mob_name = "Voiceless"
+flying = false
+distant = true
+icon = SubResource("AtlasTexture_yhiii")
+standing_frame = SubResource("AtlasTexture_mdtoi")
+animations = ExtResource("1_krfrl")
+have_resource_cost = false
+resource_cost = 0

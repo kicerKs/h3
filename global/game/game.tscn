@@ -17,7 +17,7 @@
 [sub_resource type="Resource" id="Resource_04v27"]
 script = ExtResource("4_drcg5")
 mob = ExtResource("5_74r5h")
-stack = 1
+stack = 100
 
 [sub_resource type="Resource" id="Resource_hqa1b"]
 script = ExtResource("4_drcg5")

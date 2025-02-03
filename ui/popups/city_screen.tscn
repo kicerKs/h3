@@ -841,7 +841,7 @@ custom_minimum_size = Vector2(75, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Wyjdź"
+text = "Exit"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TownHall/TownHallButton" to="." method="_on_town_hall_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Treasury/TreasuryButton" to="." method="_on_treasury_button_pressed"]

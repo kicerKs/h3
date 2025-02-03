@@ -6,7 +6,7 @@ class_name CityBuilding
 @export var texture: Texture2D:
 	get():
 		if !is_built:
-			return load("res://assets/city_empty.png")
+			return load("res://assets/piwerko.png")
 		return texture
 @export var tooltip: String
 

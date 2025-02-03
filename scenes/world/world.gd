@@ -1,6 +1,6 @@
 extends Node2D
 
-var resources = {}
+var battles = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +13,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func add_battle():
+	battles += 1
+
+func remove_battle():
+	print("remove")
+	battles -= 1
+	print("battles")
+	if battles == 0:
+		get_node("/root/Main/GUI/InfoPopup").show_victory()
 
 func set_camera_boundaries():
 	var rec = $MapMoving.get_used_rect()

@@ -15,6 +15,21 @@ func _ready():
 	for el in get_tree().get_nodes_in_group("CityBuilding"):
 		el.connect("cant_build", show_cant_build)
 
+func show_victory():
+	self.visible = true
+	%Title.text = "Well done!"
+	%Icon.visible = false
+	%Desc.text = "You have claimed these lands, good job! Your work is done here, but maybe the Emperor will send you somewhere else..."
+	option = "End"
+
+func show_intro():
+	Game.HeroManager.pause_selected_hero()
+	self.visible = true
+	%Title.text = "Welcome mighty hero!"
+	%Icon.visible = false
+	%Desc.text = "The Galactic Empire sent you here to conquer these lands. Destroy all the foes and claim this land for the Emperor!"
+	option = "None"
+
 func show_tavern_cannot():
 	Game.HeroManager.pause_selected_hero()
 	self.visible = true
@@ -91,3 +106,5 @@ func _on_approve_button_pressed() -> void:
 			pass #nic się nie musi zmieniać
 		"None":
 			pass #wsm może być jeden wspólny xd
+		"End":
+			get_tree().quit()

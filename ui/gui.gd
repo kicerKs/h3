@@ -6,6 +6,7 @@ extends CanvasLayer
 func _ready() -> void:
 	TurnSystem.connect("update_turn", gui_heroes._on_turn_system_update_turn)
 	gui_heroes._on_turn_system_update_turn(TurnSystem.current_day, TurnSystem.current_week, TurnSystem.current_month)
+	$InfoPopup.show_intro()
 	pass # Replace with function body.
 
 func get_gui_size():

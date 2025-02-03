@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://bg1op0t0ok612"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_3v821"]
+[ext_resource type="SpriteFrames" uid="uid://dua2pwqo60wjg" path="res://scenes/units/animations/BoltzmanAnimations.tres" id="1_lbvr0"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_g1coh"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_ccjvt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gv5j"]
+atlas = ExtResource("2_g1coh")
+region = Rect2(150, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r0cy"]
+atlas = ExtResource("4_ccjvt")
+region = Rect2(0, 640, 64, 128)
+
+[resource]
+script = ExtResource("1_3v821")
+attack = 16
+defense = 12
+damage_min = 16
+damage_max = 24
+hp_base = 90
+speed = 9
+growth = 2
+ai_val = 1670
+cost = 900
+mob_number = 6
+mob_name = ""
+flying = true
+distant = true
+icon = SubResource("AtlasTexture_5gv5j")
+standing_frame = SubResource("AtlasTexture_5r0cy")
+animations = ExtResource("1_lbvr0")
+have_resource_cost = false
+resource_cost = 0

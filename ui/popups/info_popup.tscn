@@ -71,6 +71,6 @@ autowrap_mode = 2
 
 [node name="ApproveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Potwierdź"
+text = "Accept"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]

@@ -36,6 +36,7 @@ func _ready():
 	tilemap.set_cell(my_cell+Vector2i(1,0), 4, Vector2i(0,0))
 	tilemap.set_cell(my_cell+Vector2i(1,1), 4, Vector2i(0,0))
 	get_node("/root/Main/World/Pathfinding").update()
+	get_parent().get_parent().add_battle()
 
 func start_combat():
 	get_node("/root/Main/BattleManager").connect("battle_conquered", remove_self)
@@ -58,12 +59,14 @@ func remove_self():
 	tilemap.set_cell(my_cell+Vector2i(1,0), moving_patterns[2][1], Vector2i(0,0))
 	tilemap.set_cell(my_cell+Vector2i(1,1), moving_patterns[2][2], Vector2i(0,0))
 	get_node("/root/Main/World/Pathfinding").update()
+	get_parent().get_parent().remove_battle()
 	queue_free()
 
 func calculate_xp():
 	var xp = 0
 	for au in units:
-		xp += au.mob.hp_base * au.stack
+		if au.mob != null:
+			xp += au.mob.hp_base * au.stack
 	return xp
 
 func _on_area_entered(area) -> void:

@@ -105,5 +105,19 @@ static func get_resource_name(type: ResourceTypes):
 
 static func get_resource_icon(type: ResourceTypes):
 	match type:
+		ResourceTypes.WOOD:
+			return load("res://assets/Surowce/drewno_puste.png")
+		ResourceTypes.METAL:
+			return load("res://assets/Surowce/metal_pusty.png")
+		ResourceTypes.COAL:
+			return load("res://assets/Surowce/wegiel_pusty.png")
+		ResourceTypes.PSI_CRYSTAL:
+			return load("res://assets/Surowce/kryszal_puste.png")
+		ResourceTypes.SILICON:
+			return load("res://assets/Surowce/krzem_pusty.png")
+		ResourceTypes.GASOLINE:
+			return load("res://assets/Surowce/ropa_puste.png")
+		ResourceTypes.CREDITS:
+			return load("res://assets/Surowce/kredyty_puste.png")
 		_:
 			return load("res://assets/ph_icon.png")

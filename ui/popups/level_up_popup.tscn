@@ -120,7 +120,7 @@ vertical_icon_alignment = 0
 
 [node name="ApproveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Potwierdź"
+text = "Accept"
 flat = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Skill1" to="." method="_on_skill_1_pressed"]

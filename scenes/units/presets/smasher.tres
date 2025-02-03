@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://dbuegdbef33l7"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_d64ct"]
+[ext_resource type="SpriteFrames" uid="uid://bv1i3chaucf1b" path="res://scenes/units/animations/SmasherAnimations.tres" id="1_t01mx"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_o5g8f"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_7yb7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty2tp"]
+atlas = ExtResource("2_o5g8f")
+region = Rect2(60, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gof5v"]
+atlas = ExtResource("4_7yb7v")
+region = Rect2(0, 256, 64, 128)
+
+[resource]
+script = ExtResource("1_d64ct")
+attack = 7
+defense = 7
+damage_min = 3
+damage_max = 5
+hp_base = 18
+speed = 7
+growth = 7
+ai_val = 315
+cost = 230
+mob_number = 3
+mob_name = "Smasher"
+flying = true
+distant = false
+icon = SubResource("AtlasTexture_ty2tp")
+standing_frame = SubResource("AtlasTexture_gof5v")
+animations = ExtResource("1_t01mx")
+have_resource_cost = false
+resource_cost = 0

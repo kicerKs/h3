@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://kdlvcw6kgxvc"]
+
+[ext_resource type="SpriteFrames" uid="uid://g15o5636q5gw" path="res://scenes/units/animations/GnarlerAnimations.tres" id="1_dkibc"]
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_ta7e6"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_4mp0r"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_p1ixl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yf6y"]
+atlas = ExtResource("2_4mp0r")
+region = Rect2(180, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab55j"]
+atlas = ExtResource("4_p1ixl")
+region = Rect2(0, 768, 128, 128)
+
+[resource]
+script = ExtResource("1_ta7e6")
+attack = 19
+defense = 19
+damage_min = 40
+damage_max = 50
+hp_base = 180
+speed = 11
+growth = 1
+ai_val = 5003
+cost = 2500
+mob_number = 7
+mob_name = "Gnarler"
+flying = true
+distant = false
+icon = SubResource("AtlasTexture_1yf6y")
+standing_frame = SubResource("AtlasTexture_ab55j")
+animations = ExtResource("1_dkibc")
+have_resource_cost = true
+resource_cost = 4

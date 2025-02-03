@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://dywic08a33y0h"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_bt2do"]
+[ext_resource type="SpriteFrames" uid="uid://b148mmy4pxo75" path="res://scenes/units/animations/ZergAnimations.tres" id="1_jjl6f"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_p3r1n"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_7ltlj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n882r"]
+atlas = ExtResource("2_p3r1n")
+region = Rect2(120, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc4vi"]
+atlas = ExtResource("4_7ltlj")
+region = Rect2(0, 512, 128, 128)
+
+[resource]
+script = ExtResource("1_bt2do")
+attack = 9
+defense = 12
+damage_min = 10
+damage_max = 14
+hp_base = 55
+speed = 4
+growth = 3
+ai_val = 517
+cost = 350
+mob_number = 5
+mob_name = ""
+flying = false
+distant = false
+icon = SubResource("AtlasTexture_n882r")
+standing_frame = SubResource("AtlasTexture_kc4vi")
+animations = ExtResource("1_jjl6f")
+have_resource_cost = false
+resource_cost = 0

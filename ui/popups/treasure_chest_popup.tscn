@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://ui/popups/treasure_chest_popup.gd" id="1_0rctc"]
 [ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="1_cvvm6"]
-[ext_resource type="Texture2D" uid="uid://cht4snnb7no5y" path="res://assets/resources/credits.png" id="2_51lee"]
 [ext_resource type="Texture2D" uid="uid://bmmjwi5ar1re5" path="res://assets/resources/experience.png" id="3_7tggu"]
+[ext_resource type="Texture2D" uid="uid://bihykwaomvfup" path="res://assets/Surowce/kredyty_puste.png" id="3_kgipg"]
 
 [node name="TreasureChestPopup" type="Control"]
 layout_mode = 3
@@ -70,7 +70,7 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 layout_mode = 2
 text = "500"
-icon = ExtResource("2_51lee")
+icon = ExtResource("3_kgipg")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -88,7 +88,7 @@ vertical_icon_alignment = 0
 
 [node name="ApproveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Potwierdź"
+text = "Accept"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ExperienceButton" to="." method="_on_experience_button_pressed"]

@@ -6,7 +6,10 @@ class_name Hero
 @export_group("Systems")
 @export var attributes: HeroAttributes
 
+@onready var tilemap: TileMapLayer = get_node("/root/Main/World/MapMoving")
+var previous_cell_id
 @onready var state_machine: StateMachine = $StateMachine
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 signal max_movement_changed(value)
 signal movement_changed(value)
@@ -46,6 +49,8 @@ var _movement: int
 
 func _ready():
 	add_to_group("Heroes")
+	var my_cell = tilemap.local_to_map(global_position)
+	previous_cell_id = tilemap.get_cell_source_id(my_cell)
 
 func subtract_movement(value):
 	_movement -= value
@@ -105,6 +110,8 @@ func swap_units(i, j):
 
 func recruit(pos):
 	self.global_position = pos
+	var my_cell = tilemap.local_to_map(global_position)
+	previous_cell_id = tilemap.get_cell_source_id(my_cell)
 	TurnSystem.connect("new_day", send_estates)
 	TurnSystem.connect("new_day", calculate_movement)
 	state_machine.transition_to_state("Selected")

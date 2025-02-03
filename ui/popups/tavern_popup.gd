@@ -10,6 +10,7 @@ func show_tavern_popup(pos: Vector2):
 	end_position = pos
 	%Hero1.icon = selection[0].attributes.icon
 	%Hero2.icon = selection[1].attributes.icon
+	%HeroDesc.text = selection[0].attributes.name + " is a level " + str(selection[0].level) + " Warrior."
 	get_parent().find_child("RightPanel").process_mode = Node.PROCESS_MODE_DISABLED
 	get_parent().find_child("CityScreen").process_mode = Node.PROCESS_MODE_DISABLED
 

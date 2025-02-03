@@ -13,6 +13,7 @@ func _ready():
 	previous_cell = tilemap.get_cell_source_id(my_cell)
 	tilemap.set_cell(my_cell, 5, Vector2i(0,0))
 	get_node("/root/Main/World/Pathfinding").update()
+	$Sprite2D.texture = GameResources.get_resource_icon(resource_type)
 
 func pickup():
 	if !picked:

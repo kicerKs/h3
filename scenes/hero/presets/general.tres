@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="HeroAttributes" load_steps=6 format=3 uid="uid://c43l3u6vamq46"]
+[gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://c43l3u6vamq46"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_dl3n5"]
-[ext_resource type="Texture2D" uid="uid://cix465n5ao7vc" path="res://assets/heroes_icons.png" id="2_3hikq"]
+[ext_resource type="Texture2D" uid="uid://cx3kovxa4qhm0" path="res://assets/heroes/general.png" id="2_gtvtm"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_py2i1"]
 
 [sub_resource type="Resource" id="Resource_u6c2l"]
@@ -9,14 +9,10 @@ script = ExtResource("1_dl3n5")
 skill = 5
 lvl = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hb4e"]
-atlas = ExtResource("2_3hikq")
-region = Rect2(500, 0, 100, 100)
-
 [resource]
 script = ExtResource("3_py2i1")
 name = "General Suoveirg"
-icon = SubResource("AtlasTexture_0hb4e")
+icon = ExtResource("2_gtvtm")
 attack = 1
 defense = 2
 _luck = 0

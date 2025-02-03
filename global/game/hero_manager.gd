@@ -21,7 +21,6 @@ func recruit_hero(hero: Hero, pos: Vector2):
 	if hero in available_heroes and len(active_heroes) < 4:
 		available_heroes.erase(hero)
 		active_heroes.append(hero)
-		
 		remove_child(hero)
 		get_node("/root/Main/World/Heroes").add_child(hero)
 		hero.recruit(pos)

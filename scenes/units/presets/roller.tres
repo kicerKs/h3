@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://d01gt7pt0afb3"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_14lg6"]
+[ext_resource type="SpriteFrames" uid="uid://cpc225qocfi24" path="res://scenes/units/animations/RollerAnimations.tres" id="1_ikp7v"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_0grj5"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="4_jnjky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibmq3"]
+atlas = ExtResource("2_0grj5")
+region = Rect2(30, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka7dt"]
+atlas = ExtResource("4_jnjky")
+region = Rect2(0, 128, 64, 128)
+
+[resource]
+script = ExtResource("1_14lg6")
+attack = 6
+defense = 7
+damage_min = 2
+damage_max = 4
+hp_base = 20
+speed = 5
+growth = 8
+ai_val = 138
+cost = 120
+mob_number = 2
+mob_name = "Roller"
+flying = false
+distant = false
+icon = SubResource("AtlasTexture_ibmq3")
+standing_frame = SubResource("AtlasTexture_ka7dt")
+animations = ExtResource("1_ikp7v")
+have_resource_cost = false
+resource_cost = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=3 uid="uid://c3cnfo7cx0n2u"]
 
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/city_pattern.gd" id="2_ubu2h"]
-[ext_resource type="Texture2D" uid="uid://rdya04sykynr" path="res://assets/city.png" id="2_x4lw5"]
+[ext_resource type="Texture2D" uid="uid://dn7ndwg5gbu3m" path="res://assets/widok_miasta.png" id="2_ydyjc"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/town_hall.gd" id="3_j4ygh"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/treasury.gd" id="4_cts85"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/marketplace.gd" id="4_p2bfx"]
@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://c4vtjfirl5c06" path="res://scenes/units/presets/angel.tres" id="23_l06d0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yl5r"]
-size = Vector2(62, 62)
+size = Vector2(58, 58)
 
 [sub_resource type="Resource" id="Resource_bn1wy"]
 script = ExtResource("5_3r76d")
@@ -158,7 +158,7 @@ assembly_line = NodePath("Buildings/AssemblyLine")
 angel_portal = NodePath("Buildings/AngelPortal")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x4lw5")
+texture = ExtResource("2_ydyjc")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

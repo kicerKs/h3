@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b86us4cl2nje4"]
 
-[ext_resource type="Texture2D" uid="uid://dwwuv5vxt5hvc" path="res://assets/treasure_chest.png" id="1_56o0i"]
 [ext_resource type="Script" path="res://scenes/world/buildings/loose_resources/treasure_chest.gd" id="2_2xo8l"]
+[ext_resource type="Texture2D" uid="uid://cywnvqvvyfy0o" path="res://assets/Surowce/skrzyneczka.png" id="2_35vdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol0js"]
 size = Vector2(62, 62)
@@ -11,7 +11,7 @@ scale = Vector2(1, 1.00757)
 script = ExtResource("2_2xo8l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_56o0i")
+texture = ExtResource("2_35vdh")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MobAttributes" load_steps=7 format=3 uid="uid://hfbr4010sfph"]
+
+[ext_resource type="Script" path="res://scenes/units/mob_attributes.gd" id="1_0pdso"]
+[ext_resource type="SpriteFrames" uid="uid://bg27l0ca4iekf" path="res://scenes/units/animations/ScratcherAnimations.tres" id="1_04ac5"]
+[ext_resource type="Texture2D" uid="uid://y860tcq8l5t7" path="res://assets/heads2.png" id="2_dswtx"]
+[ext_resource type="Texture2D" uid="uid://mtg11w4x7h0f" path="res://assets/units2.png" id="3_tfbwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykgbw"]
+atlas = ExtResource("2_dswtx")
+region = Rect2(0, 0, 30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7124"]
+atlas = ExtResource("3_tfbwg")
+region = Rect2(0, 0, 64, 128)
+
+[resource]
+script = ExtResource("1_0pdso")
+attack = 4
+defense = 3
+damage_min = 1
+damage_max = 3
+hp_base = 5
+speed = 4
+growth = 14
+ai_val = 59
+cost = 65
+mob_number = 1
+mob_name = "Scratcher"
+flying = false
+distant = false
+icon = SubResource("AtlasTexture_ykgbw")
+standing_frame = SubResource("AtlasTexture_p7124")
+animations = ExtResource("1_04ac5")
+have_resource_cost = false
+resource_cost = 0

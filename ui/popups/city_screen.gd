@@ -19,7 +19,8 @@ var selected_unit: int
 @onready var angelportal_cost_nodes = [[%AngelPortalResourceIcon1, %AngelPortalResourceCount1], [%AngelPortalResourceIcon2, %AngelPortalResourceCount2], [%AngelPortalResourceIcon3, %AngelPortalResourceCount3]]
 
 func show_city_screen(c: City, h: Hero):
-	Game.HeroManager.pause_selected_hero()
+	if self.visible == true:
+		Game.HeroManager.pause_selected_hero()
 	self.visible = true
 	city = c
 	c.townhall.connect("builded", draw_all_buildings)

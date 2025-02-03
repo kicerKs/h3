@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/popups/tavern_popup.gd" id="1_5vt76"]
 [ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="1_l6v2e"]
 [ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="2_gsftd"]
-[ext_resource type="Texture2D" uid="uid://cht4snnb7no5y" path="res://assets/resources/credits.png" id="2_p5qdi"]
+[ext_resource type="Texture2D" uid="uid://bihykwaomvfup" path="res://assets/Surowce/kredyty_puste.png" id="4_3dx0w"]
 
 [node name="TavernPopup" type="Control"]
 layout_mode = 3
@@ -108,7 +108,7 @@ text = "Cancel"
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 text = "Buy: 2500"
-icon = ExtResource("2_p5qdi")
+icon = ExtResource("4_3dx0w")
 icon_alignment = 2
 expand_icon = true
 
