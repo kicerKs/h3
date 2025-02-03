@@ -19,13 +19,13 @@ func update(_delta: float) -> void:
 			battle.target.find_child("Sprite").stop()
 			battle.target.find_child("Sprite").animation = "Idle"
 			battle.target.find_child("Sprite").frame = 0
-			change_state.emit(SELECTED)
 			battle.target.counterattack = false
 			if(battle.target.player):
 				battle.target.find_child("Sprite").flip_h = false
 			else:
 				battle.target.find_child("Sprite").flip_h = true
 			battle.target = null
+			change_state.emit(SELECTED)
 		if(battle.target != null):
 			last_frame = battle.target.find_child("Sprite").frame
 	else:

@@ -11,6 +11,7 @@ var morale_wait_queue: Array[Mob] = []
 var wait_queue: Array[Mob] = []
 var actual_plaing_mob: Mob
 var projectile: Sprite2D
+var def_anim: DefAnim
 var random = RandomNumberGenerator.new()
 var hero: Hero
 var obstacles: Dictionary
@@ -44,9 +45,11 @@ func _ready() -> void:
 	retreat_popup = $RetreatPopup
 	surrender_popup = $SurrenderPopup
 	projectile = $Projectile
+	def_anim = $DefAnim
 	battle_ground = $Battleground
 	stats_window = $StatsWindow
 	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
+	def_anim.position = battle_ground.map_to_local(Vector2i(-10,-10))
 	round_count = 0
 	
 	#hero = Hero.new()
@@ -217,7 +220,7 @@ func melee_attack(mob: Mob, side: Mob.Part):
 func fight(distant: bool = false):
 	#TODO tutaj jest potrzbny minus dla dystansowych jednostek bijących melee
 	target.hp_stack -= _calculate_attack_value(actual_plaing_mob, target, distant)
-	if(target.counterattack and !distant):
+	if(target.hp_stack>0 and target.counterattack and !distant):
 		actual_plaing_mob.hp_stack -= _calculate_attack_value(target, actual_plaing_mob)
 	if(target.stack <= 0):
 		target = null
@@ -258,7 +261,7 @@ func _calculate_ai_attack_possibility():
 		possibilities[i] *= (0.33*attack_value)
 	
 	if(has_no_chances(possibilities, ranges)):
-		if(there_are_no_stronger_mobs() and random.randi_range(0,9) % 2):
+		if(there_are_no_stronger_mobs() and random.randi_range(0,3) < 3):
 			mob_defense()
 			return
 	
@@ -330,6 +333,7 @@ func mob_wait():
 	find_child("StateMachine").transition_to_state(BattleTurnState.SELECTED)
 
 func mob_defense():
+	def_anim.show_on_position(actual_plaing_mob.position)
 	if(block_actions): return
 	actual_plaing_mob.defense_boost = 1
 	find_child("StateMachine").transition_to_state(BattleTurnState.SELECTED)

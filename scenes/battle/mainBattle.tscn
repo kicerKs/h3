@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbcskqwjfsg6v"]
+[gd_scene load_steps=26 format=3 uid="uid://dbcskqwjfsg6v"]
 
 [ext_resource type="Script" path="res://scenes/battle/main_battle.gd" id="1_6fxwr"]
 [ext_resource type="PackedScene" uid="uid://c1t12jdru667l" path="res://scenes/battle/battleground.tscn" id="1_84stv"]
@@ -12,6 +12,86 @@
 [ext_resource type="PackedScene" uid="uid://d8q7e3rhkt20" path="res://ui/popup.tscn" id="8_hvqur"]
 [ext_resource type="Script" path="res://scenes/battle/states/counterattack_state.gd" id="9_ejhlj"]
 [ext_resource type="PackedScene" uid="uid://b1fhnxwohcy3d" path="res://scenes/battle/stats_window.tscn" id="11_4prn7"]
+[ext_resource type="Texture2D" uid="uid://c2jj66eufij5v" path="res://assets/defence_animation.png" id="13_2bwvf"]
+[ext_resource type="Script" path="res://scenes/battle/def_anim.gd" id="14_tclfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ckoj"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua146"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhl6f"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsmvu"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4777"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7nst"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fb8v"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6qki"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syj2p"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tesht"]
+atlas = ExtResource("13_2bwvf")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owsky"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ckoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua146")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhl6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsmvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4777")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7nst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fb8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6qki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syj2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tesht")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="main" type="Node"]
 script = ExtResource("1_6fxwr")
@@ -73,3 +153,11 @@ texture = ExtResource("4_4fepp")
 metadata/default_position = Vector2(-256, -256)
 
 [node name="StatsWindow" parent="." instance=ExtResource("11_4prn7")]
+
+[node name="DefAnim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_owsky")
+frame = 9
+frame_progress = 0.916272
+script = ExtResource("14_tclfy")
+
+[connection signal="animation_finished" from="DefAnim" to="DefAnim" method="animation_ended"]
