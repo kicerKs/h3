@@ -220,9 +220,13 @@ func melee_attack(mob: Mob, side: Mob.Part):
 func fight(distant: bool = false):
 	#TODO tutaj jest potrzbny minus dla dystansowych jednostek bijących melee
 	target.hp_stack -= _calculate_attack_value(actual_plaing_mob, target, distant)
+
+func counterattack(distant: bool = false):
 	if(target.hp_stack>0 and target.counterattack and !distant):
 		actual_plaing_mob.hp_stack -= _calculate_attack_value(target, actual_plaing_mob)
 	if(target.stack <= 0):
+		target.counterattack = false
+		target.visible = false
 		target = null
 
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
@@ -230,22 +234,22 @@ func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool
 	var D = defender.defense + (0 if !defender.player else hero.attributes.defense)
 	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
-	var i1 = 0.0 if(A>=D) else 0.05*(A-D)
+	var i1 = 0.0 if(A<=D) else 0.05*(A-D)
 	var i2 = 0.0 if !attacker.player else (hero.attributes.get_archery_modifier() if distance_attack else hero.attributes.get_offence_modifier())
-	var R1 = 0.0 if(D>=A) else 0.025*(D-A)
+	var R1 = 0.0 if(D<=A) else 0.025*(D-A)
 	var R2 = 0.0 if !defender.player else hero.attributes.get_armorer_modifier()
 	var R5 = 0.0
-	if(distance_attack and battle_ground.straight_distance_mobs(actual_plaing_mob,target) > 10 or !distance_attack and actual_plaing_mob.distant):
+	if(distance_attack and battle_ground.straight_distance_mobs(attacker,defender) > 10 or !distance_attack and attacker.distant):
 		R5 = 0.5
-	return roundi(_conut_base_attack() * (1.0+i1+i2+luck) * (1.0-R1) * (1.0-R2) * (1.0-R5))
+	return roundi(_conut_base_attack(attacker) * (1.0+i1+i2+luck) * (1.0-R1) * (1.0-R2) * (1.0-R5))
 
-func _conut_base_attack() -> float:
-	if(actual_plaing_mob.stack <= 10):
-		return random.randi_range(actual_plaing_mob.damage_min, actual_plaing_mob.damage_max) * actual_plaing_mob.stack
+func _conut_base_attack(attacker: Mob) -> float:
+	if(attacker.stack <= 10):
+		return random.randi_range(attacker.damage_min, attacker.damage_max) * attacker.stack
 	else:
 		var damage = 0
-		for i in range(actual_plaing_mob.stack):
-			damage += random.randi_range(actual_plaing_mob.damage_min, actual_plaing_mob.damage_max)
+		for i in range(attacker.stack):
+			damage += random.randi_range(attacker.damage_min, attacker.damage_max)
 		return damage
 
 func _calculate_ai_attack_possibility():
@@ -281,7 +285,7 @@ func _calculate_ai_attack_possibility():
 	if calculated_path.size() > 0:
 		battle_ground.placeMobAt(actual_plaing_mob,calculated_path[-1])
 	
-	if(calculated_path.size() == 0 or battle_ground.are_next_to(calculated_path[-1], battle_ground.local_to_map(attackedMob.position))):
+	if(calculated_path.size() == 0 and battle_ground.are_next_to(calculated_path[-1], battle_ground.local_to_map(attackedMob.position))):
 		target = attackedMob
 	
 	if(calculated_path.size() == 0):

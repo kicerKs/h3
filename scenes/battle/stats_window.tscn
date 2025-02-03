@@ -76,7 +76,7 @@ columns = 2
 
 [node name="AttackLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Atak "
+text = "Attack"
 
 [node name="AttackValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -85,7 +85,7 @@ horizontal_alignment = 2
 
 [node name="DefenseLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Obrona "
+text = "Defense"
 
 [node name="DefenseValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -94,7 +94,7 @@ horizontal_alignment = 2
 
 [node name="DamageLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Obrażenia "
+text = "Damage"
 
 [node name="DamageValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -103,7 +103,7 @@ horizontal_alignment = 2
 
 [node name="HealthLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Życie "
+text = "Health"
 
 [node name="HealthValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -112,7 +112,7 @@ horizontal_alignment = 2
 
 [node name="HealthLeftLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Pozostałe życie "
+text = "Health left"
 
 [node name="HealthLeftValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -121,7 +121,7 @@ horizontal_alignment = 2
 
 [node name="SpeedLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Prędkość "
+text = "Speed"
 
 [node name="SpeedValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -130,9 +130,9 @@ horizontal_alignment = 2
 
 [node name="DistantLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Dystansowy "
+text = "Distant"
 
 [node name="DistantValue" type="Label" parent="Window/VBoxContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Tak"
+text = "Yes"
 horizontal_alignment = 2

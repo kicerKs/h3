@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://dwy2baf23xk4x"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_k6w4t"]
-[ext_resource type="Texture2D" uid="uid://c44ht6l2ur0gf" path="res://assets/heroes/smok.png" id="2_3gudf"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_1v0lv"]
 
 [sub_resource type="Resource" id="Resource_aemlv"]
@@ -9,10 +8,13 @@ script = ExtResource("1_k6w4t")
 skill = 6
 lvl = 1
 
+[sub_resource type="Resource" id="Resource_bct2p"]
+metadata/__load_path__ = "res://assets/heroes/smok.png"
+
 [resource]
 script = ExtResource("3_1v0lv")
 name = "Minas"
-icon = ExtResource("2_3gudf")
+icon = SubResource("Resource_bct2p")
 attack = 2
 defense = 1
 _luck = 0

@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://b18b7rkju26yn"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_v5yib"]
-[ext_resource type="Texture2D" uid="uid://bsxi5rntxbx3b" path="res://assets/heroes/robal.png" id="2_61pty"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_h3kbd"]
 
 [sub_resource type="Resource" id="Resource_sqmvb"]
@@ -9,10 +8,13 @@ script = ExtResource("1_v5yib")
 skill = 2
 lvl = 1
 
+[sub_resource type="Resource" id="Resource_t8ufo"]
+metadata/__load_path__ = "res://assets/heroes/robal.png"
+
 [resource]
 script = ExtResource("3_h3kbd")
 name = "Grimemaw"
-icon = ExtResource("2_61pty")
+icon = SubResource("Resource_t8ufo")
 attack = 1
 defense = 2
 _luck = 0

@@ -55,7 +55,7 @@ func add_bar_to_icons():
 	
 	var label = Label.new()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.text = str(round_counter)+".\nRunda"
+	label.text = str(round_counter)+".\nRound"
 	round_counter += 1
 	bar.add_child(label)
 	

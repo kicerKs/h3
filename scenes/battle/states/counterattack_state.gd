@@ -13,12 +13,13 @@ func on_exit() -> void:
 	pass
 
 func update(_delta: float) -> void:
-	if(battle.target != null and battle.target.counterattack):
+	if(battle.target != null and battle.target.counterattack and battle.target.hp_stack>0 and battle.actual_plaing_mob.hp_stack>0):
 		battle.target.find_child("Sprite").play("hit")
 		if(battle.target.find_child("Sprite").frame == 0 and last_frame > 0):
 			battle.target.find_child("Sprite").stop()
 			battle.target.find_child("Sprite").animation = "Idle"
 			battle.target.find_child("Sprite").frame = 0
+			battle.counterattack()
 			battle.target.counterattack = false
 			if(battle.target.player):
 				battle.target.find_child("Sprite").flip_h = false

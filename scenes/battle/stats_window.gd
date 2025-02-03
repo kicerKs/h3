@@ -18,7 +18,7 @@ func pass_mob(mob: Mob, hero: Hero = null):
 	find_child("HealthValue").text = str(mob.hp_base)
 	find_child("HealthLeftValue").text = str(mob.hp_stack%mob.hp_base if (mob.hp_stack%mob.hp_base>0) else mob.hp_base)
 	find_child("SpeedValue").text = str(mob.speed)
-	find_child("DistantValue").text = "Tak" if(mob.distant) else "Nie"
+	find_child("DistantValue").text = "Yes" if(mob.distant) else "No"
 	find_child("StackValue").text = str(mob.stack)
 	find_child("MobNameLabel").text = str(mob.mob_name)
 	
