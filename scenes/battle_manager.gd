@@ -14,10 +14,10 @@ func _process(delta: float) -> void:
 	pass
 
 
-func initialize_battle(hero:Hero, oponents:Array[ArmyUnit], obstacles:Dictionary):
+func initialize_battle(hero:Hero, oponents:Array[ArmyUnit]):
 	hero.state_machine.transition_to_state("Idle")
 	var main = find_parent("Main")
-	battle = Battle.new_battle(hero, oponents, obstacles)
+	battle = Battle.new_battle(hero, oponents)
 	battle.battle_end.connect(end_battle)
 	battle.connect("return_hero_to_castle", Game.HeroManager.remove_hero)
 	#połączyć sygnał powrotu bohatera do zamku w return_hero_to_castle(hero) signal

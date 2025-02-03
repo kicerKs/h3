@@ -4,6 +4,7 @@ class_name BattleTurnState
 const SELECTED = "Selected"
 const MOVING = "Moving"
 const ATTACK = "Attack"
+const COUNTERATTACK = "Counterattack"
 const PROJECTILE_FLY = "ProjectileFly"
 
 var battle: Battle

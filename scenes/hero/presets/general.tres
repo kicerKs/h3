@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroAttributes" load_steps=6 format=3 uid="uid://djf5l70i8ngbj"]
+[gd_resource type="Resource" script_class="HeroAttributes" load_steps=6 format=3 uid="uid://c43l3u6vamq46"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_dl3n5"]
 [ext_resource type="Texture2D" uid="uid://cix465n5ao7vc" path="res://assets/heroes_icons.png" id="2_3hikq"]

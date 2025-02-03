@@ -41,21 +41,8 @@ func _ready():
 	get_node("/root/Main/World/Pathfinding").update()
 
 func start_combat():
-	var obstacles = {
-		Vector2i(6,6): 1,
-		Vector2i(5,6): 1,
-		Vector2i(4,6): 1,
-		Vector2i(7,6): 1,
-		Vector2i(6,5): 1,
-		Vector2i(7,5): 1,
-		Vector2i(7,4): 1,
-		Vector2i(8,4): 1,
-		Vector2i(8,3): 1,
-		Vector2i(9,3): 1,
-		Vector2i(6,7): 1,
-	}
 	get_node("/root/Main/BattleManager").connect("battle_conquered", remove_self)
-	get_node("/root/Main/BattleManager").initialize_battle(hero, divide_units(), obstacles)
+	get_node("/root/Main/BattleManager").initialize_battle(hero, divide_units())
 
 func remove_self():
 	hero.add_xp(calculate_xp())

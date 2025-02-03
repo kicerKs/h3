@@ -22,17 +22,4 @@ func _on_pressed() -> void:
 		ArmyUnit.nowy(load("res://scenes/units/presets/firebat.tres"), 1),
 		ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 1)
 	]
-	var obstacles = {
-		Vector2i(6,6): 1,
-		Vector2i(5,6): 1,
-		Vector2i(4,6): 1,
-		Vector2i(7,6): 1,
-		Vector2i(6,5): 1,
-		Vector2i(7,5): 1,
-		Vector2i(7,4): 1,
-		Vector2i(8,4): 1,
-		Vector2i(8,3): 1,
-		Vector2i(9,3): 1,
-		Vector2i(6,7): 1,
-	}
-	find_parent("Main").find_child("BattleManager", true, false).initialize_battle(hero, oponent, obstacles)
+	find_parent("Main").find_child("BattleManager", true, false).initialize_battle(hero, oponent)

@@ -7,6 +7,8 @@ signal retreat_button_signal()
 
 @onready var queueContainer: HBoxContainer = $HBoxContainer
 
+var round_counter: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -53,7 +55,8 @@ func add_bar_to_icons():
 	
 	var label = Label.new()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.text = str(Battle.round_count)+"\nRunda"
+	label.text = str(round_counter)+".\nRunda"
+	round_counter += 1
 	bar.add_child(label)
 	
 	queueContainer.add_child(bar)
@@ -86,5 +89,6 @@ func remove_first_head():
 	queueContainer.remove_child(queueContainer.get_children()[0])
 
 func clear_heads():
+	round_counter = Battle.round_count
 	for child in queueContainer.get_children():
 		queueContainer.remove_child(child)

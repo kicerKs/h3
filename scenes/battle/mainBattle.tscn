@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbcskqwjfsg6v"]
+[gd_scene load_steps=13 format=3 uid="uid://dbcskqwjfsg6v"]
 
 [ext_resource type="Script" path="res://scenes/battle/main_battle.gd" id="1_6fxwr"]
 [ext_resource type="PackedScene" uid="uid://c1t12jdru667l" path="res://scenes/battle/battleground.tscn" id="1_84stv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/battle/states/attack_mob_state.gd" id="7_yv7bt"]
 [ext_resource type="Script" path="res://scenes/battle/states/projectile_fly_state.gd" id="8_4ynnq"]
 [ext_resource type="PackedScene" uid="uid://d8q7e3rhkt20" path="res://ui/popup.tscn" id="8_hvqur"]
+[ext_resource type="Script" path="res://scenes/battle/states/counterattack_state.gd" id="9_ejhlj"]
 [ext_resource type="PackedScene" uid="uid://b1fhnxwohcy3d" path="res://scenes/battle/stats_window.tscn" id="11_4prn7"]
 
 [node name="main" type="Node"]
@@ -46,6 +47,9 @@ script = ExtResource("7_yv7bt")
 
 [node name="ProjectileFly" type="Node" parent="StateMachine"]
 script = ExtResource("8_4ynnq")
+
+[node name="Counterattack" type="Node" parent="StateMachine"]
+script = ExtResource("9_ejhlj")
 
 [node name="RetreatPopup" parent="." instance=ExtResource("8_hvqur")]
 anchors_preset = -1

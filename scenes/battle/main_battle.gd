@@ -31,11 +31,10 @@ static var round_count = 1
 signal return_hero_to_castle(Hero)
 signal battle_end(Hero, bool)
 
-static func new_battle(hero:Hero, oponent:Array[ArmyUnit], obstacles: Dictionary):
+static func new_battle(hero:Hero, oponent:Array[ArmyUnit]):
 	var battle: Battle = scene.instantiate()
 	battle.hero = hero
 	battle.oponent = oponent
-	battle.obstacles = obstacles
 	return battle
 
 # Called when the node enters the scene tree for the first time.
@@ -48,7 +47,7 @@ func _ready() -> void:
 	battle_ground = $Battleground
 	stats_window = $StatsWindow
 	projectile.position = battle_ground.map_to_local(Vector2i(-10,-10))
-	round_count = 1
+	round_count = 0
 	
 	#hero = Hero.new()
 	#hero.attributes = load("res://scenes/hero/presets/hero_preset_1.tres")
@@ -68,7 +67,7 @@ func _ready() -> void:
 	#	ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 1)
 	#]
 	battle_ground.clear_fields()
-	add_obstacles(obstacles)
+	add_obstacles()
 	bound_control_buttons()
 	set_battle(hero, oponent)
 	fight_sequence.append_array(mobs_node.get_children())
@@ -81,15 +80,11 @@ func bound_control_buttons():
 	controls.surrender_button_signal.connect(try_to_surrender)
 	retreat_popup.approve_button_down.connect(retreat)
 
-func add_obstacles(obstacles: Dictionary):
-	#obstacles = {
-		#Vector2i(6,6): 1,
-		#Vector2i(5,6): 1,
-		#Vector2i(4,6): 1,
-		#Vector2i(7,6): 1,
-		#Vector2i(6,5): 1,
-		#Vector2i(6,7): 1,
-		#}
+func add_obstacles():
+	match(random.randi_range(0,2)):
+		0: obstacles = ObstaclePatterns.pattern1
+		1: obstacles = ObstaclePatterns.pattern2
+		2: obstacles = ObstaclePatterns.pattern3
 	for cell in obstacles.keys():
 		battle_ground.put_obstacle(cell, obstacles[cell])
 
@@ -104,6 +99,7 @@ func next_mob():
 		initial_queue.push_front(actual_plaing_mob)
 		#jakaś animacja morali
 	if initial_queue.size() == 0 and morale_wait_queue.size() == 0 and wait_queue.size() == 0:
+		round_count += 1
 		initial_queue = fight_sequence.duplicate(true)
 		for mob: Mob in initial_queue:
 			mob.counterattack = true
@@ -223,8 +219,8 @@ func fight(distant: bool = false):
 	target.hp_stack -= _calculate_attack_value(actual_plaing_mob, target, distant)
 	if(target.counterattack and !distant):
 		actual_plaing_mob.hp_stack -= _calculate_attack_value(target, actual_plaing_mob)
-		target.counterattack = false
-	target = null
+	if(target.stack <= 0):
+		target = null
 
 func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool = false) -> int:
 	var A = attacker.attack + (0 if !attacker.player else hero.attributes.attack)
@@ -255,15 +251,16 @@ func _calculate_ai_attack_possibility():
 	ranges.resize(playerArmy.size())
 	for i in range(playerArmy.size()):
 		ranges[i] = true if(battle_ground.has_range_to(playerArmy[i])) else false
-		possibilities[i] = 1 if(ranges[i]) else 0.5
+		possibilities[i] = 1.3 if(ranges[i]) else 0.5
 		var attack_value = _calculate_attack_value(playerArmy[i], actual_plaing_mob) - playerArmy[i].defense #uwzglęcnić bonus do defendu
 		var counteratack_value = 0 if(!playerArmy[i].counterattack) else _calculate_attack_value(actual_plaing_mob, playerArmy[i]) - actual_plaing_mob.defense
 		possibilities[i] *= 0.33 if(counteratack_value > actual_plaing_mob.hp_stack) else 2
 		possibilities[i] *= (0.33*attack_value)
 	
 	if(has_no_chances(possibilities, ranges)):
-		mob_defense()
-		return
+		if(there_are_no_stronger_mobs() and random.randi_range(0,9) % 2):
+			mob_defense()
+			return
 	
 	var attackedMob = playerArmy[possibilities.find(possibilities.max)]
 	var calculated_path = Array([], TYPE_VECTOR2I, "", null)
@@ -298,6 +295,31 @@ func has_no_chances(attack_possibilities: Array[float], ranges: Array[bool]) -> 
 		if(!range):
 			noChance = false
 	return noChance
+
+func there_are_no_stronger_mobs():
+	var temp_mob = actual_plaing_mob
+	var chances = []
+	chances.resize(enemyArmy.size())
+	for n in range(enemyArmy.size()):
+		actual_plaing_mob = enemyArmy[n]
+		
+		var possibilities: Array[float] = []
+		var ranges: Array[bool] = []
+		possibilities.resize(playerArmy.size())
+		ranges.resize(playerArmy.size())
+		for i in range(playerArmy.size()):
+			ranges[i] = true if(battle_ground.has_range_to(playerArmy[i])) else false
+			possibilities[i] = 1.3 if(ranges[i]) else 0.5
+			var attack_value = _calculate_attack_value(playerArmy[i], actual_plaing_mob) - playerArmy[i].defense #uwzglęcnić bonus do defendu
+			var counteratack_value = 0 if(!playerArmy[i].counterattack) else _calculate_attack_value(actual_plaing_mob, playerArmy[i]) - actual_plaing_mob.defense
+			possibilities[i] *= 0.33 if(counteratack_value > actual_plaing_mob.hp_stack) else 2
+			possibilities[i] *= (0.33*attack_value)
+		chances[n] = has_no_chances(possibilities, ranges)
+	actual_plaing_mob = temp_mob
+	for n in chances:
+		if n:
+			return false
+	return true
 
 func mob_wait():
 	if(block_actions): return
@@ -379,7 +401,7 @@ func set_battle(hero: Hero, oponent: Array[ArmyUnit]):
 					battle_ground.initialPlaceMob(mob_node, Vector2i(14,positions[iterator]-1))
 					mob_node.player = false
 					mob_node.mob_play.connect(_calculate_ai_attack_possibility)
-					mob_node.get_child(0).flip_h = true
+					mob_node.find_child("Sprite").flip_h = true
 					mob_node.find_child("Stack").position.x = -mob_node.find_child("Stack").position.x - mob_node.find_child("Stack").size.x
 					mob_node.mob_clicked.connect(attackMob)
 					mob_node.hit_box_input.connect(set_cursor_to_sword)
