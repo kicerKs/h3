@@ -28,7 +28,7 @@ var stack = 0:
 		stack = value
 		if(hp_stack == 0):
 			hp_stack = value*hp_base
-		$Stack.text = str(stack)
+		%Stack.text = str(stack)
 
 var mob_attributes: MobAttributes
 var attack = 1:
@@ -79,12 +79,12 @@ func _process(delta: float) -> void:
 	pass
 
 func center_label():
-	$Stack.position.x = -42
-	$Stack.position.y = 50
+	%Stack.position.x = -42
+	%Stack.position.y = 50
 
 func side_label():
-	$Stack.position.x = 35
-	$Stack.position.y = 35
+	%Stack.position.x = 35
+	%Stack.position.y = -50
 
 func _area_event_LU(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	_area_event(event, Part.LU)
