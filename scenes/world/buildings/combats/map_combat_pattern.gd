@@ -39,6 +39,8 @@ func _ready():
 
 func start_combat():
 	get_node("/root/Main/BattleManager").connect("battle_conquered", remove_self)
+	while len(units) < 7:
+		units.append(ArmyUnit.nowy(null, -1))
 	get_node("/root/Main/BattleManager").initialize_battle(hero, units)
 
 func remove_self():
