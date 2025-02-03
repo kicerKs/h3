@@ -39,6 +39,20 @@ func get_random_hero():
 	else:
 		return null
 
+func get_random_hero_selection():
+	if len(active_heroes) < 4:
+		var hero = get_random_hero()
+		var hero2 = get_random_hero()
+		while hero == hero2:
+			hero2 = get_random_hero()
+		return [hero, hero2]
+	return null
+
+func can_recruit_hero():
+	if len(active_heroes) < 4:
+		return true
+	return false
+
 func select_hero(hero: Hero):
 	for h in active_heroes:
 		if h == hero:

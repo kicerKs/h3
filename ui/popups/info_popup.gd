@@ -15,8 +15,14 @@ func _ready():
 	for el in get_tree().get_nodes_in_group("CityBuilding"):
 		el.connect("cant_build", show_cant_build)
 
+func show_tavern_cannot():
+	self.visible = true
+	%Title.text = "Move your hero!"
+	%Icon.visible = false
+	%Desc.text = "You need to move your hero from the city in order to recruit a new one! Also, you need 2500 credits. And you can have only 4 heroes at the time."
+	option = "None"
+
 func show_cant_build(el: Node2D):
-	print("LOLLOLOLO")
 	self.visible = true
 	node = el
 	%Title.text = "Not enough resources!"
@@ -76,3 +82,5 @@ func _on_approve_button_pressed() -> void:
 			pass #nic się nie musi zmieniać
 		"CityBuilding":
 			pass #nic się nie musi zmieniać
+		"None":
+			pass #wsm może być jeden wspólny xd

@@ -20,18 +20,26 @@ func _on_turn_system_update_turn(day: Variant, week: Variant, month: Variant) ->
 
 func _on_hero_1_pressed() -> void:
 	if len(heroes) >= 1:
+		Game.HeroManager.select_hero(heroes[0])
+		get_node("/root/Main/World/MainCamera").focus(heroes[0].global_position)
 		select_hero(heroes[0])
 
 func _on_hero_2_pressed() -> void:
 	if len(heroes) >= 2:
+		Game.HeroManager.select_hero(heroes[1])
+		get_node("/root/Main/World/MainCamera").focus(heroes[1].global_position)
 		select_hero(heroes[1])
 
 func _on_hero_3_pressed() -> void:
 	if len(heroes) >= 3:
+		Game.HeroManager.select_hero(heroes[2])
+		get_node("/root/Main/World/MainCamera").focus(heroes[2].global_position)
 		select_hero(heroes[2])
 
 func _on_hero_4_pressed() -> void:
 	if len(heroes) >= 4:
+		Game.HeroManager.select_hero(heroes[3])
+		get_node("/root/Main/World/MainCamera").focus(heroes[3].global_position)
 		select_hero(heroes[3])
 
 func select_hero(hero: Hero):

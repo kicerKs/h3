@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch6ncmv23kajx"]
+[gd_scene load_steps=13 format=3 uid="uid://ch6ncmv23kajx"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_lva4t"]
 [ext_resource type="PackedScene" uid="uid://wxt73e4po3ro" path="res://ui/right_panel.tscn" id="4_2evm2"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cujxhrxudabji" path="res://ui/popups/hero_screen.tscn" id="9_fp6av"]
 [ext_resource type="PackedScene" uid="uid://0gd5ccsws7mm" path="res://ui/popups/city_screen.tscn" id="10_e3lp5"]
 [ext_resource type="PackedScene" uid="uid://n6tgf23sdv5i" path="res://ui/popups/buiild_popup.tscn" id="11_fav2p"]
+[ext_resource type="PackedScene" uid="uid://n5e1o2tkwbtj" path="res://ui/popups/tavern_popup.tscn" id="11_kq8v8"]
+[ext_resource type="PackedScene" uid="uid://b2k7h6r5tkcvg" path="res://ui/popups/marketplace_popup.tscn" id="12_1ukun"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("gui_heroes")]
 script = ExtResource("1_lva4t")
@@ -38,4 +40,10 @@ visible = false
 visible = false
 
 [node name="BuiildPopup" parent="." instance=ExtResource("11_fav2p")]
+visible = false
+
+[node name="TavernPopup" parent="." instance=ExtResource("11_kq8v8")]
+visible = false
+
+[node name="MarketplacePopup" parent="." instance=ExtResource("12_1ukun")]
 visible = false

@@ -36,7 +36,8 @@ func get_resource_count(type: ResourceTypes):
 	return _resources[type]
 
 func exchange(give: ResourceTypes, number: int, receive: ResourceTypes):
-	assert(give != receive)
+	if give == receive:
+		return
 	match receive:
 		ResourceTypes.CREDITS:
 			if give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
@@ -46,35 +47,44 @@ func exchange(give: ResourceTypes, number: int, receive: ResourceTypes):
 		ResourceTypes.WOOD, ResourceTypes.METAL:
 			if give == ResourceTypes.CREDITS:
 				_resources[receive] += int(number/500)
+			elif give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
+				_resources[receive] += int(number / 2)
 			else:
-				_resources[receive] += number * 2
+				_resources[receive] += number * 3
 		ResourceTypes.COAL, ResourceTypes.PSI_CRYSTAL, ResourceTypes.SILICON, ResourceTypes.GASOLINE:
 			if give == ResourceTypes.CREDITS:
 				_resources[receive] += int(number/1000)
-			else:
+			elif give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
 				_resources[receive] += int(number/4)
+			else:
+				_resources[receive] += int(number/2)
 	_resources[give] -= number
 	resources_changed.emit(give, _resources[give])
 	resources_changed.emit(receive, _resources[receive])
 
 func exchange_rate(give: ResourceTypes, number: int, receive: ResourceTypes):
-	assert(give != receive)
+	if give == receive:
+		return 1
 	match receive:
 		ResourceTypes.CREDITS:
 			if give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
-				return 250 * number
+				return number * 250
 			else:
-				return 500 * number
+				return number * 500
 		ResourceTypes.WOOD, ResourceTypes.METAL:
 			if give == ResourceTypes.CREDITS:
-				return int(number/500)
+				return number/500.0
+			elif give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
+				return number/2.0
 			else:
-				return number * 2
+				return number * 3
 		ResourceTypes.COAL, ResourceTypes.PSI_CRYSTAL, ResourceTypes.SILICON, ResourceTypes.GASOLINE:
 			if give == ResourceTypes.CREDITS:
-				return int(number/1000)
+				return number/1000.0
+			elif give == ResourceTypes.WOOD or give == ResourceTypes.METAL:
+				return number/4.0
 			else:
-				return int(number/4)
+				return number/2.0
 
 static func get_resource_name(type: ResourceTypes):
 	match type:
