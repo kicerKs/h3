@@ -52,23 +52,6 @@ func _ready() -> void:
 	def_anim.position = battle_ground.map_to_local(Vector2i(-10,-10))
 	round_count = 0
 	
-	#hero = Hero.new()
-	#hero.attributes = load("res://scenes/hero/presets/hero_preset_1.tres")
-	#hero.army = [
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/angel.tres"), 1),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/cyborg.tres"), 12),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/firebat.tres"), 3),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/tank.tres"), 8),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 8),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/sniper.tres"), 8),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/soldier.tres"), 8),
-	#]
-	#oponent = [
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/cyborg.tres"), 1),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/sniper.tres"), 1),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/soldier.tres"), 1),
-	#	ArmyUnit.nowy(load("res://scenes/units/presets/marine.tres"), 1)
-	#]
 	battle_ground.clear_fields()
 	add_obstacles()
 	bound_control_buttons()
@@ -81,7 +64,7 @@ func bound_control_buttons():
 	controls.defend_button_signal.connect(mob_defense)
 	controls.retreat_button_signal.connect(try_to_retreat)
 	controls.surrender_button_signal.connect(try_to_surrender)
-	retreat_popup.approve_button_down.connect(retreat)
+	surrender_popup.approve_button_down.connect(retreat)
 
 func add_obstacles():
 	match(random.randi_range(0,2)):
@@ -220,6 +203,8 @@ func melee_attack(mob: Mob, side: Mob.Part):
 func fight(distant: bool = false):
 	#TODO tutaj jest potrzbny minus dla dystansowych jednostek bijących melee
 	target.hp_stack -= _calculate_attack_value(actual_plaing_mob, target, distant)
+	if(target.stack <= 0):
+		target.visible = false
 
 func counterattack(distant: bool = false):
 	if(target.hp_stack>0 and target.counterattack and !distant):
@@ -285,7 +270,7 @@ func _calculate_ai_attack_possibility():
 	if calculated_path.size() > 0:
 		battle_ground.placeMobAt(actual_plaing_mob,calculated_path[-1])
 	
-	if(calculated_path.size() == 0 and battle_ground.are_next_to(calculated_path[-1], battle_ground.local_to_map(attackedMob.position))):
+	if(calculated_path.size() == 0 or battle_ground.are_next_to(calculated_path[-1], battle_ground.local_to_map(attackedMob.position))):
 		target = attackedMob
 	
 	if(calculated_path.size() == 0):
@@ -345,14 +330,14 @@ func mob_defense():
 
 func try_to_retreat():
 	block_actions = true
-	surrender_popup.set_message("Czy na pewno chcesz uciec od walki?")
+	surrender_popup.set_message("Are you sure you want to give up the fight?")
 	surrender_popup.show_window()
 	await surrender_popup.action
 	block_actions = false
 
 func try_to_surrender():
 	block_actions = true
-	retreat_popup.set_message("Aby się poddać uiść opłatę w wysokości "+str(army_value())+" sztuk złota")
+	retreat_popup.set_message("There is no option to pay for retreat.")#Aby się poddać uiść opłatę w wysokości "+str(army_value())+" sztuk złota")
 	retreat_popup.show_window()
 	await retreat_popup.action
 	block_actions = false
@@ -360,6 +345,7 @@ func try_to_surrender():
 func retreat():
 	hero.army = []
 	return_hero_to_castle.emit(hero)
+	battle_end.emit(hero, false)
 
 func surrender():
 	rebuild_hero_army()
