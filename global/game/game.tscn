@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://41uy3vn5x3sb"]
+[gd_scene load_steps=24 format=3 uid="uid://41uy3vn5x3sb"]
 
 [ext_resource type="Script" path="res://global/game/game.gd" id="1_0sfuw"]
 [ext_resource type="Script" path="res://global/game/hero_manager.gd" id="2_h85ao"]
@@ -6,48 +6,51 @@
 [ext_resource type="PackedScene" uid="uid://car8ednr3ojmt" path="res://scenes/hero/hero.tscn" id="3_yb1gi"]
 [ext_resource type="Script" path="res://scenes/hero/army_unit.gd" id="4_drcg5"]
 [ext_resource type="Resource" uid="uid://bekk0hlxdbhhg" path="res://scenes/hero/presets/calamity.tres" id="4_kh333"]
-[ext_resource type="Resource" uid="uid://c4vtjfirl5c06" path="res://scenes/units/presets/angel.tres" id="5_74r5h"]
+[ext_resource type="Resource" uid="uid://b7fyggeu4sjlv" path="res://scenes/units/presets/soldier.tres" id="5_n5qbm"]
 [ext_resource type="Resource" uid="uid://mwrsxvg3xh0n" path="res://scenes/hero/presets/falcon.tres" id="7_8n7sa"]
+[ext_resource type="Resource" uid="uid://burd01x2jpea6" path="res://scenes/units/presets/sniper.tres" id="7_fkjup"]
 [ext_resource type="Resource" uid="uid://c43l3u6vamq46" path="res://scenes/hero/presets/general.tres" id="8_nfb3w"]
 [ext_resource type="Resource" uid="uid://b18b7rkju26yn" path="res://scenes/hero/presets/grimemaw.tres" id="9_jhykp"]
 [ext_resource type="Resource" uid="uid://dwy2baf23xk4x" path="res://scenes/hero/presets/minas.tres" id="10_d6fvt"]
+[ext_resource type="Resource" uid="uid://hfbr4010sfph" path="res://scenes/units/presets/scratcher.tres" id="10_pbrn6"]
 [ext_resource type="Resource" uid="uid://dq03p26e0nofs" path="res://scenes/hero/presets/prime.tres" id="11_5q76q"]
+[ext_resource type="Resource" uid="uid://d01gt7pt0afb3" path="res://scenes/units/presets/roller.tres" id="12_4icns"]
 [ext_resource type="Resource" uid="uid://bb1pfnplvpe22" path="res://scenes/hero/presets/zephyr.tres" id="12_4jv4t"]
 
 [sub_resource type="Resource" id="Resource_04v27"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 100
+mob = ExtResource("5_n5qbm")
+stack = 10
 
 [sub_resource type="Resource" id="Resource_hqa1b"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 2
+mob = ExtResource("7_fkjup")
+stack = 9
 
 [sub_resource type="Resource" id="Resource_t5ee2"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 3
+mob = ExtResource("5_n5qbm")
+stack = 12
 
 [sub_resource type="Resource" id="Resource_oq7uv"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 4
+mob = ExtResource("10_pbrn6")
+stack = 20
 
 [sub_resource type="Resource" id="Resource_73cog"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 5
+mob = ExtResource("12_4icns")
+stack = 6
 
 [sub_resource type="Resource" id="Resource_jtpxr"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 6
+mob = ExtResource("5_n5qbm")
+stack = 18
 
 [sub_resource type="Resource" id="Resource_ruksx"]
 script = ExtResource("4_drcg5")
-mob = ExtResource("5_74r5h")
-stack = 7
+mob = ExtResource("7_fkjup")
+stack = 8
 
 [node name="Game" type="Node" node_paths=PackedStringArray("Resources", "HeroManager")]
 script = ExtResource("1_0sfuw")
