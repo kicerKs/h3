@@ -1,28 +1,39 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3cnfo7cx0n2u"]
+[gd_scene load_steps=59 format=3 uid="uid://c3cnfo7cx0n2u"]
 
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/city_pattern.gd" id="2_ubu2h"]
 [ext_resource type="Texture2D" uid="uid://dn7ndwg5gbu3m" path="res://assets/widok_miasta.png" id="2_ydyjc"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/town_hall.gd" id="3_j4ygh"]
+[ext_resource type="Texture2D" uid="uid://eaqr0ws6rbma" path="res://assets/ratusz.png" id="4_1nlhb"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/treasury.gd" id="4_cts85"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/marketplace.gd" id="4_p2bfx"]
-[ext_resource type="Texture2D" uid="uid://bmarlgh66eqsu" path="res://assets/city_built_ph.png" id="4_yhsos"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/building_cost.gd" id="5_3r76d"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/tavern.gd" id="5_lav6t"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/spaceport.gd" id="5_nqvy0"]
+[ext_resource type="Texture2D" uid="uid://kyywyxr5y7fe" path="res://assets/bankunio.png" id="6_1m0tn"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/barracks.gd" id="6_m0lg6"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/sniper_range.gd" id="7_fu1gi"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/workshop.gd" id="8_e4fjy"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/academy.gd" id="9_cs4rv"]
+[ext_resource type="Texture2D" uid="uid://bp1ojg4h0xpw0" path="res://assets/space_port.png" id="9_ugyne"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/factory.gd" id="10_ee7x6"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/assembly_line.gd" id="11_2n1lj"]
+[ext_resource type="Texture2D" uid="uid://c1co2v7p5lj4d" path="res://assets/targ.png" id="11_q2u7t"]
 [ext_resource type="Resource" uid="uid://b7fyggeu4sjlv" path="res://scenes/units/presets/soldier.tres" id="11_q26su"]
 [ext_resource type="Script" path="res://scenes/world/buildings/cities/angel_portal.gd" id="12_daki3"]
+[ext_resource type="Texture2D" uid="uid://dklmmxqsj7gws" path="res://assets/tawerna.png" id="13_5dmen"]
 [ext_resource type="Resource" uid="uid://burd01x2jpea6" path="res://scenes/units/presets/sniper.tres" id="13_jusj7"]
 [ext_resource type="Resource" uid="uid://cedtv47kcy58r" path="res://scenes/units/presets/firebat.tres" id="15_06drj"]
+[ext_resource type="Texture2D" uid="uid://861engm6sc74" path="res://assets/Dwellings/barracks_city.png" id="16_2uvy3"]
 [ext_resource type="Resource" uid="uid://353x4rqk2tpc" path="res://scenes/units/presets/marine.tres" id="17_npf7u"]
 [ext_resource type="Resource" uid="uid://btaky05tupcvl" path="res://scenes/units/presets/tank.tres" id="19_jq0ng"]
+[ext_resource type="Texture2D" uid="uid://c08rf0pwqel37" path="res://assets/Dwellings/sniper_range_city.png" id="19_vth3c"]
 [ext_resource type="Resource" uid="uid://chr8sqmmfsms8" path="res://scenes/units/presets/cyborg.tres" id="21_bynie"]
+[ext_resource type="Texture2D" uid="uid://dumiob7u5rg3d" path="res://assets/Dwellings/workshop_city.png" id="22_yagvq"]
 [ext_resource type="Resource" uid="uid://c4vtjfirl5c06" path="res://scenes/units/presets/angel.tres" id="23_l06d0"]
+[ext_resource type="Texture2D" uid="uid://rg417hmxpxos" path="res://assets/Dwellings/academy_city.png" id="25_72074"]
+[ext_resource type="Texture2D" uid="uid://jhvwkk58ko4u" path="res://assets/Dwellings/factory_city.png" id="28_5wdv6"]
+[ext_resource type="Texture2D" uid="uid://c6s7ctovcma5y" path="res://assets/Dwellings/assembly_line_city.png" id="30_qhsxt"]
+[ext_resource type="Texture2D" uid="uid://boo18lyuer2xw" path="res://assets/Dwellings/angel_portal_city.png" id="33_x2pib"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yl5r"]
 size = Vector2(58, 58)
@@ -170,35 +181,35 @@ shape = SubResource("RectangleShape2D_5yl5r")
 [node name="TownHall" type="Node2D" parent="Buildings" groups=["CityBuilding"]]
 script = ExtResource("3_j4ygh")
 building_name = "Town Hall"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("4_1nlhb")
 tooltip = "Provides an income of 500 credits per day."
 is_built = true
 
 [node name="Treasury" type="Node2D" parent="Buildings" groups=["CityBuilding"]]
 script = ExtResource("4_cts85")
 building_name = "Treasury"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("6_1m0tn")
 tooltip = "Provides an additional income of 500 credits per day."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_bn1wy")])
 
 [node name="Spaceport" type="Node2D" parent="Buildings" groups=["CityBuilding"]]
 script = ExtResource("5_nqvy0")
 building_name = "Spaceport"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("9_ugyne")
 tooltip = "Provides an additional income of 1000 credits per day."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_u0fyf")])
 
 [node name="Marketplace" type="Node2D" parent="Buildings" groups=["CityBuilding"]]
 script = ExtResource("4_p2bfx")
 building_name = "Marketplace"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("11_q2u7t")
 tooltip = "Allows for trading goods."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_0g2xc"), SubResource("Resource_wb2qo")])
 
 [node name="Tavern" type="Node2D" parent="Buildings" groups=["CityBuilding"]]
 script = ExtResource("5_lav6t")
 building_name = "Tavern"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("13_5dmen")
 tooltip = "Allows to recruit new heroes."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_fqnrp"), SubResource("Resource_1wyi4")])
 
@@ -206,7 +217,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_fqnrp"), S
 script = ExtResource("6_m0lg6")
 unit = ExtResource("11_q26su")
 building_name = "Barracks"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("16_2uvy3")
 tooltip = "Allows recruiting Soldiers."
 is_built = true
 
@@ -214,7 +225,7 @@ is_built = true
 script = ExtResource("7_fu1gi")
 unit = ExtResource("13_jusj7")
 building_name = "Sniper Range"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("19_vth3c")
 tooltip = "Allows recruiting Snipers."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_isbtb"), SubResource("Resource_5xhfw"), SubResource("Resource_anglp")])
 
@@ -222,7 +233,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_isbtb"), S
 script = ExtResource("8_e4fjy")
 unit = ExtResource("15_06drj")
 building_name = "Workshop"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("22_yagvq")
 tooltip = "Allows recruiting Firebats."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_vg1of"), SubResource("Resource_2nbtf"), SubResource("Resource_3glmm")])
 
@@ -230,7 +241,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_vg1of"), S
 script = ExtResource("9_cs4rv")
 unit = ExtResource("17_npf7u")
 building_name = "Academy"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("25_72074")
 tooltip = "Allows recruiting Marines."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_mgieg"), SubResource("Resource_r64b4"), SubResource("Resource_wq40l")])
 
@@ -238,7 +249,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_mgieg"), S
 script = ExtResource("10_ee7x6")
 unit = ExtResource("19_jq0ng")
 building_name = "Factory"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("28_5wdv6")
 tooltip = "Allows recruiting Tanks."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_hgv7p"), SubResource("Resource_4m2ci"), SubResource("Resource_ldgcn")])
 
@@ -246,7 +257,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_hgv7p"), S
 script = ExtResource("11_2n1lj")
 unit = ExtResource("21_bynie")
 building_name = "Assembly Line"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("30_qhsxt")
 tooltip = "Allows recruiting Cyborgs."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_t5p4b"), SubResource("Resource_5qlgf"), SubResource("Resource_hnr7e")])
 
@@ -254,7 +265,7 @@ building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_t5p4b"), S
 script = ExtResource("12_daki3")
 unit = ExtResource("23_l06d0")
 building_name = "Angel Portal"
-texture = ExtResource("4_yhsos")
+texture = ExtResource("33_x2pib")
 tooltip = "Allows recruiting Angels."
 building_costs = Array[ExtResource("5_3r76d")]([SubResource("Resource_cu10n"), SubResource("Resource_genar")])
 

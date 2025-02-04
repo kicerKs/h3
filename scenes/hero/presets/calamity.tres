@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://bekk0hlxdbhhg"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_h24l0"]
+[ext_resource type="Texture2D" uid="uid://bydywdwyvrten" path="res://assets/heroes/mecha.png" id="2_aywux"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_tcyjc"]
 
 [sub_resource type="Resource" id="Resource_whj8s"]
@@ -8,13 +9,10 @@ script = ExtResource("1_h24l0")
 skill = 1
 lvl = 1
 
-[sub_resource type="Resource" id="Resource_7nrdu"]
-metadata/__load_path__ = "res://assets/heroes/mecha.png"
-
 [resource]
 script = ExtResource("3_tcyjc")
 name = "Calamity"
-icon = SubResource("Resource_7nrdu")
+icon = ExtResource("2_aywux")
 attack = 2
 defense = 1
 _luck = 0

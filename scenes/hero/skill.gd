@@ -100,5 +100,19 @@ static func get_skill_description(sk: Skills, lvl: int):
 
 static func get_skill_icon(sk: Skills):
 	match sk:
+		Skills.ARCHERY:
+			return load("res://assets/heroes/archery.png")
+		Skills.OFFENSE:
+			return load("res://assets/heroes/offense.png")
+		Skills.ARMORER:
+			return load("res://assets/heroes/armorer.png")
+		Skills.LOGISTICS:
+			return load("res://assets/heroes/logistics.png")
+		Skills.LUCK:
+			return load("res://assets/heroes/luck.png")
+		Skills.LEADERSHIP:
+			return load("res://assets/heroes/leadership.png")
+		Skills.ESTATES:
+			return load("res://assets/heroes/estates.png")
 		_:
 			return load("res://assets/ph_icon.png")

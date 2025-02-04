@@ -7,7 +7,35 @@ signal entered
 var hero: Hero
 var just_visited = false
 
+var inactive_texture
+var active_texture
+
 var available_to_recruit = 0
+
+func _ready():
+	match mob_type.mob_name:
+		"Soldier":
+			inactive_texture = load("res://assets/Dwellings/barracks.png")
+			active_texture = load("res://assets/Dwellings/barracks_claimed.png")
+		"Sniper":
+			inactive_texture = load("res://assets/Dwellings/sniper_range.png")
+			active_texture = load("res://assets/Dwellings/sniper_range_claimed.png")
+		"Firebat":
+			inactive_texture = load("res://assets/Dwellings/workshop.png")
+			active_texture = load("res://assets/Dwellings/workshop_claimed.png")
+		"Marine":
+			inactive_texture = load("res://assets/Dwellings/academy.png")
+			active_texture = load("res://assets/Dwellings/academy_claimed.png")
+		"Tank":
+			inactive_texture = load("res://assets/Dwellings/factory.png")
+			active_texture = load("res://assets/Dwellings/factory_claimed.png")
+		"Cyborg":
+			inactive_texture = load("res://assets/Dwellings/assembly_line.png")
+			active_texture = load("res://assets/Dwellings/assembly_line_claimed.png")
+		"Angel":
+			inactive_texture = load("res://assets/Dwellings/angel_portal.png")
+			active_texture = load("res://assets/Dwellings/angel_portal_claimed.png")
+	$Sprite2D.texture = inactive_texture
 
 func enter():
 	if !just_visited:
@@ -24,6 +52,7 @@ func enter_forced():
 func claim():
 	owned = true
 	TurnSystem.connect("new_week", growth)
+	$Sprite2D.texture = active_texture
 	growth()
 
 func growth():

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="HeroAttributes" load_steps=5 format=3 uid="uid://mwrsxvg3xh0n"]
 
 [ext_resource type="Script" path="res://scenes/hero/skill.gd" id="1_vgyyw"]
+[ext_resource type="Texture2D" uid="uid://b336neobtbwd" path="res://assets/heroes/sniper.png" id="2_aytds"]
 [ext_resource type="Script" path="res://scenes/hero/hero_stats.gd" id="3_q7brw"]
 
 [sub_resource type="Resource" id="Resource_pf70v"]
@@ -8,13 +9,10 @@ script = ExtResource("1_vgyyw")
 skill = 0
 lvl = 1
 
-[sub_resource type="Resource" id="Resource_7jb1r"]
-metadata/__load_path__ = "res://assets/heroes/sniper.png"
-
 [resource]
 script = ExtResource("3_q7brw")
 name = "Falcon"
-icon = SubResource("Resource_7jb1r")
+icon = ExtResource("2_aytds")
 attack = 2
 defense = 1
 _luck = 0

@@ -24,6 +24,7 @@ func pickup():
 			amount = [5, 6, 7, 8, 9, 1].pick_random()
 		else:
 			amount = [3, 4, 5, 6].pick_random()
+		Game.Resources.add_resource(resource_type, amount)
 		pickedup.emit(self, amount)
 		picked = true
 

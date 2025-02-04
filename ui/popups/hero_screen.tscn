@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cujxhrxudabji"]
+[gd_scene load_steps=11 format=3 uid="uid://cujxhrxudabji"]
 
 [ext_resource type="Texture2D" uid="uid://bgmu14jk8bck8" path="res://assets/ui_v2.png" id="1_c1g8v"]
 [ext_resource type="Script" path="res://ui/popups/hero_screen.gd" id="1_jgabe"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cvpkpeppc74al" path="res://assets/deffence.png" id="4_x8wws"]
 [ext_resource type="Texture2D" uid="uid://dnkpt61yx166k" path="res://assets/Morale 0.png" id="5_8hwwv"]
 [ext_resource type="Texture2D" uid="uid://w7cifkpvdhob" path="res://assets/Luck 0.png" id="6_bjbnj"]
-[ext_resource type="Texture2D" uid="uid://chxw4bqeltih8" path="res://assets/ph_icon.png" id="7_yd481"]
 [ext_resource type="Texture2D" uid="uid://cbj1lhxgpqnrc" path="res://assets/heads.png" id="8_pdgsx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mkli"]
@@ -127,6 +126,7 @@ horizontal_alignment = 1
 [node name="AttackTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+tooltip_text = "Strength of this hero's units."
 texture = ExtResource("3_1p4il")
 expand_mode = 3
 stretch_mode = 4
@@ -134,6 +134,7 @@ stretch_mode = 4
 [node name="DefenseTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+tooltip_text = "Resistance of this hero's units."
 texture = ExtResource("4_x8wws")
 expand_mode = 3
 stretch_mode = 4
@@ -142,6 +143,7 @@ stretch_mode = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+tooltip_text = "With morale your units can attack twice!"
 texture = ExtResource("5_8hwwv")
 expand_mode = 3
 stretch_mode = 4
@@ -150,6 +152,7 @@ stretch_mode = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+tooltip_text = "With luck your units can deal double damage!"
 texture = ExtResource("6_bjbnj")
 expand_mode = 3
 stretch_mode = 4
@@ -190,7 +193,6 @@ columns = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-texture = ExtResource("7_yd481")
 expand_mode = 3
 stretch_mode = 4
 
@@ -214,7 +216,6 @@ text = "Logistics"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("7_yd481")
 expand_mode = 3
 stretch_mode = 4
 
@@ -237,7 +238,6 @@ text = "Logistics"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-texture = ExtResource("7_yd481")
 expand_mode = 3
 stretch_mode = 4
 
@@ -259,7 +259,6 @@ text = "Logistics"
 [node name="Skill4Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("7_yd481")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
