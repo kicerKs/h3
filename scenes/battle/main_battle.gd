@@ -205,6 +205,8 @@ func fight(distant: bool = false):
 	target.hp_stack -= _calculate_attack_value(actual_plaing_mob, target, distant)
 	if(target.stack <= 0):
 		target.visible = false
+	if(distant):
+		target = null
 
 func counterattack(distant: bool = false):
 	if(target.hp_stack>0 and target.counterattack and !distant):
@@ -220,9 +222,9 @@ func _calculate_attack_value(attacker: Mob, defender: Mob, distance_attack: bool
 	var luck = 0 if(!attacker.player) else (1 if(random.randf() < float(float(hero.luck)/24.0)) else 0)
 	
 	var i1 = 0.0 if(A<=D) else 0.05*(A-D)
-	var i2 = 0.0 if !attacker.player else (hero.attributes.get_archery_modifier() if distance_attack else hero.attributes.get_offence_modifier())
+	var i2 = 0.0 if !attacker.player else (hero.attributes.get_archery_modifier()-1.0 if distance_attack else hero.attributes.get_offence_modifier()-1.0)
 	var R1 = 0.0 if(D<=A) else 0.025*(D-A)
-	var R2 = 0.0 if !defender.player else hero.attributes.get_armorer_modifier()
+	var R2 = 0.0 if !defender.player else 1.0-hero.attributes.get_armorer_modifier()
 	var R5 = 0.0
 	if(distance_attack and battle_ground.straight_distance_mobs(attacker,defender) > 10 or !distance_attack and attacker.distant):
 		R5 = 0.5
